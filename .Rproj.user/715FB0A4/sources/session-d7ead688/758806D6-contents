@@ -1,0 +1,2 @@
+gs <- read.csv("wb-gender-statistics.csv")
+wd <- read.csv("wb-world-development.csv")
