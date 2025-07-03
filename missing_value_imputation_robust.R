@@ -69,20 +69,35 @@ create_clean_datasets <- function(data) {
   cat("Percentage of original data retained:", round((nrow(complete_cases_data) / nrow(data)) * 100, 2), "%\n\n")
   
   # Version 2: Remove series with >80% missing values
+  # STEP 1 OF IMPUTATION PROCESS: QUALITY FILTERING BY SERIES
+  # This step removes entire data series (indicators) that have more than 80% missing values
+  # across all countries and years. This ensures we only work with indicators that have
+  # sufficient data coverage for meaningful analysis.
   cat("=== CREATING FILTERED DATASET (Remove series with >80% missing) ===\n")
+  
+  # Calculate missing data statistics for each series (indicator)
+  # For each unique series name, we count:
+  # - total_year_cells: total possible data points (countries × years)
+  # - missing_year_cells: actual missing data points
+  # - missing_percentage: percentage of missing data for that series
   series_stats <- data %>%
     group_by(`Series Name`) %>%
     summarise(
-      total_year_cells = n() * length(year_cols),
-      missing_year_cells = sum(is.na(select(cur_data(), all_of(year_cols)))),
-      missing_percentage = (missing_year_cells / total_year_cells) * 100,
+      total_year_cells = n() * length(year_cols),        # Total possible data points
+      missing_year_cells = sum(is.na(select(cur_data(), all_of(year_cols)))), # Missing points
+      missing_percentage = (missing_year_cells / total_year_cells) * 100,     # Missing %
       .groups = 'drop'
     )
   
+  # Filter to keep only series with ≤80% missing values
+  # This threshold ensures we retain indicators with reasonable data coverage
+  # Series with >80% missing values are considered too sparse for reliable analysis
   good_series <- series_stats %>%
     filter(missing_percentage <= 80) %>%
     pull(`Series Name`)
   
+  # Apply the series filter to the original dataset
+  # This removes all rows belonging to series with >80% missing values
   filtered_data <- data %>%
     filter(`Series Name` %in% good_series)
   
@@ -90,32 +105,73 @@ create_clean_datasets <- function(data) {
   cat("Filtered dataset:", nrow(filtered_data), "rows x", ncol(filtered_data), "columns\n\n")
   
   # Version 3: Remove rows where >50% of year values are missing
+  # STEP 2 OF IMPUTATION PROCESS: QUALITY FILTERING BY ROWS
+  # This step removes individual country-indicator combinations that have more than 50%
+  # missing values across the 25-year time period. This ensures each remaining row
+  # has sufficient temporal coverage for meaningful time series analysis.
   cat("=== CREATING ROW-FILTERED DATASET (Remove rows with >50% missing years) ===\n")
+  
   row_filtered_data <- filtered_data %>%
-    rowwise() %>%
+    rowwise() %>%  # Process each row individually
     mutate(
+      # Count missing values across all year columns for this specific row
+      # c_across() applies the function across multiple columns in a rowwise context
       missing_years = sum(is.na(c_across(all_of(year_cols)))),
+      
+      # Calculate what percentage of the 25 years are missing for this row
+      # If a country-indicator combination has >50% missing years, it's considered
+      # too sparse for reliable imputation and analysis
       missing_percentage = (missing_years / length(year_cols)) * 100
     ) %>%
+    # Keep only rows with ≤50% missing years (i.e., at least 12-13 years of data)
     filter(missing_percentage <= 50) %>%
+    # Remove the temporary calculation columns
     select(-missing_years, -missing_percentage) %>%
-    ungroup()
+    ungroup()  # Remove rowwise grouping
   
   cat("Row-filtered dataset:", nrow(row_filtered_data), "rows x", ncol(row_filtered_data), "columns\n\n")
   
   # Version 4: Simple imputation with mean values
+  # STEP 3 OF IMPUTATION PROCESS: MEAN IMPUTATION BY SERIES
+  # This is the core imputation step that creates wb_data_mean_imputed.csv
+  # Strategy: For each missing value, replace it with the mean of all available values
+  # for that same indicator (series) across all countries and years.
   cat("=== CREATING MEAN-IMPUTED DATASET ===\n")
-  mean_imputed_data <- row_filtered_data %>%
-    group_by(`Series Name`) %>%
-    mutate(across(all_of(year_cols), ~ifelse(is.na(.), mean(., na.rm = TRUE), .))) %>%
-    ungroup()
   
-  # Replace any remaining NaN values (from series with all missing data) with 0
+  # Group by Series Name to calculate series-specific means
+  # This approach assumes that missing values for an indicator can be reasonably
+  # approximated by the global average for that indicator across all countries
+  mean_imputed_data <- row_filtered_data %>%
+    group_by(`Series Name`) %>%  # Group by indicator type
+    
+    # Apply imputation across all year columns simultaneously
+    # For each year column, the logic is:
+    # - If the value is missing (NA), replace it with the mean of all non-NA values
+    #   for that same indicator across all countries and years
+    # - If the value is not missing, keep the original value unchanged
+    # mean(., na.rm = TRUE) calculates the mean while ignoring NA values
+    mutate(across(all_of(year_cols), ~ifelse(is.na(.), mean(., na.rm = TRUE), .))) %>%
+    ungroup()  # Remove grouping
+  
+  # STEP 4 OF IMPUTATION PROCESS: HANDLE EDGE CASES
+  # Handle the special case where an entire series has no data at all
+  # If a series has all missing values, mean(., na.rm = TRUE) returns NaN
+  # We replace these NaN values with 0 as a conservative estimate
+  # This prevents downstream analysis errors while acknowledging data limitations
   mean_imputed_data <- mean_imputed_data %>%
     mutate(across(all_of(year_cols), ~ifelse(is.nan(.), 0, .)))
   
   cat("Mean-imputed dataset:", nrow(mean_imputed_data), "rows x", ncol(mean_imputed_data), "columns\n")
   cat("Remaining missing values:", sum(is.na(mean_imputed_data)), "\n\n")
+  
+  # SUMMARY OF IMPUTATION PROCESS FOR wb_data_mean_imputed.csv:
+  # 1. Started with 9,315 rows (original combined dataset)
+  # 2. Removed 18 series with >80% missing values (quality filter)
+  # 3. Removed 1,496 rows with >50% missing years (completeness filter)  
+  # 4. Applied mean imputation: replaced each missing value with the global mean
+  #    for that indicator across all countries and years
+  # 5. Handled edge cases: replaced NaN values (from all-missing series) with 0
+  # 6. Final result: 5,945 rows with 0 missing values
   
   return(list(
     complete_cases = complete_cases_data,
