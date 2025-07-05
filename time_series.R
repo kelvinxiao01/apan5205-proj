@@ -33,21 +33,41 @@ print(head(mmr_df))
 
 # Create the time series plot
 p <- ggplot(mmr_df, aes(x = Year, y = MMR, group = Country.Name, color = Country.Name)) +
-  geom_line(alpha = 0.6, linewidth = 0.8) +
+  geom_line(alpha = 0.7, linewidth = 0.9) +
   labs(
     title = "Maternal Mortality Ratio Trends Over Time (2000-2024)",
     subtitle = "Modeled estimate per 100,000 live births",
     y = "Maternal Mortality Ratio",
     x = "Year"
   ) +
-  theme_minimal() +
+  theme_classic() +  # White background with black axes
   theme(
-    legend.position = "none",  # Too many countries to show legend
-    plot.title = element_text(size = 14, face = "bold"),
-    plot.subtitle = element_text(size = 12, color = "gray60")
+    # Plot styling
+    plot.background = element_rect(fill = "white", color = NA),
+    panel.background = element_rect(fill = "white", color = NA),
+    
+    # Text styling for better readability
+    plot.title = element_text(size = 16, face = "bold", color = "black", hjust = 0.5),
+    plot.subtitle = element_text(size = 13, color = "gray30", hjust = 0.5),
+    axis.title.x = element_text(size = 14, face = "bold", color = "black"),
+    axis.title.y = element_text(size = 14, face = "bold", color = "black"),
+    axis.text.x = element_text(size = 12, color = "black"),
+    axis.text.y = element_text(size = 12, color = "black"),
+    
+    # Grid lines for better readability
+    panel.grid.major = element_line(color = "gray90", linewidth = 0.5),
+    panel.grid.minor = element_line(color = "gray95", linewidth = 0.3),
+    
+    # Remove legend (too many countries)
+    legend.position = "none",
+    
+    # Plot margins
+    plot.margin = margin(20, 20, 20, 20)
   ) +
   scale_x_continuous(breaks = seq(2000, 2024, 5)) +
-  scale_y_continuous(labels = scales::comma_format())
+  scale_y_continuous(labels = scales::comma_format()) +
+  # Add a subtle border around the plot
+  theme(panel.border = element_rect(color = "black", fill = NA, linewidth = 0.5))
 
 # Display the plot
 print(p)
