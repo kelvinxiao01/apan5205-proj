@@ -23,7 +23,9 @@ mmr_df <- data %>%
   # The regex "(?<=X)\\d{4}" means: find 4 digits that come after "X"
   mutate(Year = as.numeric(str_extract(Year, "(?<=X)\\d{4}"))) %>%
   # Remove any rows with missing years (shouldn't happen but good practice)
-  filter(!is.na(Year))
+  filter(!is.na(Year)) %>%
+  # Filter to only include years 2000-2023 (exclude 2024)
+  filter(Year >= 2000 & Year <= 2023)
 
 # Check if we have data
 cat("\nMaternal Mortality data found for", length(unique(mmr_df$Country.Name)), "countries\n")
@@ -35,7 +37,7 @@ print(head(mmr_df))
 p <- ggplot(mmr_df, aes(x = Year, y = MMR, group = Country.Name, color = Country.Name)) +
   geom_line(alpha = 0.7, linewidth = 0.9) +
   labs(
-    title = "Maternal Mortality Ratio Trends Over Time (2000-2024)",
+    title = "Maternal Mortality Ratio Trends Over Time (2000-2023)",
     subtitle = "Modeled estimate per 100,000 live births",
     y = "Maternal Mortality Ratio",
     x = "Year"
@@ -64,7 +66,7 @@ p <- ggplot(mmr_df, aes(x = Year, y = MMR, group = Country.Name, color = Country
     # Plot margins
     plot.margin = margin(20, 20, 20, 20)
   ) +
-  scale_x_continuous(breaks = seq(2000, 2024, 5)) +
+  scale_x_continuous(breaks = seq(2000, 2023, 5)) +
   scale_y_continuous(labels = scales::comma_format()) +
   # Add a subtle border around the plot
   theme(panel.border = element_rect(color = "black", fill = NA, linewidth = 0.5))
