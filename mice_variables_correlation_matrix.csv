@@ -1,0 +1,7 @@
+"","Adolescent fertility rate (births per 1,000 women ages 15-19)","GDP growth (annual %)","GDP per capita (constant 2015 US$)","Labor force participation rate, female (% of female population ages 15-64) (modeled ILO estimate)","Maternal mortality ratio (modeled estimate, per 100,000 live births)","Gross savings (% of GDP)"
+"Adolescent fertility rate (births per 1,000 women ages 15-19)",1,0.107870780546879,-0.496305839175095,-0.0177158623153123,0.761236232212401,-0.20428585945841
+"GDP growth (annual %)",0.107870780546879,1,-0.095137306394106,-0.0151364464752038,0.107415991226545,0.174939670822404
+"GDP per capita (constant 2015 US$)",-0.496305839175095,-0.095137306394106,1,0.337664379171715,-0.3698156255983,0.177465746183197
+"Labor force participation rate, female (% of female population ages 15-64) (modeled ILO estimate)",-0.0177158623153123,-0.0151364464752038,0.337664379171715,1,0.0452385310934569,-0.0241264562137463
+"Maternal mortality ratio (modeled estimate, per 100,000 live births)",0.761236232212401,0.107415991226545,-0.3698156255983,0.0452385310934569,1,-0.121875563368932
+"Gross savings (% of GDP)",-0.20428585945841,0.174939670822404,0.177465746183197,-0.0241264562137463,-0.121875563368932,1

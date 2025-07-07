@@ -1,274 +1,275 @@
-"Country","MMR_2010","MMR_2023","Change_Absolute","Change_Percent","Change_Category"
-"Lesotho",1311,478,-833,-63.5392829900839,"Large Improvement (>20% decrease)"
-"Sierra Leone",1018,354,-664,-65.2259332023576,"Large Improvement (>20% decrease)"
-"Eswatini",752,118,-634,-84.3085106382979,"Large Improvement (>20% decrease)"
-"Central African Republic",1230,692,-538,-43.739837398374,"Large Improvement (>20% decrease)"
-"Chad",1284,748,-536,-41.7445482866044,"Large Improvement (>20% decrease)"
-"Europe & Central Asia (IDA & IBRD countries)",655.4,123.4,-532,-81.1718034787916,"Large Improvement (>20% decrease)"
-"Somalia",1062,563,-499,-46.9868173258004,"Large Improvement (>20% decrease)"
-"Sub-Saharan Africa (IDA & IBRD countries)",742.8,283.8,-459,-61.7932148626817,"Large Improvement (>20% decrease)"
-"Ethiopia",619,195,-424,-68.497576736672,"Large Improvement (>20% decrease)"
-"Namibia",531,139,-392,-73.8229755178908,"Large Improvement (>20% decrease)"
-"Afghanistan",893,521,-372,-41.6573348264278,"Large Improvement (>20% decrease)"
-"Latin America & the Caribbean (IDA & IBRD countries)",477.2,150.8,-326.4,-68.3989941324392,"Large Improvement (>20% decrease)"
-"Cameroon",562,258,-304,-54.0925266903915,"Large Improvement (>20% decrease)"
-"Bermuda",409,109.2,-299.8,-73.3007334963325,"Large Improvement (>20% decrease)"
-"Greenland",416.4,124.4,-292,-70.1248799231508,"Large Improvement (>20% decrease)"
-"Malawi",517,225,-292,-56.4796905222437,"Large Improvement (>20% decrease)"
-"Gambia, The",632,354,-278,-43.9873417721519,"Large Improvement (>20% decrease)"
-"Guam",412.8,136.2,-276.6,-67.0058139534884,"Large Improvement (>20% decrease)"
-"Niger",621,350,-271,-43.6392914653784,"Large Improvement (>20% decrease)"
-"Guinea",750,494,-256,-34.1333333333333,"Large Improvement (>20% decrease)"
-"Timor-Leste",439,192,-247,-56.2642369020501,"Large Improvement (>20% decrease)"
-"Zambia",332,85,-247,-74.3975903614458,"Large Improvement (>20% decrease)"
-"Heavily indebted poor countries (HIPC)",558,321,-237,-42.4731182795699,"Large Improvement (>20% decrease)"
-"Cote d'Ivoire",592,359,-233,-39.3581081081081,"Large Improvement (>20% decrease)"
-"Burundi",614,392,-222,-36.1563517915309,"Large Improvement (>20% decrease)"
-"Low income",566,346,-220,-38.86925795053,"Large Improvement (>20% decrease)"
-"Least developed countries: UN classification",503,289,-214,-42.544731610338,"Large Improvement (>20% decrease)"
-"Tanzania",486,276,-210,-43.2098765432099,"Large Improvement (>20% decrease)"
-"Zimbabwe",567,358,-209,-36.8606701940035,"Large Improvement (>20% decrease)"
-"Africa Eastern and Southern",476,268,-208,-43.6974789915966,"Large Improvement (>20% decrease)"
-"Sub-Saharan Africa (IDA & IBRD)",632,424,-208,-32.9113924050633,"Large Improvement (>20% decrease)"
-"Sub-Saharan Africa (excluding high income)",632,424,-208,-32.9113924050633,"Large Improvement (>20% decrease)"
-"Eritrea",498,291,-207,-41.566265060241,"Large Improvement (>20% decrease)"
-"Mozambique",305,99,-206,-67.5409836065574,"Large Improvement (>20% decrease)"
-"Northern Mariana Islands",366.4,160.6,-205.8,-56.1681222707424,"Large Improvement (>20% decrease)"
-"IDA only",482,282,-200,-41.49377593361,"Large Improvement (>20% decrease)"
-"Senegal",436,237,-199,-45.6422018348624,"Large Improvement (>20% decrease)"
-"Sub-Saharan Africa",643,448,-195,-30.3265940902022,"Large Improvement (>20% decrease)"
-"Guinea-Bissau",698,505,-193,-27.6504297994269,"Large Improvement (>20% decrease)"
-"Lao PDR",305,112,-193,-63.2786885245902,"Large Improvement (>20% decrease)"
-"Mali",558,367,-191,-34.2293906810036,"Large Improvement (>20% decrease)"
-"Pre-demographic dividend",652,461,-191,-29.2944785276074,"Large Improvement (>20% decrease)"
-"Africa Western and Central",839,650,-189,-22.5268176400477,"Large Improvement (>20% decrease)"
-"Fragile and conflict affected situations",646,458,-188,-29.1021671826625,"Large Improvement (>20% decrease)"
-"Aruba",373.2,191.2,-182,-48.7674169346195,"Large Improvement (>20% decrease)"
-"Macao SAR, China",405.2,228,-177.2,-43.7314906219151,"Large Improvement (>20% decrease)"
-"Congo, Dem. Rep.",601,427,-174,-28.9517470881864,"Large Improvement (>20% decrease)"
-"IDA total",522,352,-170,-32.5670498084291,"Large Improvement (>20% decrease)"
-"Rwanda",393,229,-164,-41.7302798982188,"Large Improvement (>20% decrease)"
-"Burkina Faso",404,242,-162,-40.0990099009901,"Large Improvement (>20% decrease)"
-"Bangladesh",275,115,-160,-58.1818181818182,"Large Improvement (>20% decrease)"
-"Nepal",297,142,-155,-52.1885521885522,"Large Improvement (>20% decrease)"
-"Other small states",244,95,-149,-61.0655737704918,"Large Improvement (>20% decrease)"
-"Turks and Caicos Islands",332.2,183.2,-149,-44.8524984948826,"Large Improvement (>20% decrease)"
-"Togo",497,349,-148,-29.7786720321932,"Large Improvement (>20% decrease)"
-"Congo, Rep.",382,241,-141,-36.9109947643979,"Large Improvement (>20% decrease)"
-"Angola",321,183,-138,-42.9906542056075,"Large Improvement (>20% decrease)"
-"Curacao",232.8,96.4,-136.4,-58.5910652920962,"Large Improvement (>20% decrease)"
-"Uganda",304,170,-134,-44.078947368421,"Large Improvement (>20% decrease)"
-"Ghana",363,234,-129,-35.5371900826446,"Large Improvement (>20% decrease)"
-"Cayman Islands",201,74,-127,-63.18407960199,"Large Improvement (>20% decrease)"
-"Comoros",305,179,-126,-41.3114754098361,"Large Improvement (>20% decrease)"
-"American Samoa",286.8,166.4,-120.4,-41.9804741980474,"Large Improvement (>20% decrease)"
-"Mauritania",499,381,-118,-23.6472945891784,"Large Improvement (>20% decrease)"
-"Sudan",370,256,-114,-30.8108108108108,"Large Improvement (>20% decrease)"
-"New Caledonia",416,302.4,-113.6,-27.3076923076923,"Large Improvement (>20% decrease)"
-"South Asia (IDA & IBRD)",226,116,-110,-48.6725663716814,"Large Improvement (>20% decrease)"
-"South Asia",229,120,-109,-47.5982532751092,"Large Improvement (>20% decrease)"
-"India",188,80,-108,-57.4468085106383,"Large Improvement (>20% decrease)"
-"Small states",198,90,-108,-54.5454545454545,"Large Improvement (>20% decrease)"
-"South Africa",226,118,-108,-47.787610619469,"Large Improvement (>20% decrease)"
-"Middle East, North Africa, Afghanistan & Pakistan",406.2,300.8,-105.4,-25.9478089611029,"Large Improvement (>20% decrease)"
-"Kosovo",239.8,135.4,-104.4,-43.5362802335279,"Large Improvement (>20% decrease)"
-"IDA blend",596,494,-102,-17.1140939597315,"Moderate Improvement (5-20% decrease)"
-"Indonesia",242,140,-102,-42.1487603305785,"Large Improvement (>20% decrease)"
-"British Virgin Islands",426.4,324.8,-101.6,-23.827392120075,"Large Improvement (>20% decrease)"
-"Nigeria",1094,993,-101,-9.23217550274223,"Moderate Improvement (5-20% decrease)"
-"Papua New Guinea",289,189,-100,-34.6020761245675,"Large Improvement (>20% decrease)"
-"Cambodia",234,137,-97,-41.4529914529915,"Large Improvement (>20% decrease)"
-"Early-demographic dividend",201,104,-97,-48.2587064676617,"Large Improvement (>20% decrease)"
-"Sao Tome and Principe",170,75,-95,-55.8823529411765,"Large Improvement (>20% decrease)"
-"Benin",607,518,-89,-14.662273476112,"Moderate Improvement (5-20% decrease)"
-"Virgin Islands (U.S.)",281,192.8,-88.2,-31.3879003558719,"Large Improvement (>20% decrease)"
-"Lower middle income",322,235,-87,-27.0186335403727,"Large Improvement (>20% decrease)"
-"Equatorial Guinea",259,174,-85,-32.8185328185328,"Large Improvement (>20% decrease)"
-"Pakistan",240,155,-85,-35.4166666666667,"Large Improvement (>20% decrease)"
-"Liberia",712,628,-84,-11.7977528089888,"Moderate Improvement (5-20% decrease)"
-"South Sudan",776,692,-84,-10.8247422680412,"Moderate Improvement (5-20% decrease)"
-"Djibouti",243,162,-81,-33.3333333333333,"Large Improvement (>20% decrease)"
-"Liechtenstein",278.4,197.8,-80.6,-28.9511494252873,"Large Improvement (>20% decrease)"
-"Paraguay",136,58,-78,-57.3529411764706,"Large Improvement (>20% decrease)"
-"Myanmar",259,185,-74,-28.5714285714286,"Large Improvement (>20% decrease)"
-"Botswana",228,155,-73,-32.0175438596491,"Large Improvement (>20% decrease)"
-"Middle East, North Africa, Afghanistan & Pakistan (excluding high income)",209.2,136.2,-73,-34.8948374760994,"Large Improvement (>20% decrease)"
-"Low & middle income",277,205,-72,-25.9927797833935,"Large Improvement (>20% decrease)"
-"Isle of Man",248.2,177.4,-70.8,-28.5253827558421,"Large Improvement (>20% decrease)"
-"Haiti",398,328,-70,-17.5879396984925,"Moderate Improvement (5-20% decrease)"
-"IDA & IBRD total",272,202,-70,-25.7352941176471,"Large Improvement (>20% decrease)"
-"Morocco",140,70,-70,-50,"Large Improvement (>20% decrease)"
-"Faroe Islands",136.8,70.4,-66.4,-48.5380116959064,"Large Improvement (>20% decrease)"
-"Guyana",141,75,-66,-46.8085106382979,"Large Improvement (>20% decrease)"
-"French Polynesia",136,71.8,-64.2,-47.2058823529412,"Large Improvement (>20% decrease)"
-"Gibraltar",175.6,111.8,-63.8,-36.3325740318907,"Large Improvement (>20% decrease)"
-"Kenya",210,149,-61,-29.047619047619,"Large Improvement (>20% decrease)"
-"Bhutan",107,47,-60,-56.0747663551402,"Large Improvement (>20% decrease)"
-"Hong Kong SAR, China",175.4,117,-58.4,-33.2953249714937,"Large Improvement (>20% decrease)"
-"Marshall Islands",212,155,-57,-26.8867924528302,"Large Improvement (>20% decrease)"
-"East Asia & Pacific (IDA & IBRD countries)",240.2,183.6,-56.6,-23.563696919234,"Large Improvement (>20% decrease)"
-"World",253,197,-56,-22.1343873517787,"Large Improvement (>20% decrease)"
-"Madagascar",500,445,-55,-11,"Moderate Improvement (5-20% decrease)"
-"Micronesia, Fed. Sts.",184,129,-55,-29.8913043478261,"Large Improvement (>20% decrease)"
-"Middle income",225,174,-51,-22.6666666666667,"Large Improvement (>20% decrease)"
-"Bolivia",196,146,-50,-25.5102040816327,"Large Improvement (>20% decrease)"
-"Suriname",134,84,-50,-37.3134328358209,"Large Improvement (>20% decrease)"
-"Arab World",170,121,-49,-28.8235294117647,"Large Improvement (>20% decrease)"
-"IBRD only",115,67,-48,-41.7391304347826,"Large Improvement (>20% decrease)"
-"St. Martin (French part)",240.6,195.8,-44.8,-18.6201163757273,"Moderate Improvement (5-20% decrease)"
-"Tuvalu",213,170,-43,-20.18779342723,"Large Improvement (>20% decrease)"
-"Sint Maarten (Dutch part)",286.6,245.2,-41.4,-14.4452198185625,"Moderate Improvement (5-20% decrease)"
-"Iraq",107,66,-41,-38.3177570093458,"Large Improvement (>20% decrease)"
-"Nicaragua",96,60,-36,-37.5,"Large Improvement (>20% decrease)"
-"Peru",86,51,-35,-40.6976744186046,"Large Improvement (>20% decrease)"
-"Guatemala",127,94,-33,-25.9842519685039,"Large Improvement (>20% decrease)"
-"Philippines",117,84,-33,-28.2051282051282,"Large Improvement (>20% decrease)"
-"Puerto Rico (US)",216.2,185.6,-30.6,-14.1535615171138,"Moderate Improvement (5-20% decrease)"
-"Mongolia",71,41,-30,-42.2535211267606,"Large Improvement (>20% decrease)"
-"Caribbean small states",98,69,-29,-29.5918367346939,"Large Improvement (>20% decrease)"
-"Kyrgyz Republic",71,42,-29,-40.8450704225352,"Large Improvement (>20% decrease)"
-"West Bank and Gaza",42,16,-26,-61.9047619047619,"Large Improvement (>20% decrease)"
-"Yemen, Rep.",144,118,-26,-18.0555555555556,"Moderate Improvement (5-20% decrease)"
-"Ecuador",80,55,-25,-31.25,"Large Improvement (>20% decrease)"
-"Honduras",72,47,-25,-34.7222222222222,"Large Improvement (>20% decrease)"
-"Solomon Islands",148,123,-25,-16.8918918918919,"Moderate Improvement (5-20% decrease)"
-"Nauru",297,273,-24,-8.08080808080808,"Moderate Improvement (5-20% decrease)"
-"Argentina",55,33,-22,-40,"Large Improvement (>20% decrease)"
-"East Asia & Pacific (IDA & IBRD)",90,68,-22,-24.4444444444444,"Large Improvement (>20% decrease)"
-"East Asia & Pacific (excluding high income)",90,68,-22,-24.4444444444444,"Large Improvement (>20% decrease)"
-"Kiribati",102,80,-22,-21.5686274509804,"Large Improvement (>20% decrease)"
-"Cabo Verde",61,40,-21,-34.4262295081967,"Large Improvement (>20% decrease)"
-"Georgia",41,20,-21,-51.219512195122,"Large Improvement (>20% decrease)"
-"Algeria",82,62,-20,-24.390243902439,"Large Improvement (>20% decrease)"
-"East Asia & Pacific",86,66,-20,-23.2558139534884,"Large Improvement (>20% decrease)"
-"Panama",56,37,-19,-33.9285714285714,"Large Improvement (>20% decrease)"
-"Upper middle income",76,57,-19,-25,"Large Improvement (>20% decrease)"
-"China",34,16,-18,-52.9411764705882,"Large Improvement (>20% decrease)"
-"Middle East & North Africa (IDA & IBRD)",68,50,-18,-26.4705882352941,"Large Improvement (>20% decrease)"
-"Middle East & North Africa (excluding high income)",67,49,-18,-26.865671641791,"Large Improvement (>20% decrease)"
-"St. Kitts and Nevis",92,74,-18,-19.5652173913043,"Moderate Improvement (5-20% decrease)"
-"Tonga",85,67,-18,-21.1764705882353,"Large Improvement (>20% decrease)"
-"Colombia",76,59,-17,-22.3684210526316,"Large Improvement (>20% decrease)"
-"Jordan",48,31,-17,-35.4166666666667,"Large Improvement (>20% decrease)"
-"Maldives",49,32,-17,-34.6938775510204,"Large Improvement (>20% decrease)"
-"Middle East & North Africa",63,47,-16,-25.3968253968254,"Large Improvement (>20% decrease)"
-"Egypt, Arab Rep.",32,17,-15,-46.875,"Large Improvement (>20% decrease)"
-"Dominica",50,36,-14,-28,"Large Improvement (>20% decrease)"
-"Russian Federation",23,9,-14,-60.8695652173913,"Large Improvement (>20% decrease)"
-"Vanuatu",114,100,-14,-12.280701754386,"Moderate Improvement (5-20% decrease)"
-"Viet Nam",62,48,-14,-22.5806451612903,"Large Improvement (>20% decrease)"
-"Chile",22,10,-12,-54.5454545454545,"Large Improvement (>20% decrease)"
-"Kazakhstan",22,10,-12,-54.5454545454545,"Large Improvement (>20% decrease)"
-"Latin America & Caribbean (excluding high income)",80,68,-12,-15,"Moderate Improvement (5-20% decrease)"
-"Libya",71,59,-12,-16.9014084507042,"Moderate Improvement (5-20% decrease)"
-"Pacific island small states",102,90,-12,-11.7647058823529,"Moderate Improvement (5-20% decrease)"
-"St. Lucia",56,44,-12,-21.4285714285714,"Large Improvement (>20% decrease)"
-"Tajikistan",26,14,-12,-46.1538461538462,"Large Improvement (>20% decrease)"
-"Iran, Islamic Rep.",27,16,-11,-40.7407407407407,"Large Improvement (>20% decrease)"
-"Late-demographic dividend",41,30,-11,-26.8292682926829,"Large Improvement (>20% decrease)"
-"Romania",23,12,-11,-47.8260869565217,"Large Improvement (>20% decrease)"
-"Azerbaijan",28,18,-10,-35.7142857142857,"Large Improvement (>20% decrease)"
-"Fiji",40,30,-10,-25,"Large Improvement (>20% decrease)"
-"Korea, Dem. People's Rep.",77,67,-10,-12.987012987013,"Moderate Improvement (5-20% decrease)"
-"Armenia",28,19,-9,-32.1428571428571,"Large Improvement (>20% decrease)"
-"Cuba",44,35,-9,-20.4545454545455,"Large Improvement (>20% decrease)"
-"Europe & Central Asia (IDA & IBRD)",23,14,-9,-39.1304347826087,"Large Improvement (>20% decrease)"
-"Mexico",50,42,-8,-16,"Moderate Improvement (5-20% decrease)"
-"Seychelles",50,42,-8,-16,"Moderate Improvement (5-20% decrease)"
-"Sri Lanka",26,18,-8,-30.7692307692308,"Large Improvement (>20% decrease)"
-"Tunisia",44,36,-8,-18.1818181818182,"Moderate Improvement (5-20% decrease)"
-"Turkiye",23,15,-8,-34.7826086956522,"Large Improvement (>20% decrease)"
-"Uzbekistan",34,26,-8,-23.5294117647059,"Large Improvement (>20% decrease)"
-"Barbados",42,35,-7,-16.6666666666667,"Moderate Improvement (5-20% decrease)"
-"Europe & Central Asia (excluding high income)",25,18,-7,-28,"Large Improvement (>20% decrease)"
-"Palau",96,89,-7,-7.29166666666667,"Moderate Improvement (5-20% decrease)"
-"Puerto Rico",18,11,-7,-38.8888888888889,"Large Improvement (>20% decrease)"
-"Latin America & Caribbean (IDA & IBRD)",81,75,-6,-7.40740740740741,"Moderate Improvement (5-20% decrease)"
-"Luxembourg",17,11,-6,-35.2941176470588,"Large Improvement (>20% decrease)"
-"Monaco",11,5,-6,-54.5454545454545,"Large Improvement (>20% decrease)"
-"Ukraine",21,15,-6,-28.5714285714286,"Large Improvement (>20% decrease)"
-"Costa Rica",29,24,-5,-17.2413793103448,"Moderate Improvement (5-20% decrease)"
-"Europe & Central Asia",16,11,-5,-31.25,"Large Improvement (>20% decrease)"
-"Brunei Darussalam",40,36,-4,-10,"Moderate Improvement (5-20% decrease)"
-"Korea, Rep.",8,4,-4,-50,"Large Improvement (>20% decrease)"
-"Latin America & Caribbean",81,77,-4,-4.93827160493827,"Stable (±5%)"
-"Oman",17,13,-4,-23.5294117647059,"Large Improvement (>20% decrease)"
-"Qatar",8,4,-4,-50,"Large Improvement (>20% decrease)"
-"Saudi Arabia",11,7,-4,-36.3636363636364,"Large Improvement (>20% decrease)"
-"Singapore",10,6,-4,-40,"Large Improvement (>20% decrease)"
-"Slovenia",7,3,-4,-57.1428571428571,"Large Improvement (>20% decrease)"
-"Turkmenistan",9,5,-4,-44.4444444444444,"Large Improvement (>20% decrease)"
-"Australia",5,2,-3,-60,"Large Improvement (>20% decrease)"
-"Bahamas, The",79,76,-3,-3.79746835443038,"Stable (±5%)"
-"Bulgaria",9,6,-3,-33.3333333333333,"Large Improvement (>20% decrease)"
-"Central Europe and the Baltics",9,6,-3,-33.3333333333333,"Large Improvement (>20% decrease)"
-"Croatia",6,3,-3,-50,"Large Improvement (>20% decrease)"
-"Denmark",7,4,-3,-42.8571428571429,"Large Improvement (>20% decrease)"
-"Estonia",8,5,-3,-37.5,"Large Improvement (>20% decrease)"
-"Japan",6,3,-3,-50,"Large Improvement (>20% decrease)"
-"Latvia",22,19,-3,-13.6363636363636,"Moderate Improvement (5-20% decrease)"
-"Malaysia",29,26,-3,-10.3448275862069,"Moderate Improvement (5-20% decrease)"
-"New Zealand",10,7,-3,-30,"Large Improvement (>20% decrease)"
-"Norway",4,1,-3,-75,"Large Improvement (>20% decrease)"
-"OECD members",20,17,-3,-15,"Moderate Improvement (5-20% decrease)"
-"St. Vincent and the Grenadines",59,56,-3,-5.08474576271187,"Moderate Improvement (5-20% decrease)"
-"Thailand",37,34,-3,-8.10810810810811,"Moderate Improvement (5-20% decrease)"
-"Channel Islands",177.4,174.8,-2.59999999999999,-1.46561443066516,"Stable (±5%)"
-"Albania",9,7,-2,-22.2222222222222,"Large Improvement (>20% decrease)"
-"Belarus",3,1,-2,-66.6666666666667,"Large Improvement (>20% decrease)"
-"Belgium",6,4,-2,-33.3333333333333,"Large Improvement (>20% decrease)"
-"Bosnia and Herzegovina",8,6,-2,-25,"Large Improvement (>20% decrease)"
-"Euro area",7,5,-2,-28.5714285714286,"Large Improvement (>20% decrease)"
-"European Union",7,5,-2,-28.5714285714286,"Large Improvement (>20% decrease)"
-"France",9,7,-2,-22.2222222222222,"Large Improvement (>20% decrease)"
-"High income",12,10,-2,-16.6666666666667,"Moderate Improvement (5-20% decrease)"
-"Iceland",5,3,-2,-40,"Large Improvement (>20% decrease)"
-"Ireland",6,4,-2,-33.3333333333333,"Large Improvement (>20% decrease)"
-"Italy",8,6,-2,-25,"Large Improvement (>20% decrease)"
-"Lithuania",10,8,-2,-20,"Large Improvement (>20% decrease)"
-"Netherlands",6,4,-2,-33.3333333333333,"Large Improvement (>20% decrease)"
-"North Macedonia",5,3,-2,-40,"Large Improvement (>20% decrease)"
-"Serbia",13,11,-2,-15.3846153846154,"Moderate Improvement (5-20% decrease)"
-"Switzerland",7,5,-2,-28.5714285714286,"Large Improvement (>20% decrease)"
-"United Kingdom",10,8,-2,-20,"Large Improvement (>20% decrease)"
-"Uruguay",17,15,-2,-11.7647058823529,"Moderate Improvement (5-20% decrease)"
-"Andorra",12,11,-1,-8.33333333333333,"Moderate Improvement (5-20% decrease)"
-"Bahrain",18,17,-1,-5.55555555555556,"Moderate Improvement (5-20% decrease)"
-"Czechia",4,3,-1,-25,"Large Improvement (>20% decrease)"
-"Germany",5,4,-1,-20,"Large Improvement (>20% decrease)"
-"Hungary",13,12,-1,-7.69230769230769,"Moderate Improvement (5-20% decrease)"
-"Israel",3,2,-1,-33.3333333333333,"Large Improvement (>20% decrease)"
-"Kuwait",9,8,-1,-11.1111111111111,"Moderate Improvement (5-20% decrease)"
-"Malta",9,8,-1,-11.1111111111111,"Moderate Improvement (5-20% decrease)"
-"Moldova",20,19,-1,-5,"Moderate Improvement (5-20% decrease)"
-"Montenegro",7,6,-1,-14.2857142857143,"Moderate Improvement (5-20% decrease)"
-"Poland",3,2,-1,-33.3333333333333,"Large Improvement (>20% decrease)"
-"Post-demographic dividend",11,10,-1,-9.09090909090909,"Moderate Improvement (5-20% decrease)"
-"Slovak Republic",5,4,-1,-20,"Large Improvement (>20% decrease)"
-"Spain",4,3,-1,-25,"Large Improvement (>20% decrease)"
-"Sweden",5,4,-1,-20,"Large Improvement (>20% decrease)"
-"Austria",6,6,0,0,"Stable (±5%)"
-"Finland",8,8,0,0,"Stable (±5%)"
-"Lebanon",15,15,0,0,"Stable (±5%)"
-"San Marino",8,8,0,0,"Stable (±5%)"
-"Trinidad and Tobago",54,54,0,0,"Stable (±5%)"
-"United Arab Emirates",3,3,0,0,"Stable (±5%)"
-"Brazil",66,67,1,1.51515151515152,"Stable (±5%)"
-"Canada",11,12,1,9.09090909090909,"Moderate Increase (5-20% increase)"
-"Greece",4,5,1,25,"Large Increase (>20% increase)"
-"Syrian Arab Republic",19,20,1,5.26315789473684,"Moderate Increase (5-20% increase)"
-"North America",14,16,2,14.2857142857143,"Moderate Increase (5-20% increase)"
-"United States",15,17,2,13.3333333333333,"Moderate Increase (5-20% increase)"
-"Antigua and Barbuda",31,35,4,12.9032258064516,"Moderate Increase (5-20% increase)"
-"Cyprus",10,14,4,40,"Large Increase (>20% increase)"
-"El Salvador",34,39,5,14.7058823529412,"Moderate Increase (5-20% increase)"
-"Grenada",43,48,5,11.6279069767442,"Moderate Increase (5-20% increase)"
-"Portugal",10,15,5,50,"Large Increase (>20% increase)"
-"Samoa",92,101,9,9.78260869565217,"Moderate Increase (5-20% increase)"
-"Mauritius",53,66,13,24.5283018867925,"Large Increase (>20% increase)"
-"Belize",41,67,26,63.4146341463415,"Large Increase (>20% increase)"
-"Dominican Republic",92,124,32,34.7826086956522,"Large Increase (>20% increase)"
-"Jamaica",94,130,36,38.2978723404255,"Large Increase (>20% increase)"
-"Middle East, North Africa, Afghanistan & Pakistan (IDA & IBRD)",144.8,227.6,82.8,57.1823204419889,"Large Increase (>20% increase)"
-"Gabon",144,233,89,61.8055555555556,"Large Increase (>20% increase)"
-"Venezuela, RB",110,227,117,106.363636363636,"Large Increase (>20% increase)"
+Country Name,Country Code,years_available,mmr_2010,mmr_2023,mmr_change,mmr_pct_change,avg_mmr,change_category
+Eswatini,SWZ,14,752,118,-634,-84.30851063829788,315.5,Large improvement (>50% decrease)
+Norway,NOR,14,4,1,-3,-75,2.4285714285714284,Large improvement (>50% decrease)
+Zambia,ZMB,14,332,85,-247,-74.3975903614458,168,Large improvement (>50% decrease)
+Namibia,NAM,14,531,139,-392,-73.82297551789078,288.92857142857144,Large improvement (>50% decrease)
+Not classified,INX,14,117.2,31.8,-85.4,-72.86689419795222,93.1913813459268,Large improvement (>50% decrease)
+Ethiopia,ETH,14,619,195,-424,-68.49757673667204,374.57142857142856,Large improvement (>50% decrease)
+Mozambique,MOZ,14,305,99,-206,-67.54098360655738,185.78571428571428,Large improvement (>50% decrease)
+Belarus,BLR,14,3,1,-2,-66.66666666666666,1.5714285714285714,Large improvement (>50% decrease)
+Sierra Leone,SLE,14,1018,354,-664,-65.22593320235757,643.4285714285713,Large improvement (>50% decrease)
+Lesotho,LSO,14,1311,478,-833,-63.5392829900839,691.5714285714286,Large improvement (>50% decrease)
+Lao PDR,LAO,14,305,112,-193,-63.278688524590166,178.92857142857142,Large improvement (>50% decrease)
+West Bank and Gaza,PSE,14,42,16,-26,-61.904761904761905,26.214285714285715,Large improvement (>50% decrease)
+Other small states,OSS,14,244,95,-149,-61.065573770491795,150,Large improvement (>50% decrease)
+Russian Federation,RUS,14,23,9,-14,-60.86956521739131,15.642857142857142,Large improvement (>50% decrease)
+Australia,AUS,14,5,2,-3,-60,5.142857142857143,Large improvement (>50% decrease)
+Bangladesh,BGD,14,275,115,-160,-58.18181818181818,193.92857142857144,Large improvement (>50% decrease)
+India,IND,14,188,80,-108,-57.446808510638306,128.78571428571428,Large improvement (>50% decrease)
+Paraguay,PRY,14,136,58,-78,-57.35294117647059,82.35714285714286,Large improvement (>50% decrease)
+Slovenia,SVN,14,7,3,-4,-57.14285714285714,6.571428571428571,Large improvement (>50% decrease)
+Malawi,MWI,14,517,225,-292,-56.47969052224371,336.42857142857144,Large improvement (>50% decrease)
+Timor-Leste,TLS,14,439,192,-247,-56.264236902050115,299.2142857142857,Large improvement (>50% decrease)
+Bhutan,BTN,14,107,47,-60,-56.074766355140184,66.71428571428571,Large improvement (>50% decrease)
+Sao Tome and Principe,STP,14,170,75,-95,-55.88235294117647,119.92857142857142,Large improvement (>50% decrease)
+Latin America & the Caribbean (IDA & IBRD countries),TLA,14,79.1595041322314,35.2,-43.9595041322314,-55.53281897622752,65.42432113341205,Large improvement (>50% decrease)
+Chile,CHL,14,22,10,-12,-54.54545454545454,14.428571428571429,Large improvement (>50% decrease)
+Kazakhstan,KAZ,14,22,10,-12,-54.54545454545454,15.071428571428571,Large improvement (>50% decrease)
+Monaco,MCO,14,11,5,-6,-54.54545454545454,7.428571428571429,Large improvement (>50% decrease)
+Small states,SST,14,198,90,-108,-54.54545454545454,132.5,Large improvement (>50% decrease)
+Cameroon,CMR,14,562,258,-304,-54.092526690391466,398.2857142857143,Large improvement (>50% decrease)
+China,CHN,14,34,16,-18,-52.94117647058824,25,Large improvement (>50% decrease)
+Nepal,NPL,14,297,142,-155,-52.18855218855219,211.78571428571428,Large improvement (>50% decrease)
+Georgia,GEO,14,41,20,-21,-51.21951219512195,31.571428571428573,Large improvement (>50% decrease)
+Croatia,HRV,14,6,3,-3,-50,5,Large improvement (>50% decrease)
+Japan,JPN,14,6,3,-3,-50,4.928571428571429,Large improvement (>50% decrease)
+"Korea, Rep.",KOR,14,8,4,-4,-50,6.714285714285714,Large improvement (>50% decrease)
+Morocco,MAR,14,140,70,-70,-50,97.71428571428571,Large improvement (>50% decrease)
+Qatar,QAT,14,8,4,-4,-50,6.071428571428571,Large improvement (>50% decrease)
+South Asia (IDA & IBRD),TSA,14,226,116,-110,-48.67256637168141,167.28571428571428,Moderate improvement (20-50% decrease)
+Early-demographic dividend,EAR,14,201,104,-97,-48.258706467661696,147.57142857142858,Moderate improvement (20-50% decrease)
+Romania,ROU,14,23,12,-11,-47.82608695652174,17.142857142857142,Moderate improvement (20-50% decrease)
+South Africa,ZAF,14,226,118,-108,-47.78761061946903,156.57142857142858,Moderate improvement (20-50% decrease)
+South Asia,SAS,14,229,120,-109,-47.59825327510917,170.78571428571428,Moderate improvement (20-50% decrease)
+Somalia,SOM,14,1062,563,-499,-46.98681732580038,771.5714285714286,Moderate improvement (20-50% decrease)
+"Egypt, Arab Rep.",EGY,14,32,17,-15,-46.875,26.142857142857142,Moderate improvement (20-50% decrease)
+Guyana,GUY,14,141,75,-66,-46.808510638297875,119.07142857142857,Moderate improvement (20-50% decrease)
+"Middle East, North Africa, Afghanistan & Pakistan",MEA,14,187.6,100.1198347107438,-87.48016528925619,-46.63121817124531,112.45838252656434,Moderate improvement (20-50% decrease)
+Tajikistan,TJK,14,26,14,-12,-46.15384615384615,20.214285714285715,Moderate improvement (20-50% decrease)
+Senegal,SEN,14,436,237,-199,-45.642201834862384,329.42857142857144,Moderate improvement (20-50% decrease)
+Turkmenistan,TKM,14,9,5,-4,-44.44444444444444,6.071428571428571,Moderate improvement (20-50% decrease)
+Uganda,UGA,14,304,170,-134,-44.07894736842105,253.57142857142858,Moderate improvement (20-50% decrease)
+"Gambia, The",GMB,14,632,354,-278,-43.9873417721519,497,Moderate improvement (20-50% decrease)
+Central African Republic,CAF,14,1230,692,-538,-43.73983739837398,1078.7142857142858,Moderate improvement (20-50% decrease)
+Africa Eastern and Southern,AFE,14,476,268,-208,-43.69747899159664,363.7142857142857,Moderate improvement (20-50% decrease)
+Niger,NER,14,621,350,-271,-43.63929146537842,461.42857142857144,Moderate improvement (20-50% decrease)
+Tanzania,TZA,14,486,276,-210,-43.20987654320987,348.35714285714283,Moderate improvement (20-50% decrease)
+Angola,AGO,14,321,183,-138,-42.99065420560748,237,Moderate improvement (20-50% decrease)
+Denmark,DNK,14,7,4,-3,-42.857142857142854,5.357142857142857,Moderate improvement (20-50% decrease)
+Least developed countries: UN classification,LDC,14,503,289,-214,-42.54473161033797,392.2142857142857,Moderate improvement (20-50% decrease)
+Heavily indebted poor countries (HIPC),HPC,14,558,321,-237,-42.473118279569896,432.42857142857144,Moderate improvement (20-50% decrease)
+Mongolia,MNG,14,71,41,-30,-42.25352112676056,53.07142857142857,Moderate improvement (20-50% decrease)
+Indonesia,IDN,14,242,140,-102,-42.14876033057851,190.71428571428572,Moderate improvement (20-50% decrease)
+Chad,TCD,14,1284,748,-536,-41.74454828660436,1060.5714285714287,Moderate improvement (20-50% decrease)
+IBRD only,IBD,14,115,67,-48,-41.73913043478261,87.5,Moderate improvement (20-50% decrease)
+Rwanda,RWA,14,393,229,-164,-41.73027989821883,288.85714285714283,Moderate improvement (20-50% decrease)
+Afghanistan,AFG,14,893,521,-372,-41.65733482642777,698,Moderate improvement (20-50% decrease)
+Eritrea,ERI,14,498,291,-207,-41.566265060240966,390.85714285714283,Moderate improvement (20-50% decrease)
+IDA only,IDX,14,482,282,-200,-41.49377593360996,380.64285714285717,Moderate improvement (20-50% decrease)
+Cambodia,KHM,14,234,137,-97,-41.452991452991455,173.42857142857142,Moderate improvement (20-50% decrease)
+Comoros,COM,14,305,179,-126,-41.31147540983607,231.92857142857142,Moderate improvement (20-50% decrease)
+Kyrgyz Republic,KGZ,14,71,42,-29,-40.845070422535215,57.214285714285715,Moderate improvement (20-50% decrease)
+"Iran, Islamic Rep.",IRN,14,27,16,-11,-40.74074074074074,24.785714285714285,Moderate improvement (20-50% decrease)
+Peru,PER,14,86,51,-35,-40.69767441860465,76.92857142857143,Moderate improvement (20-50% decrease)
+Burkina Faso,BFA,14,404,242,-162,-40.099009900990104,329.85714285714283,Moderate improvement (20-50% decrease)
+Argentina,ARG,14,55,33,-22,-40,44.357142857142854,Moderate improvement (20-50% decrease)
+Iceland,ISL,14,5,3,-2,-40,4.571428571428571,Moderate improvement (20-50% decrease)
+North Macedonia,MKD,14,5,3,-2,-40,4.785714285714286,Moderate improvement (20-50% decrease)
+Singapore,SGP,14,10,6,-4,-40,11.428571428571427,Moderate improvement (20-50% decrease)
+Sub-Saharan Africa (IDA & IBRD countries),TSS,14,645,389.8,-255.2,-39.565891472868216,492.2142857142857,Moderate improvement (20-50% decrease)
+Cote d'Ivoire,CIV,14,592,359,-233,-39.358108108108105,485.92857142857144,Moderate improvement (20-50% decrease)
+Europe & Central Asia (IDA & IBRD),TEC,14,23,14,-9,-39.130434782608695,18.5,Moderate improvement (20-50% decrease)
+Puerto Rico,PRI,14,18,11,-7,-38.88888888888889,20.357142857142858,Moderate improvement (20-50% decrease)
+Low income,LIC,14,566,346,-220,-38.869257950530034,458.57142857142856,Moderate improvement (20-50% decrease)
+Europe & Central Asia (IDA & IBRD countries),TEC,14,123.2,75.5198347107438,-47.68016528925621,-38.70143286465601,77.94250295159387,Moderate improvement (20-50% decrease)
+Iraq,IRQ,14,107,66,-41,-38.31775700934579,83.35714285714286,Moderate improvement (20-50% decrease)
+Estonia,EST,14,8,5,-3,-37.5,6.642857142857143,Moderate improvement (20-50% decrease)
+Nicaragua,NIC,14,96,60,-36,-37.5,81.71428571428571,Moderate improvement (20-50% decrease)
+Suriname,SUR,14,134,84,-50,-37.3134328358209,111.42857142857143,Moderate improvement (20-50% decrease)
+"Congo, Rep.",COG,14,382,241,-141,-36.910994764397905,292.7857142857143,Moderate improvement (20-50% decrease)
+Zimbabwe,ZWE,14,567,358,-209,-36.860670194003525,445.42857142857144,Moderate improvement (20-50% decrease)
+Saudi Arabia,SAU,14,11,7,-4,-36.36363636363637,9,Moderate improvement (20-50% decrease)
+American Samoa,ASM,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+Aruba,ABW,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+Bermuda,BMU,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+British Virgin Islands,VGB,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+Cayman Islands,CYM,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+Channel Islands,CHI,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+Curacao,CUW,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+Faroe Islands,FRO,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+French Polynesia,PYF,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+Gibraltar,GIB,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+Greenland,GRL,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+Guam,GUM,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+"Hong Kong SAR, China",HKG,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+Isle of Man,IMN,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+Kosovo,XKX,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+Liechtenstein,LIE,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+"Macao SAR, China",MAC,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+New Caledonia,NCL,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+Northern Mariana Islands,MNP,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+Sint Maarten (Dutch part),SXM,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+St. Martin (French part),MAF,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+Turks and Caicos Islands,TCA,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+Virgin Islands (U.S.),VIR,14,196.8801652892562,125.61570247933888,-71.26446280991733,-36.196872704376105,161.28364817001182,Moderate improvement (20-50% decrease)
+Burundi,BDI,14,614,392,-222,-36.156351791530945,499.07142857142856,Moderate improvement (20-50% decrease)
+Azerbaijan,AZE,14,28,18,-10,-35.714285714285715,25.928571428571427,Moderate improvement (20-50% decrease)
+Ghana,GHA,14,363,234,-129,-35.53719008264463,296,Moderate improvement (20-50% decrease)
+Jordan,JOR,14,48,31,-17,-35.41666666666667,43.214285714285715,Moderate improvement (20-50% decrease)
+Pakistan,PAK,14,240,155,-85,-35.41666666666667,196.28571428571428,Moderate improvement (20-50% decrease)
+Luxembourg,LUX,14,17,11,-6,-35.294117647058826,11.571428571428571,Moderate improvement (20-50% decrease)
+Turkiye,TUR,14,23,15,-8,-34.78260869565217,19.428571428571427,Moderate improvement (20-50% decrease)
+Honduras,HND,14,72,47,-25,-34.72222222222222,59.57142857142857,Moderate improvement (20-50% decrease)
+Maldives,MDV,14,49,32,-17,-34.69387755102041,43.57142857142857,Moderate improvement (20-50% decrease)
+Papua New Guinea,PNG,14,289,189,-100,-34.602076124567475,223.78571428571428,Moderate improvement (20-50% decrease)
+Cabo Verde,CPV,14,61,40,-21,-34.42622950819672,48.285714285714285,Moderate improvement (20-50% decrease)
+Mali,MLI,14,558,367,-191,-34.229390681003586,466.07142857142856,Moderate improvement (20-50% decrease)
+Guinea,GIN,14,750,494,-256,-34.13333333333333,608.5714285714286,Moderate improvement (20-50% decrease)
+Panama,PAN,14,56,37,-19,-33.92857142857143,50.07142857142857,Moderate improvement (20-50% decrease)
+Belgium,BEL,14,6,4,-2,-33.33333333333333,5.571428571428571,Moderate improvement (20-50% decrease)
+Bulgaria,BGR,14,9,6,-3,-33.33333333333333,7.571428571428571,Moderate improvement (20-50% decrease)
+Central Europe and the Baltics,CEB,14,9,6,-3,-33.33333333333333,7.785714285714286,Moderate improvement (20-50% decrease)
+Djibouti,DJI,14,243,162,-81,-33.33333333333333,205.78571428571428,Moderate improvement (20-50% decrease)
+Ireland,IRL,14,6,4,-2,-33.33333333333333,5.214285714285714,Moderate improvement (20-50% decrease)
+Israel,ISR,14,3,2,-1,-33.33333333333333,2.9285714285714284,Moderate improvement (20-50% decrease)
+Netherlands,NLD,14,6,4,-2,-33.33333333333333,5.142857142857143,Moderate improvement (20-50% decrease)
+Poland,POL,14,3,2,-1,-33.33333333333333,2.142857142857143,Moderate improvement (20-50% decrease)
+Sub-Saharan Africa (IDA & IBRD),TSS,14,632,424,-208,-32.91139240506329,536.2142857142857,Moderate improvement (20-50% decrease)
+Sub-Saharan Africa (excluding high income),SSA,14,632,424,-208,-32.91139240506329,536.2142857142857,Moderate improvement (20-50% decrease)
+Equatorial Guinea,GNQ,14,259,174,-85,-32.818532818532816,216.28571428571428,Moderate improvement (20-50% decrease)
+IDA total,IDA,14,522,352,-170,-32.56704980842912,445,Moderate improvement (20-50% decrease)
+Armenia,ARM,14,28,19,-9,-32.142857142857146,28.642857142857142,Moderate improvement (20-50% decrease)
+Botswana,BWA,14,228,155,-73,-32.01754385964912,158.14285714285714,Moderate improvement (20-50% decrease)
+Ecuador,ECU,14,80,55,-25,-31.25,70.28571428571429,Moderate improvement (20-50% decrease)
+Europe & Central Asia,ECS,14,16,11,-5,-31.25,14.142857142857142,Moderate improvement (20-50% decrease)
+Sudan,SDN,14,370,256,-114,-30.810810810810814,299.5,Moderate improvement (20-50% decrease)
+Sri Lanka,LKA,14,26,18,-8,-30.76923076923077,23.142857142857142,Moderate improvement (20-50% decrease)
+Sub-Saharan Africa,SSF,14,643,448,-195,-30.326594090202175,553.9285714285714,Moderate improvement (20-50% decrease)
+New Zealand,NZL,14,10,7,-3,-30,9.214285714285714,Moderate improvement (20-50% decrease)
+"Micronesia, Fed. Sts.",FSM,14,184,129,-55,-29.891304347826086,166.07142857142858,Moderate improvement (20-50% decrease)
+Togo,TGO,14,497,349,-148,-29.77867203219316,444.57142857142856,Moderate improvement (20-50% decrease)
+Caribbean small states,CSS,14,98,69,-29,-29.591836734693878,90.78571428571429,Moderate improvement (20-50% decrease)
+Pre-demographic dividend,PRE,14,652,461,-191,-29.29447852760736,570.0714285714286,Moderate improvement (20-50% decrease)
+Fragile and conflict affected situations,FCS,14,646,458,-188,-29.102167182662537,566.9285714285714,Moderate improvement (20-50% decrease)
+Kenya,KEN,14,210,149,-61,-29.04761904761905,189.78571428571428,Moderate improvement (20-50% decrease)
+"Congo, Dem. Rep.",COD,14,601,427,-174,-28.95174708818636,525.9285714285714,Moderate improvement (20-50% decrease)
+Arab World,ARB,14,170,121,-49,-28.823529411764703,141.5,Moderate improvement (20-50% decrease)
+Euro area,EMU,14,7,5,-2,-28.57142857142857,6.428571428571429,Moderate improvement (20-50% decrease)
+European Union,EUU,14,7,5,-2,-28.57142857142857,6.642857142857143,Moderate improvement (20-50% decrease)
+Myanmar,MMR,14,259,185,-74,-28.57142857142857,218.92857142857142,Moderate improvement (20-50% decrease)
+Switzerland,CHE,14,7,5,-2,-28.57142857142857,5.928571428571429,Moderate improvement (20-50% decrease)
+Ukraine,UKR,14,21,15,-6,-28.57142857142857,18.357142857142858,Moderate improvement (20-50% decrease)
+Philippines,PHL,14,117,84,-33,-28.205128205128204,103.35714285714286,Moderate improvement (20-50% decrease)
+Dominica,DMA,14,50,36,-14,-28.000000000000004,52.07142857142857,Moderate improvement (20-50% decrease)
+Europe & Central Asia (excluding high income),ECA,14,25,18,-7,-28.000000000000004,21.642857142857142,Moderate improvement (20-50% decrease)
+Guinea-Bissau,GNB,14,698,505,-193,-27.650429799426934,624.3571428571429,Moderate improvement (20-50% decrease)
+Lower middle income,LMC,14,322,235,-87,-27.018633540372672,280.7857142857143,Moderate improvement (20-50% decrease)
+Marshall Islands,MHL,14,212,155,-57,-26.88679245283019,187.28571428571428,Moderate improvement (20-50% decrease)
+Middle East & North Africa (excluding high income),MNA,14,67,49,-18,-26.865671641791046,59.357142857142854,Moderate improvement (20-50% decrease)
+Late-demographic dividend,LTE,14,41,30,-11,-26.82926829268293,35.42857142857143,Moderate improvement (20-50% decrease)
+Middle East & North Africa (IDA & IBRD),TMN,14,68,50,-18,-26.47058823529412,59.92857142857143,Moderate improvement (20-50% decrease)
+Low & middle income,LMY,14,277,205,-72,-25.992779783393498,239.85714285714286,Moderate improvement (20-50% decrease)
+Guatemala,GTM,14,127,94,-33,-25.984251968503933,110.28571428571429,Moderate improvement (20-50% decrease)
+IDA & IBRD total,IBT,14,272,202,-70,-25.735294117647058,235.5,Moderate improvement (20-50% decrease)
+Bolivia,BOL,14,196,146,-50,-25.510204081632654,179.14285714285714,Moderate improvement (20-50% decrease)
+Middle East & North Africa,MEA,14,63,47,-16,-25.396825396825395,56.214285714285715,Moderate improvement (20-50% decrease)
+Bosnia and Herzegovina,BIH,14,8,6,-2,-25,7.714285714285714,Moderate improvement (20-50% decrease)
+Czechia,CZE,14,4,3,-1,-25,3.2857142857142856,Moderate improvement (20-50% decrease)
+Fiji,FJI,14,40,30,-10,-25,38.642857142857146,Moderate improvement (20-50% decrease)
+Italy,ITA,14,8,6,-2,-25,7.785714285714286,Moderate improvement (20-50% decrease)
+Spain,ESP,14,4,3,-1,-25,3.642857142857143,Moderate improvement (20-50% decrease)
+Upper middle income,UMC,14,76,57,-19,-25,65.35714285714286,Moderate improvement (20-50% decrease)
+East Asia & Pacific (IDA & IBRD),TEA,14,90,68,-22,-24.444444444444443,75.64285714285714,Moderate improvement (20-50% decrease)
+East Asia & Pacific (excluding high income),EAP,14,90,68,-22,-24.444444444444443,75.57142857142857,Moderate improvement (20-50% decrease)
+Algeria,DZA,14,82,62,-20,-24.390243902439025,77.85714285714286,Moderate improvement (20-50% decrease)
+Mauritania,MRT,14,499,381,-118,-23.647294589178355,450.64285714285717,Moderate improvement (20-50% decrease)
+Oman,OMN,14,17,13,-4,-23.52941176470588,20.142857142857142,Moderate improvement (20-50% decrease)
+Uzbekistan,UZB,14,34,26,-8,-23.52941176470588,30.285714285714285,Moderate improvement (20-50% decrease)
+East Asia & Pacific,EAS,14,86,66,-20,-23.25581395348837,73.07142857142857,Moderate improvement (20-50% decrease)
+Middle income,MIC,14,225,174,-51,-22.666666666666664,197.5,Moderate improvement (20-50% decrease)
+Viet Nam,VNM,14,62,48,-14,-22.58064516129032,55.42857142857143,Moderate improvement (20-50% decrease)
+Africa Western and Central,AFW,14,839,650,-189,-22.526817640047675,773.5714285714286,Moderate improvement (20-50% decrease)
+Colombia,COL,14,76,59,-17,-22.36842105263158,77.21428571428571,Moderate improvement (20-50% decrease)
+Albania,ALB,14,9,7,-2,-22.22222222222222,8.785714285714286,Moderate improvement (20-50% decrease)
+France,FRA,14,9,7,-2,-22.22222222222222,8.714285714285714,Moderate improvement (20-50% decrease)
+World,WLD,14,253,197,-56,-22.134387351778656,224.21428571428572,Moderate improvement (20-50% decrease)
+Kiribati,KIR,14,102,80,-22,-21.568627450980394,93.07142857142857,Moderate improvement (20-50% decrease)
+St. Lucia,LCA,14,56,44,-12,-21.428571428571427,51.214285714285715,Moderate improvement (20-50% decrease)
+Tonga,TON,14,85,67,-18,-21.176470588235293,77.28571428571429,Moderate improvement (20-50% decrease)
+Cuba,CUB,14,44,35,-9,-20.454545454545457,50.07142857142857,Moderate improvement (20-50% decrease)
+Tuvalu,TUV,14,213,170,-43,-20.187793427230048,175.5,Moderate improvement (20-50% decrease)
+Germany,DEU,14,5,4,-1,-20,4.428571428571429,Moderate improvement (20-50% decrease)
+Lithuania,LTU,14,10,8,-2,-20,9.285714285714286,Moderate improvement (20-50% decrease)
+Slovak Republic,SVK,14,5,4,-1,-20,5.357142857142857,Moderate improvement (20-50% decrease)
+Sweden,SWE,14,5,4,-1,-20,4.857142857142857,Moderate improvement (20-50% decrease)
+United Kingdom,GBR,14,10,8,-2,-20,10.142857142857142,Moderate improvement (20-50% decrease)
+St. Kitts and Nevis,KNA,14,92,74,-18,-19.565217391304348,83.92857142857143,Small improvement (5-20% decrease)
+Tunisia,TUN,14,44,36,-8,-18.181818181818183,41.92857142857143,Small improvement (5-20% decrease)
+"Yemen, Rep.",YEM,14,144,118,-26,-18.055555555555554,135.71428571428572,Small improvement (5-20% decrease)
+Haiti,HTI,14,398,328,-70,-17.587939698492463,365.35714285714283,Small improvement (5-20% decrease)
+Costa Rica,CRI,14,29,24,-5,-17.24137931034483,28.642857142857142,Small improvement (5-20% decrease)
+IDA blend,IDB,14,596,494,-102,-17.114093959731544,570.7857142857143,Small improvement (5-20% decrease)
+Libya,LBY,14,71,59,-12,-16.901408450704224,72.57142857142857,Small improvement (5-20% decrease)
+Solomon Islands,SLB,14,148,123,-25,-16.89189189189189,140.57142857142858,Small improvement (5-20% decrease)
+Barbados,BRB,14,42,35,-7,-16.666666666666664,38.214285714285715,Small improvement (5-20% decrease)
+High income,HIC,14,12,10,-2,-16.666666666666664,12,Small improvement (5-20% decrease)
+Mexico,MEX,14,50,42,-8,-16,50.07142857142857,Small improvement (5-20% decrease)
+Seychelles,SYC,14,50,42,-8,-16,52.57142857142857,Small improvement (5-20% decrease)
+Serbia,SRB,14,13,11,-2,-15.384615384615385,13.928571428571429,Small improvement (5-20% decrease)
+Latin America & Caribbean (excluding high income),LAC,14,80,68,-12,-15,78.64285714285714,Small improvement (5-20% decrease)
+OECD members,OED,14,20,17,-3,-15,20.285714285714285,Small improvement (5-20% decrease)
+"Middle East, North Africa, Afghanistan & Pakistan (excluding high income)",MNA,14,140.8,119.83801652892562,-20.96198347107439,-14.887772351615332,117.0741440377804,Small improvement (5-20% decrease)
+Benin,BEN,14,607,518,-89,-14.662273476112025,588.2857142857143,Small improvement (5-20% decrease)
+Montenegro,MNE,14,7,6,-1,-14.285714285714285,8.357142857142858,Small improvement (5-20% decrease)
+Latvia,LVA,14,22,19,-3,-13.636363636363635,23.857142857142858,Small improvement (5-20% decrease)
+"Korea, Dem. People's Rep.",PRK,14,77,67,-10,-12.987012987012985,71.21428571428571,Small improvement (5-20% decrease)
+Vanuatu,VUT,14,114,100,-14,-12.280701754385964,109.07142857142857,Small improvement (5-20% decrease)
+Liberia,LBR,14,712,628,-84,-11.797752808988763,704.1428571428571,Small improvement (5-20% decrease)
+Pacific island small states,PSS,14,102,90,-12,-11.76470588235294,100.64285714285714,Small improvement (5-20% decrease)
+Uruguay,URY,14,17,15,-2,-11.76470588235294,19,Small improvement (5-20% decrease)
+Kuwait,KWT,14,9,8,-1,-11.11111111111111,14.571428571428571,Small improvement (5-20% decrease)
+Malta,MLT,14,9,8,-1,-11.11111111111111,8.785714285714286,Small improvement (5-20% decrease)
+Madagascar,MDG,14,500,445,-55,-11,469.7142857142857,Small improvement (5-20% decrease)
+South Sudan,SSD,14,776,692,-84,-10.824742268041238,967.6428571428571,Small improvement (5-20% decrease)
+Malaysia,MYS,14,29,26,-3,-10.344827586206897,31.214285714285715,Small improvement (5-20% decrease)
+Brunei Darussalam,BRN,14,40,36,-4,-10,42.92857142857143,Small improvement (5-20% decrease)
+Nigeria,NGA,14,1094,993,-101,-9.23217550274223,1101.5,Small improvement (5-20% decrease)
+Post-demographic dividend,PST,14,11,10,-1,-9.090909090909092,11.785714285714286,Small improvement (5-20% decrease)
+Andorra,AND,14,12,11,-1,-8.333333333333332,14.285714285714286,Small improvement (5-20% decrease)
+Thailand,THA,14,37,34,-3,-8.108108108108109,40.642857142857146,Small improvement (5-20% decrease)
+Nauru,NRU,14,297,273,-24,-8.080808080808081,268.57142857142856,Small improvement (5-20% decrease)
+Hungary,HUN,14,13,12,-1,-7.6923076923076925,14.785714285714286,Small improvement (5-20% decrease)
+Latin America & Caribbean (IDA & IBRD),TLA,14,81,75,-6,-7.4074074074074066,81.85714285714286,Small improvement (5-20% decrease)
+Palau,PLW,14,96,89,-7,-7.291666666666667,90.5,Small improvement (5-20% decrease)
+Bahrain,BHR,14,18,17,-1,-5.555555555555555,14.857142857142858,Small improvement (5-20% decrease)
+St. Vincent and the Grenadines,VCT,14,59,56,-3,-5.084745762711865,62.357142857142854,Small improvement (5-20% decrease)
+Moldova,MDA,14,20,19,-1,-5,20.714285714285715,Small improvement (5-20% decrease)
+Latin America & Caribbean,LCN,14,81,77,-4,-4.938271604938271,83.07142857142857,Stable (±5%)
+"Bahamas, The",BHS,14,79,76,-3,-3.79746835443038,85.21428571428571,Stable (±5%)
+Austria,AUT,14,6,6,0,0,6.357142857142857,Stable (±5%)
+Finland,FIN,14,8,8,0,0,7.785714285714286,Stable (±5%)
+Lebanon,LBN,14,15,15,0,0,18.357142857142858,Stable (±5%)
+San Marino,SMR,14,8,8,0,0,13.357142857142856,Stable (±5%)
+Trinidad and Tobago,TTO,14,54,54,0,0,49.214285714285715,Stable (±5%)
+United Arab Emirates,ARE,14,3,3,0,0,3.5714285714285716,Stable (±5%)
+Brazil,BRA,14,66,67,1,1.5151515151515151,72.21428571428571,Stable (±5%)
+Syrian Arab Republic,SYR,14,19,20,1,5.263157894736842,22.928571428571427,Increase (>5%)
+Canada,CAN,14,11,12,1,9.090909090909092,12.428571428571429,Increase (>5%)
+Samoa,WSM,14,92,101,9,9.782608695652174,105.71428571428571,Increase (>5%)
+Grenada,GRD,14,43,48,5,11.627906976744185,46.42857142857143,Increase (>5%)
+Antigua and Barbuda,ATG,14,31,35,4,12.903225806451612,31.857142857142858,Increase (>5%)
+United States,USA,14,15,17,2,13.333333333333334,18.428571428571427,Increase (>5%)
+North America,NAC,14,14,16,2,14.285714285714285,17.785714285714285,Increase (>5%)
+El Salvador,SLV,14,34,39,5,14.705882352941178,41.57142857142857,Increase (>5%)
+Mauritius,MUS,14,53,66,13,24.528301886792452,62.07142857142857,Increase (>5%)
+Greece,GRC,14,4,5,1,25,5.428571428571429,Increase (>5%)
+"Middle East, North Africa, Afghanistan & Pakistan (IDA & IBRD)",TMN,14,87.2,112.8,25.599999999999994,29.357798165137606,105.44250295159387,Increase (>5%)
+Dominican Republic,DOM,14,92,124,32,34.78260869565217,108.35714285714286,Increase (>5%)
+Jamaica,JAM,14,94,130,36,38.297872340425535,113.28571428571429,Increase (>5%)
+Cyprus,CYP,14,10,14,4,40,26,Increase (>5%)
+Portugal,PRT,14,10,15,5,50,12.857142857142858,Increase (>5%)
+East Asia & Pacific (IDA & IBRD countries),TEA,14,46.4,74.28429752066116,27.884297520661157,60.09546879452836,56.10495867768595,Increase (>5%)
+Gabon,GAB,14,144,233,89,61.80555555555556,204.21428571428572,Increase (>5%)
+Belize,BLZ,14,41,67,26,63.41463414634146,64.42857142857143,Increase (>5%)
+"Venezuela, RB",VEN,14,110,227,117,106.36363636363637,170.5,Increase (>5%)
+Puerto Rico (US),PRI,14,11.2,31.4,20.2,180.35714285714286,42.910625737898464,Increase (>5%)
