@@ -1,13 +1,3 @@
-################################################################################
-# COMPREHENSIVE MATERNAL MORTALITY RATIO ANALYSIS USING MICE IMPUTATION
-# ============================================================================
-# Purpose: Complete analysis of maternal mortality ratio (MMR) using MICE imputation
-# Input: wb-gender-statistics.csv, wb-world-development.csv  
-# Output: Comprehensive analysis with visualizations and data files
-# Author: Analysis Script
-# Date: 2024
-# ============================================================================
-
 # Load required libraries
 library(tidyverse)
 library(mice)
@@ -19,7 +9,7 @@ library(RColorBrewer)
 library(plotly)
 library(lubridate)
 
-# Set theme for consistent visualizations
+# Set theme for consistent graph styling
 theme_set(theme_minimal() + 
   theme(
     plot.background = element_rect(fill = "white", color = NA),
@@ -91,12 +81,11 @@ cat("\n=== STEP 2: MICE IMPUTATION ===\n")
 mice_data <- wb_data_clean %>%
   filter(!is.na(`Series Name`),
          !is.na(`Country Name`)) %>%
-  # Convert year columns to numeric
   mutate(across(all_of(year_cols), ~ as.numeric(as.character(.x))))
 
 cat("MICE input data:", nrow(mice_data), "rows,", ncol(mice_data), "columns\n")
 
-# Reshape data for MICE (long format)
+# Reshape data for MICE 
 mice_long <- mice_data %>%
   select(`Series Name`, `Series Code`, `Country Name`, `Country Code`, all_of(year_cols)) %>%
   pivot_longer(cols = all_of(year_cols), 
@@ -112,31 +101,6 @@ mice_long <- mice_data %>%
               id_cols = c(`Country Name`, `Country Code`, year))
 
 cat("Reshaped data for MICE:", nrow(mice_long), "rows,", ncol(mice_long), "columns\n")
-
-# Check if we have any numeric columns for MICE
-numeric_cols <- mice_long %>%
-  select(-`Country Name`, -`Country Code`, -year) %>%
-  select_if(is.numeric) %>%
-  names()
-
-cat("Found", length(numeric_cols), "numeric columns for MICE imputation\n")
-
-# Print the first few numeric columns to verify MMR is included
-if(length(numeric_cols) > 0) {
-  cat("First 10 numeric columns:\n")
-  for(i in 1:min(10, length(numeric_cols))) {
-    cat(paste0(i, ". ", numeric_cols[i], "\n"))
-  }
-  
-  # Check specifically for maternal mortality
-  mmr_cols <- numeric_cols[str_detect(numeric_cols, "(?i)maternal.*mortality")]
-  if(length(mmr_cols) > 0) {
-    cat("Maternal mortality columns found:\n")
-    for(i in 1:length(mmr_cols)) {
-      cat(paste0(i, ". ", mmr_cols[i], "\n"))
-    }
-  }
-}
 
 if(length(numeric_cols) > 0) {
   # Prepare MICE input with only numeric columns
@@ -174,7 +138,7 @@ if(length(numeric_cols) > 0) {
     # Select key variables for health and economic analysis
     priority_vars <- missing_pct %>%
       filter(str_detect(variable, "mortality|GDP|life expectancy|fertility|population")) %>%
-      head(8) %>%  # Select top 8 priority variables
+      head(20) %>%  # Select top 15 priority variables
       pull(variable)
     
     # If we don't have enough priority variables, add more from the least missing
