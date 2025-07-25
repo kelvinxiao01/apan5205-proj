@@ -1,0 +1,543 @@
+dataset,Country Name,observations,non_missing,missing,completion_rate,unique_series,unique_years
+Gender Statistics,Dominican Republic,175,170,5,97.14,7,25
+Gender Statistics,El Salvador,175,170,5,97.14,7,25
+Gender Statistics,Panama,175,170,5,97.14,7,25
+Gender Statistics,Peru,175,170,5,97.14,7,25
+Gender Statistics,Portugal,175,170,5,97.14,7,25
+Gender Statistics,Brazil,175,169,6,96.57,7,25
+Gender Statistics,South Africa,175,169,6,96.57,7,25
+Gender Statistics,Bolivia,175,168,7,96,7,25
+Gender Statistics,Colombia,175,168,7,96,7,25
+Gender Statistics,Costa Rica,175,168,7,96,7,25
+Gender Statistics,Mexico,175,168,7,96,7,25
+Gender Statistics,Paraguay,175,168,7,96,7,25
+Gender Statistics,Chile,175,167,8,95.43,7,25
+Gender Statistics,Australia,175,166,9,94.86,7,25
+Gender Statistics,Ecuador,175,166,9,94.86,7,25
+Gender Statistics,Latvia,175,166,9,94.86,7,25
+Gender Statistics,Spain,175,166,9,94.86,7,25
+Gender Statistics,Turkiye,175,166,9,94.86,7,25
+Gender Statistics,Cyprus,175,165,10,94.29,7,25
+Gender Statistics,Finland,175,165,10,94.29,7,25
+Gender Statistics,France,175,165,10,94.29,7,25
+Gender Statistics,Germany,175,165,10,94.29,7,25
+Gender Statistics,Italy,175,165,10,94.29,7,25
+Gender Statistics,Norway,175,165,10,94.29,7,25
+Gender Statistics,Singapore,175,165,10,94.29,7,25
+Gender Statistics,Slovenia,175,165,10,94.29,7,25
+Gender Statistics,Sweden,175,165,10,94.29,7,25
+Gender Statistics,United States,175,165,10,94.29,7,25
+Gender Statistics,Austria,175,164,11,93.71,7,25
+Gender Statistics,Bulgaria,175,164,11,93.71,7,25
+Gender Statistics,Denmark,175,164,11,93.71,7,25
+Gender Statistics,Estonia,175,164,11,93.71,7,25
+Gender Statistics,Honduras,175,164,11,93.71,7,25
+Gender Statistics,Indonesia,175,164,11,93.71,7,25
+Gender Statistics,Lithuania,175,164,11,93.71,7,25
+Gender Statistics,Netherlands,175,164,11,93.71,7,25
+Gender Statistics,Czechia,175,163,12,93.14,7,25
+Gender Statistics,Greece,175,163,12,93.14,7,25
+Gender Statistics,"Korea, Rep.",175,163,12,93.14,7,25
+Gender Statistics,Luxembourg,175,163,12,93.14,7,25
+Gender Statistics,Moldova,175,163,12,93.14,7,25
+Gender Statistics,Poland,175,163,12,93.14,7,25
+Gender Statistics,Qatar,175,163,12,93.14,7,25
+Gender Statistics,Romania,175,163,12,93.14,7,25
+Gender Statistics,Uruguay,175,163,12,93.14,7,25
+Gender Statistics,Azerbaijan,175,162,13,92.57,7,25
+Gender Statistics,Belgium,175,162,13,92.57,7,25
+Gender Statistics,Canada,175,162,13,92.57,7,25
+Gender Statistics,Guatemala,175,162,13,92.57,7,25
+Gender Statistics,Hungary,175,162,13,92.57,7,25
+Gender Statistics,Israel,175,162,13,92.57,7,25
+Gender Statistics,Malta,175,162,13,92.57,7,25
+Gender Statistics,Serbia,175,162,13,92.57,7,25
+Gender Statistics,Georgia,175,161,14,92,7,25
+Gender Statistics,"Iran, Islamic Rep.",175,161,14,92,7,25
+Gender Statistics,Ireland,175,161,14,92,7,25
+Gender Statistics,Pakistan,175,161,14,92,7,25
+Gender Statistics,Russian Federation,175,161,14,92,7,25
+Gender Statistics,Switzerland,175,161,14,92,7,25
+Gender Statistics,United Kingdom,175,161,14,92,7,25
+Gender Statistics,Viet Nam,175,161,14,92,7,25
+Gender Statistics,Albania,175,160,15,91.43,7,25
+Gender Statistics,Bosnia and Herzegovina,175,160,15,91.43,7,25
+Gender Statistics,Croatia,175,160,15,91.43,7,25
+Gender Statistics,"Egypt, Arab Rep.",175,160,15,91.43,7,25
+Gender Statistics,Iceland,175,160,15,91.43,7,25
+Gender Statistics,Mauritius,175,160,15,91.43,7,25
+Gender Statistics,North Macedonia,175,160,15,91.43,7,25
+Gender Statistics,Slovak Republic,175,160,15,91.43,7,25
+Gender Statistics,Sri Lanka,175,160,15,91.43,7,25
+Gender Statistics,Thailand,175,160,15,91.43,7,25
+Gender Statistics,West Bank and Gaza,175,160,15,91.43,7,25
+Gender Statistics,Armenia,175,159,16,90.86,7,25
+Gender Statistics,Cambodia,175,159,16,90.86,7,25
+Gender Statistics,Mongolia,175,159,16,90.86,7,25
+Gender Statistics,Trinidad and Tobago,175,159,16,90.86,7,25
+Gender Statistics,Bangladesh,175,158,17,90.29,7,25
+Gender Statistics,Jamaica,175,158,17,90.29,7,25
+Gender Statistics,Montenegro,175,158,17,90.29,7,25
+Gender Statistics,Tunisia,175,158,17,90.29,7,25
+Gender Statistics,Malaysia,175,157,18,89.71,7,25
+Gender Statistics,Mali,175,157,18,89.71,7,25
+Gender Statistics,New Zealand,175,157,18,89.71,7,25
+Gender Statistics,Oman,175,156,19,89.14,7,25
+Gender Statistics,Rwanda,175,156,19,89.14,7,25
+Gender Statistics,Uganda,175,156,19,89.14,7,25
+Gender Statistics,Belarus,175,155,20,88.57,7,25
+Gender Statistics,Belize,175,155,20,88.57,7,25
+Gender Statistics,Kuwait,175,155,20,88.57,7,25
+Gender Statistics,Senegal,175,155,20,88.57,7,25
+Gender Statistics,Uzbekistan,175,155,20,88.57,7,25
+Gender Statistics,Zimbabwe,175,155,20,88.57,7,25
+Gender Statistics,Bahrain,175,154,21,88,7,25
+Gender Statistics,Brunei Darussalam,175,154,21,88,7,25
+Gender Statistics,Burkina Faso,175,154,21,88,7,25
+Gender Statistics,India,175,154,21,88,7,25
+Gender Statistics,Philippines,175,154,21,88,7,25
+Gender Statistics,Puerto Rico,175,154,21,88,7,25
+Gender Statistics,Saudi Arabia,175,154,21,88,7,25
+Gender Statistics,St. Lucia,175,154,21,88,7,25
+Gender Statistics,Tanzania,175,154,21,88,7,25
+Gender Statistics,Cote d'Ivoire,175,153,22,87.43,7,25
+Gender Statistics,Kenya,175,153,22,87.43,7,25
+Gender Statistics,Niger,175,153,22,87.43,7,25
+Gender Statistics,Zambia,175,153,22,87.43,7,25
+Gender Statistics,Barbados,175,152,23,86.86,7,25
+Gender Statistics,Benin,175,152,23,86.86,7,25
+Gender Statistics,Ethiopia,175,152,23,86.86,7,25
+Gender Statistics,Fiji,175,152,23,86.86,7,25
+Gender Statistics,Jordan,175,152,23,86.86,7,25
+Gender Statistics,Kyrgyz Republic,175,152,23,86.86,7,25
+Gender Statistics,Mozambique,175,152,23,86.86,7,25
+Gender Statistics,Myanmar,175,152,23,86.86,7,25
+Gender Statistics,Namibia,175,152,23,86.86,7,25
+Gender Statistics,Nicaragua,175,152,23,86.86,7,25
+Gender Statistics,Nigeria,175,152,23,86.86,7,25
+Gender Statistics,Samoa,175,152,23,86.86,7,25
+Gender Statistics,Timor-Leste,175,152,23,86.86,7,25
+Gender Statistics,Togo,175,152,23,86.86,7,25
+Gender Statistics,United Arab Emirates,175,152,23,86.86,7,25
+Gender Statistics,Afghanistan,175,151,24,86.29,7,25
+Gender Statistics,Angola,175,151,24,86.29,7,25
+Gender Statistics,Botswana,175,151,24,86.29,7,25
+Gender Statistics,"Congo, Dem. Rep.",175,151,24,86.29,7,25
+Gender Statistics,Ghana,175,151,24,86.29,7,25
+Gender Statistics,Kazakhstan,175,151,24,86.29,7,25
+Gender Statistics,Liberia,175,151,24,86.29,7,25
+Gender Statistics,Malawi,175,151,24,86.29,7,25
+Gender Statistics,Maldives,175,151,24,86.29,7,25
+Gender Statistics,Mauritania,175,151,24,86.29,7,25
+Gender Statistics,Nepal,175,151,24,86.29,7,25
+Gender Statistics,Sierra Leone,175,151,24,86.29,7,25
+Gender Statistics,Algeria,175,150,25,85.71,7,25
+Gender Statistics,"Bahamas, The",175,150,25,85.71,7,25
+Gender Statistics,Chad,175,150,25,85.71,7,25
+Gender Statistics,Eswatini,175,150,25,85.71,7,25
+Gender Statistics,Guinea,175,150,25,85.71,7,25
+Gender Statistics,Iraq,175,150,25,85.71,7,25
+Gender Statistics,Madagascar,175,150,25,85.71,7,25
+Gender Statistics,Suriname,175,150,25,85.71,7,25
+Gender Statistics,Burundi,175,149,26,85.14,7,25
+Gender Statistics,Cameroon,175,149,26,85.14,7,25
+Gender Statistics,Comoros,175,149,26,85.14,7,25
+Gender Statistics,Cuba,175,149,26,85.14,7,25
+Gender Statistics,"Gambia, The",175,149,26,85.14,7,25
+Gender Statistics,Guinea-Bissau,175,149,26,85.14,7,25
+Gender Statistics,Haiti,175,149,26,85.14,7,25
+Gender Statistics,Lao PDR,175,149,26,85.14,7,25
+Gender Statistics,Lesotho,175,149,26,85.14,7,25
+Gender Statistics,Tajikistan,175,149,26,85.14,7,25
+Gender Statistics,Vanuatu,175,149,26,85.14,7,25
+Gender Statistics,Argentina,175,148,27,84.57,7,25
+Gender Statistics,China,175,148,27,84.57,7,25
+Gender Statistics,Guyana,175,148,27,84.57,7,25
+Gender Statistics,Japan,175,148,27,84.57,7,25
+Gender Statistics,Papua New Guinea,175,148,27,84.57,7,25
+Gender Statistics,Sao Tome and Principe,175,148,27,84.57,7,25
+Gender Statistics,Syrian Arab Republic,175,148,27,84.57,7,25
+Gender Statistics,Turkmenistan,175,148,27,84.57,7,25
+Gender Statistics,Cabo Verde,175,147,28,84,7,25
+Gender Statistics,Central African Republic,175,147,28,84,7,25
+Gender Statistics,"Congo, Rep.",175,147,28,84,7,25
+Gender Statistics,Morocco,175,147,28,84,7,25
+Gender Statistics,Solomon Islands,175,147,28,84,7,25
+Gender Statistics,Somalia,175,147,28,84,7,25
+Gender Statistics,Tonga,175,147,28,84,7,25
+Gender Statistics,Africa Eastern and Southern,175,146,29,83.43,7,25
+Gender Statistics,Africa Western and Central,175,146,29,83.43,7,25
+Gender Statistics,Arab World,175,146,29,83.43,7,25
+Gender Statistics,Bhutan,175,146,29,83.43,7,25
+Gender Statistics,Caribbean small states,175,146,29,83.43,7,25
+Gender Statistics,Central Europe and the Baltics,175,146,29,83.43,7,25
+Gender Statistics,Early-demographic dividend,175,146,29,83.43,7,25
+Gender Statistics,East Asia & Pacific,175,146,29,83.43,7,25
+Gender Statistics,East Asia & Pacific (IDA & IBRD),175,146,29,83.43,7,25
+Gender Statistics,East Asia & Pacific (excluding high income),175,146,29,83.43,7,25
+Gender Statistics,Equatorial Guinea,175,146,29,83.43,7,25
+Gender Statistics,Euro area,175,146,29,83.43,7,25
+Gender Statistics,Europe & Central Asia,175,146,29,83.43,7,25
+Gender Statistics,Europe & Central Asia (IDA & IBRD),175,146,29,83.43,7,25
+Gender Statistics,Europe & Central Asia (excluding high income),175,146,29,83.43,7,25
+Gender Statistics,European Union,175,146,29,83.43,7,25
+Gender Statistics,Fragile and conflict affected situations,175,146,29,83.43,7,25
+Gender Statistics,Gabon,175,146,29,83.43,7,25
+Gender Statistics,Heavily indebted poor countries (HIPC),175,146,29,83.43,7,25
+Gender Statistics,High income,175,146,29,83.43,7,25
+Gender Statistics,IBRD only,175,146,29,83.43,7,25
+Gender Statistics,IDA & IBRD total,175,146,29,83.43,7,25
+Gender Statistics,IDA blend,175,146,29,83.43,7,25
+Gender Statistics,IDA only,175,146,29,83.43,7,25
+Gender Statistics,IDA total,175,146,29,83.43,7,25
+Gender Statistics,Late-demographic dividend,175,146,29,83.43,7,25
+Gender Statistics,Latin America & Caribbean,175,146,29,83.43,7,25
+Gender Statistics,Latin America & Caribbean (IDA & IBRD),175,146,29,83.43,7,25
+Gender Statistics,Latin America & Caribbean (excluding high income),175,146,29,83.43,7,25
+Gender Statistics,Least developed countries: UN classification,175,146,29,83.43,7,25
+Gender Statistics,Libya,175,146,29,83.43,7,25
+Gender Statistics,Low & middle income,175,146,29,83.43,7,25
+Gender Statistics,Low income,175,146,29,83.43,7,25
+Gender Statistics,Lower middle income,175,146,29,83.43,7,25
+Gender Statistics,Middle East & North Africa,175,146,29,83.43,7,25
+Gender Statistics,Middle East & North Africa (IDA & IBRD),175,146,29,83.43,7,25
+Gender Statistics,Middle East & North Africa (excluding high income),175,146,29,83.43,7,25
+Gender Statistics,Middle income,175,146,29,83.43,7,25
+Gender Statistics,North America,175,146,29,83.43,7,25
+Gender Statistics,OECD members,175,146,29,83.43,7,25
+Gender Statistics,Other small states,175,146,29,83.43,7,25
+Gender Statistics,Pacific island small states,175,146,29,83.43,7,25
+Gender Statistics,Post-demographic dividend,175,146,29,83.43,7,25
+Gender Statistics,Pre-demographic dividend,175,146,29,83.43,7,25
+Gender Statistics,Small states,175,146,29,83.43,7,25
+Gender Statistics,South Asia,175,146,29,83.43,7,25
+Gender Statistics,South Asia (IDA & IBRD),175,146,29,83.43,7,25
+Gender Statistics,St. Vincent and the Grenadines,175,146,29,83.43,7,25
+Gender Statistics,Sub-Saharan Africa,175,146,29,83.43,7,25
+Gender Statistics,Sub-Saharan Africa (IDA & IBRD),175,146,29,83.43,7,25
+Gender Statistics,Sub-Saharan Africa (excluding high income),175,146,29,83.43,7,25
+Gender Statistics,Upper middle income,175,146,29,83.43,7,25
+Gender Statistics,World,175,146,29,83.43,7,25
+Gender Statistics,Lebanon,175,145,30,82.86,7,25
+Gender Statistics,Ukraine,175,145,30,82.86,7,25
+Gender Statistics,Sudan,175,144,31,82.29,7,25
+Gender Statistics,"Yemen, Rep.",175,143,32,81.71,7,25
+Gender Statistics,"Hong Kong SAR, China",175,139,36,79.43,7,25
+Gender Statistics,"Venezuela, RB",175,131,44,74.86,7,25
+Gender Statistics,"Macao SAR, China",175,127,48,72.57,7,25
+Gender Statistics,Eritrea,175,122,53,69.71,7,25
+Gender Statistics,French Polynesia,175,121,54,69.14,7,25
+Gender Statistics,Djibouti,175,120,55,68.57,7,25
+Gender Statistics,Guam,175,115,60,65.71,7,25
+Gender Statistics,Virgin Islands (U.S.),175,115,60,65.71,7,25
+Gender Statistics,South Sudan,175,112,63,64,7,25
+Gender Statistics,"Korea, Dem. People's Rep.",175,111,64,63.43,7,25
+Gender Statistics,Andorra,175,104,71,59.43,7,25
+Gender Statistics,Seychelles,175,104,71,59.43,7,25
+Gender Statistics,Channel Islands,175,103,72,58.86,7,25
+Gender Statistics,Kiribati,175,100,75,57.14,7,25
+Gender Statistics,Tuvalu,175,100,75,57.14,7,25
+Gender Statistics,Grenada,175,99,76,56.57,7,25
+Gender Statistics,Marshall Islands,175,99,76,56.57,7,25
+Gender Statistics,Palau,175,99,76,56.57,7,25
+Gender Statistics,Dominica,175,98,77,56,7,25
+Gender Statistics,Nauru,175,98,77,56,7,25
+Gender Statistics,Antigua and Barbuda,175,97,78,55.43,7,25
+Gender Statistics,"Micronesia, Fed. Sts.",175,97,78,55.43,7,25
+Gender Statistics,Monaco,175,97,78,55.43,7,25
+Gender Statistics,San Marino,175,97,78,55.43,7,25
+Gender Statistics,St. Kitts and Nevis,175,96,79,54.86,7,25
+Gender Statistics,New Caledonia,175,84,91,48,7,25
+Gender Statistics,Bermuda,175,75,100,42.86,7,25
+Gender Statistics,Aruba,175,74,101,42.29,7,25
+Gender Statistics,Curacao,175,73,102,41.71,7,25
+Gender Statistics,Greenland,175,68,107,38.86,7,25
+Gender Statistics,Isle of Man,175,68,107,38.86,7,25
+Gender Statistics,American Samoa,175,65,110,37.14,7,25
+Gender Statistics,Northern Mariana Islands,175,65,110,37.14,7,25
+Gender Statistics,Cayman Islands,175,63,112,36,7,25
+Gender Statistics,Faroe Islands,175,55,120,31.43,7,25
+Gender Statistics,Kosovo,175,55,120,31.43,7,25
+Gender Statistics,Sint Maarten (Dutch part),175,53,122,30.29,7,25
+Gender Statistics,Turks and Caicos Islands,175,50,125,28.57,7,25
+Gender Statistics,Liechtenstein,175,36,139,20.57,7,25
+Gender Statistics,St. Martin (French part),175,31,144,17.71,7,25
+Gender Statistics,British Virgin Islands,175,24,151,13.71,7,25
+Gender Statistics,Gibraltar,175,24,151,13.71,7,25
+Gender Statistics,"Educational attainment, at least completed upper secondary, population 25+, female (%) (cumulative)",25,0,25,0,1,25
+Gender Statistics,"Fertility rate, total (births per woman)",25,0,25,0,1,25
+Gender Statistics,GDP growth (annual %),25,0,25,0,1,25
+Gender Statistics,GDP per capita (constant 2015 US$),25,0,25,0,1,25
+Gender Statistics,Indicator Name,25,0,25,0,1,25
+Gender Statistics,"Labor force participation rate, female (% of female population ages 15-64) (modeled ILO estimate)",25,0,25,0,1,25
+Gender Statistics,"Labor force, female (% of total labor force)",25,0,25,0,1,25
+Gender Statistics,"Maternal mortality ratio (modeled estimate, per 100,000 live births)",25,0,25,0,1,25
+Gender Statistics,NA,50,0,50,0,2,25
+World Development,Peru,700,555,145,79.29,28,25
+World Development,Indonesia,700,541,159,77.29,28,25
+World Development,Dominican Republic,700,538,162,76.86,28,25
+World Development,Colombia,700,536,164,76.57,28,25
+World Development,Costa Rica,700,536,164,76.57,28,25
+World Development,Mexico,700,528,172,75.43,28,25
+World Development,Philippines,700,528,172,75.43,28,25
+World Development,Poland,700,526,174,75.14,28,25
+World Development,Ecuador,700,525,175,75,28,25
+World Development,Paraguay,700,524,176,74.86,28,25
+World Development,Armenia,700,522,178,74.57,28,25
+World Development,Panama,700,521,179,74.43,28,25
+World Development,Romania,700,520,180,74.29,28,25
+World Development,Moldova,700,519,181,74.14,28,25
+World Development,South Africa,700,519,181,74.14,28,25
+World Development,Bolivia,700,517,183,73.86,28,25
+World Development,El Salvador,700,517,183,73.86,28,25
+World Development,Uruguay,700,516,184,73.71,28,25
+World Development,Thailand,700,515,185,73.57,28,25
+World Development,Albania,700,514,186,73.43,28,25
+World Development,Chile,700,513,187,73.29,28,25
+World Development,Honduras,700,513,187,73.29,28,25
+World Development,Georgia,700,512,188,73.14,28,25
+World Development,Viet Nam,700,512,188,73.14,28,25
+World Development,Mongolia,700,511,189,73,28,25
+World Development,Kyrgyz Republic,700,509,191,72.71,28,25
+World Development,Lithuania,700,509,191,72.71,28,25
+World Development,Bulgaria,700,508,192,72.57,28,25
+World Development,Estonia,700,508,192,72.57,28,25
+World Development,Latvia,700,508,192,72.57,28,25
+World Development,Czechia,700,507,193,72.43,28,25
+World Development,France,700,507,193,72.43,28,25
+World Development,Spain,700,507,193,72.43,28,25
+World Development,Italy,700,506,194,72.29,28,25
+World Development,Pakistan,700,506,194,72.29,28,25
+World Development,Slovak Republic,700,506,194,72.29,28,25
+World Development,Australia,700,505,195,72.14,28,25
+World Development,Sri Lanka,700,505,195,72.14,28,25
+World Development,Azerbaijan,700,504,196,72,28,25
+World Development,Netherlands,700,504,196,72,28,25
+World Development,New Zealand,700,504,196,72,28,25
+World Development,Portugal,700,504,196,72,28,25
+World Development,Slovenia,700,504,196,72,28,25
+World Development,Belgium,700,503,197,71.86,28,25
+World Development,Denmark,700,503,197,71.86,28,25
+World Development,Cyprus,700,500,200,71.43,28,25
+World Development,"Egypt, Arab Rep.",700,500,200,71.43,28,25
+World Development,Luxembourg,700,500,200,71.43,28,25
+World Development,Canada,700,499,201,71.29,28,25
+World Development,Ireland,700,499,201,71.29,28,25
+World Development,Greece,700,498,202,71.14,28,25
+World Development,Jordan,700,498,202,71.14,28,25
+World Development,Cambodia,700,495,205,70.71,28,25
+World Development,Iceland,700,494,206,70.57,28,25
+World Development,Belarus,700,491,209,70.14,28,25
+World Development,Bangladesh,700,486,214,69.43,28,25
+World Development,Serbia,700,486,214,69.43,28,25
+World Development,Euro area,700,482,218,68.86,28,25
+World Development,European Union,700,482,218,68.86,28,25
+World Development,Guatemala,700,482,218,68.86,28,25
+World Development,Argentina,700,481,219,68.71,28,25
+World Development,Central Europe and the Baltics,700,481,219,68.71,28,25
+World Development,Jamaica,700,481,219,68.71,28,25
+World Development,Tunisia,700,480,220,68.57,28,25
+World Development,Malta,700,479,221,68.43,28,25
+World Development,Saudi Arabia,700,479,221,68.43,28,25
+World Development,Senegal,700,479,221,68.43,28,25
+World Development,Uganda,700,478,222,68.29,28,25
+World Development,United States,700,478,222,68.29,28,25
+World Development,Mali,700,476,224,68,28,25
+World Development,Morocco,700,476,224,68,28,25
+World Development,Turkiye,700,476,224,68,28,25
+World Development,Malaysia,700,475,225,67.86,28,25
+World Development,Ghana,700,472,228,67.43,28,25
+World Development,Bhutan,700,470,230,67.14,28,25
+World Development,Brazil,700,469,231,67,28,25
+World Development,Rwanda,700,467,233,66.71,28,25
+World Development,Trinidad and Tobago,700,467,233,66.71,28,25
+World Development,Botswana,700,465,235,66.43,28,25
+World Development,Burkina Faso,700,465,235,66.43,28,25
+World Development,Croatia,700,464,236,66.29,28,25
+World Development,Montenegro,700,464,236,66.29,28,25
+World Development,Niger,700,464,236,66.29,28,25
+World Development,Benin,700,462,238,66,28,25
+World Development,Kenya,700,462,238,66,28,25
+World Development,Namibia,700,462,238,66,28,25
+World Development,Tanzania,700,461,239,65.86,28,25
+World Development,Switzerland,700,459,241,65.57,28,25
+World Development,Cote d'Ivoire,700,458,242,65.43,28,25
+World Development,Zambia,700,458,242,65.43,28,25
+World Development,Cameroon,700,456,244,65.14,28,25
+World Development,Nepal,700,456,244,65.14,28,25
+World Development,Qatar,700,456,244,65.14,28,25
+World Development,"Iran, Islamic Rep.",700,455,245,65,28,25
+World Development,North Macedonia,700,455,245,65,28,25
+World Development,Madagascar,700,454,246,64.86,28,25
+World Development,Oman,700,453,247,64.71,28,25
+World Development,"Middle East, North Africa, Afghanistan & Pakistan",700,452,248,64.57,28,25
+World Development,"Middle East, North Africa, Afghanistan & Pakistan (IDA & IBRD)",700,452,248,64.57,28,25
+World Development,"Middle East, North Africa, Afghanistan & Pakistan (excluding high income)",700,452,248,64.57,28,25
+World Development,Mozambique,700,451,249,64.43,28,25
+World Development,Belize,700,450,250,64.29,28,25
+World Development,Germany,700,450,250,64.29,28,25
+World Development,Burundi,700,448,252,64,28,25
+World Development,Togo,700,448,252,64,28,25
+World Development,Ethiopia,700,445,255,63.57,28,25
+World Development,"Gambia, The",700,445,255,63.57,28,25
+World Development,Russian Federation,700,445,255,63.57,28,25
+World Development,Sierra Leone,700,445,255,63.57,28,25
+World Development,Zimbabwe,700,445,255,63.57,28,25
+World Development,Angola,700,444,256,63.43,28,25
+World Development,North America,700,444,256,63.43,28,25
+World Development,"Korea, Rep.",700,443,257,63.29,28,25
+World Development,Iraq,700,441,259,63,28,25
+World Development,Kuwait,700,441,259,63,28,25
+World Development,United Kingdom,700,441,259,63,28,25
+World Development,Haiti,700,440,260,62.86,28,25
+World Development,"Bahamas, The",700,439,261,62.71,28,25
+World Development,Algeria,700,438,262,62.57,28,25
+World Development,Hungary,700,438,262,62.57,28,25
+World Development,Tajikistan,700,438,262,62.57,28,25
+World Development,Guinea-Bissau,700,437,263,62.43,28,25
+World Development,Timor-Leste,700,437,263,62.43,28,25
+World Development,Finland,700,436,264,62.29,28,25
+World Development,Israel,700,436,264,62.29,28,25
+World Development,Lesotho,700,436,264,62.29,28,25
+World Development,Malawi,700,436,264,62.29,28,25
+World Development,Maldives,700,436,264,62.29,28,25
+World Development,Cabo Verde,700,434,266,62,28,25
+World Development,Lao PDR,700,434,266,62,28,25
+World Development,Mauritius,700,434,266,62,28,25
+World Development,Sweden,700,434,266,62,28,25
+World Development,"Congo, Rep.",700,433,267,61.86,28,25
+World Development,Fiji,700,433,267,61.86,28,25
+World Development,Guinea,700,433,267,61.86,28,25
+World Development,Norway,700,433,267,61.86,28,25
+World Development,Ukraine,700,433,267,61.86,28,25
+World Development,Austria,700,432,268,61.71,28,25
+World Development,Mauritania,700,432,268,61.71,28,25
+World Development,Syrian Arab Republic,700,431,269,61.57,28,25
+World Development,Barbados,700,429,271,61.29,28,25
+World Development,"Congo, Dem. Rep.",700,429,271,61.29,28,25
+World Development,Japan,700,429,271,61.29,28,25
+World Development,United Arab Emirates,700,428,272,61.14,28,25
+World Development,Suriname,700,427,273,61,28,25
+World Development,Gabon,700,425,275,60.71,28,25
+World Development,Lebanon,700,425,275,60.71,28,25
+World Development,Singapore,700,424,276,60.57,28,25
+World Development,Latin America & Caribbean,700,423,277,60.43,28,25
+World Development,World,700,423,277,60.43,28,25
+World Development,India,700,422,278,60.29,28,25
+World Development,Guyana,700,420,280,60,28,25
+World Development,Liberia,700,420,280,60,28,25
+World Development,"Venezuela, RB",700,420,280,60,28,25
+World Development,Arab World,700,419,281,59.86,28,25
+World Development,Bosnia and Herzegovina,700,419,281,59.86,28,25
+World Development,Eswatini,700,419,281,59.86,28,25
+World Development,Latin America & the Caribbean (IDA & IBRD countries),700,419,281,59.86,28,25
+World Development,Libya,700,419,281,59.86,28,25
+World Development,"Yemen, Rep.",700,419,281,59.86,28,25
+World Development,Chad,700,418,282,59.71,28,25
+World Development,OECD members,700,418,282,59.71,28,25
+World Development,Post-demographic dividend,700,417,283,59.57,28,25
+World Development,Sudan,700,417,283,59.57,28,25
+World Development,Comoros,700,416,284,59.43,28,25
+World Development,Afghanistan,700,414,286,59.14,28,25
+World Development,Myanmar,700,414,286,59.14,28,25
+World Development,Other small states,700,414,286,59.14,28,25
+World Development,Nicaragua,700,413,287,59,28,25
+World Development,Africa Eastern and Southern,700,412,288,58.86,28,25
+World Development,IDA only,700,412,288,58.86,28,25
+World Development,Papua New Guinea,700,412,288,58.86,28,25
+World Development,Latin America & Caribbean (excluding high income),700,409,291,58.43,28,25
+World Development,Least developed countries: UN classification,700,409,291,58.43,28,25
+World Development,Heavily indebted poor countries (HIPC),700,408,292,58.29,28,25
+World Development,Kazakhstan,700,407,293,58.14,28,25
+World Development,Sao Tome and Principe,700,405,295,57.86,28,25
+World Development,Small states,700,402,298,57.43,28,25
+World Development,Sub-Saharan Africa,700,399,301,57,28,25
+World Development,Sub-Saharan Africa (IDA & IBRD countries),700,399,301,57,28,25
+World Development,Caribbean small states,700,398,302,56.86,28,25
+World Development,Low income,700,397,303,56.71,28,25
+World Development,Central African Republic,700,394,306,56.29,28,25
+World Development,Europe & Central Asia,700,394,306,56.29,28,25
+World Development,Europe & Central Asia (IDA & IBRD countries),700,394,306,56.29,28,25
+World Development,High income,700,394,306,56.29,28,25
+World Development,Cuba,700,393,307,56.14,28,25
+World Development,IDA total,700,393,307,56.14,28,25
+World Development,Pre-demographic dividend,700,390,310,55.71,28,25
+World Development,Sub-Saharan Africa (excluding high income),700,390,310,55.71,28,25
+World Development,Fragile and conflict affected situations,700,389,311,55.57,28,25
+World Development,Equatorial Guinea,700,385,315,55,28,25
+World Development,South Asia,700,383,317,54.71,28,25
+World Development,South Asia (IDA & IBRD),700,383,317,54.71,28,25
+World Development,Uzbekistan,700,383,317,54.71,28,25
+World Development,Early-demographic dividend,700,381,319,54.43,28,25
+World Development,Bahrain,700,379,321,54.14,28,25
+World Development,Brunei Darussalam,700,378,322,54,28,25
+World Development,West Bank and Gaza,700,377,323,53.86,28,25
+World Development,Lower middle income,700,375,325,53.57,28,25
+World Development,Nigeria,700,373,327,53.29,28,25
+World Development,China,700,372,328,53.14,28,25
+World Development,Europe & Central Asia (excluding high income),700,371,329,53,28,25
+World Development,South Sudan,700,369,331,52.71,28,25
+World Development,Eritrea,700,364,336,52,28,25
+World Development,Seychelles,700,354,346,50.57,28,25
+World Development,Low & middle income,700,349,351,49.86,28,25
+World Development,IDA & IBRD total,700,348,352,49.71,28,25
+World Development,St. Lucia,700,346,354,49.43,28,25
+World Development,Djibouti,700,340,360,48.57,28,25
+World Development,IBRD only,700,340,360,48.57,28,25
+World Development,Middle income,700,340,360,48.57,28,25
+World Development,Tonga,700,340,360,48.57,28,25
+World Development,Samoa,700,339,361,48.43,28,25
+World Development,Vanuatu,700,339,361,48.43,28,25
+World Development,Solomon Islands,700,332,368,47.43,28,25
+World Development,"Hong Kong SAR, China",700,331,369,47.29,28,25
+World Development,Kiribati,700,329,371,47,28,25
+World Development,East Asia & Pacific,700,326,374,46.57,28,25
+World Development,East Asia & Pacific (IDA & IBRD countries),700,326,374,46.57,28,25
+World Development,East Asia & Pacific (excluding high income),700,326,374,46.57,28,25
+World Development,Late-demographic dividend,700,326,374,46.57,28,25
+World Development,Upper middle income,700,326,374,46.57,28,25
+World Development,Pacific island small states,700,319,381,45.57,28,25
+World Development,Turkmenistan,700,312,388,44.57,28,25
+World Development,IDA blend,700,311,389,44.43,28,25
+World Development,Africa Western and Central,700,308,392,44,28,25
+World Development,Palau,700,305,395,43.57,28,25
+World Development,Dominica,700,304,396,43.43,28,25
+World Development,"Macao SAR, China",700,304,396,43.43,28,25
+World Development,"Micronesia, Fed. Sts.",700,304,396,43.43,28,25
+World Development,St. Vincent and the Grenadines,700,303,397,43.29,28,25
+World Development,San Marino,700,302,398,43.14,28,25
+World Development,Grenada,700,300,400,42.86,28,25
+World Development,Kosovo,700,299,401,42.71,28,25
+World Development,Somalia,700,287,413,41,28,25
+World Development,Antigua and Barbuda,700,285,415,40.71,28,25
+World Development,Marshall Islands,700,280,420,40,28,25
+World Development,"Korea, Dem. People's Rep.",700,278,422,39.71,28,25
+World Development,St. Kitts and Nevis,700,276,424,39.43,28,25
+World Development,Aruba,700,274,426,39.14,28,25
+World Development,Tuvalu,700,266,434,38,28,25
+World Development,Nauru,700,265,435,37.86,28,25
+World Development,Andorra,700,256,444,36.57,28,25
+World Development,Monaco,700,254,446,36.29,28,25
+World Development,New Caledonia,700,240,460,34.29,28,25
+World Development,Liechtenstein,700,234,466,33.43,28,25
+World Development,Cayman Islands,700,233,467,33.29,28,25
+World Development,Curacao,700,230,470,32.86,28,25
+World Development,Puerto Rico (US),700,230,470,32.86,28,25
+World Development,Bermuda,700,223,477,31.86,28,25
+World Development,Guam,700,220,480,31.43,28,25
+World Development,French Polynesia,700,219,481,31.29,28,25
+World Development,Faroe Islands,700,209,491,29.86,28,25
+World Development,Greenland,700,209,491,29.86,28,25
+World Development,Sint Maarten (Dutch part),700,208,492,29.71,28,25
+World Development,Isle of Man,700,207,493,29.57,28,25
+World Development,Turks and Caicos Islands,700,205,495,29.29,28,25
+World Development,Northern Mariana Islands,700,201,499,28.71,28,25
+World Development,British Virgin Islands,700,200,500,28.57,28,25
+World Development,Gibraltar,700,198,502,28.29,28,25
+World Development,Virgin Islands (U.S.),700,198,502,28.29,28,25
+World Development,American Samoa,700,196,504,28,28,25
+World Development,Channel Islands,700,196,504,28,28,25
+World Development,St. Martin (French part),700,196,504,28,28,25
+World Development,Data from database: World Development Indicators,25,0,25,0,1,25
+World Development,Last Updated: 07/01/2025,25,0,25,0,1,25
+World Development,Not classified,700,0,700,0,28,25

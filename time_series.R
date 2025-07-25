@@ -4,7 +4,7 @@ library(stringr)
 library(ggplot2)
 
 # Load the mean-imputed dataset
-data <- read.csv("wb_data_mean_imputed.csv")
+data <- read.csv("wb_data_mice_pooled.csv")
 
 # Check the structure of the data
 cat("Dataset dimensions:", nrow(data), "rows x", ncol(data), "columns\n")
