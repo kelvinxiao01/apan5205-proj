@@ -4,6 +4,7 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(factoextra)
+library(purrr)
 
 # Load the dataset
 data <- read.csv("wb_data_mice_pooled.csv")
@@ -14,7 +15,6 @@ summary(data)
 
 # Check if there are missing values
 sum(is.na(data))
-
 colnames(data) 
 
 #Rename the year columns
@@ -37,6 +37,7 @@ mmr_matrix <- mmr_data %>% select(starts_with("2"))
 # Standardize
 mmr_scaled <- scale(mmr_matrix)
 
+dev.new() 
 # Use Elbow Method to determine optimal number of clusters
 fviz_nbclust(mmr_scaled, kmeans, method = "wss") +
   labs(title = "Elbow Method for Optimal Clusters (K-means – MMR)")
@@ -86,8 +87,23 @@ ggplot(mmr_profiles, aes(x = Year, y = Avg_MMR, color = MMR_Level)) +
        x = "Year", y = "Maternal mortality ratio", color = "Cluster Level") +
   theme_minimal()
 
-cluster_profiles$Year <- gsub("X|\\.\\.YR.*", "", cluster_profiles$Year)
+#View data
+mmr_clusters <- mmr_data %>%
+  group_by(cluster, MMR_Level) %>%
+  summarise(
+    Countries = paste(sort(Country.Name), collapse = ", "),
+    .groups = "drop"
+  )
 
+# View in console
+print(mmr_clusters)
+
+mmr_cluster_counts <- mmr_data %>%
+  distinct(Country.Name, cluster, MMR_Level) %>%  # ensure one row per country
+  count(cluster, MMR_Level, name = "Num_Countries")
+
+print(mmr_cluster_counts)
+table(mmr_data$MMR_Level)
 
 
 #VARIABLE 2 - AFR
@@ -605,10 +621,8 @@ ggplot(edu_profiles, aes(x = Year, y = Avg_Edu, color = Edu_Level)) +
   theme_minimal()
 
 #SUMMARIZE TO ANALYZE!
-library(purrr)
 
 #  Build one summary table for each variable
-
 mmr_lvl <- mmr_data %>%
   select(Country.Name, Country.Code, MMR_Level)
 
@@ -667,6 +681,382 @@ all_clusters <- reduce(
 glimpse(all_clusters)
 View(all_clusters) 
 
+write.csv(all_clusters,"All_Clusters_DataSet.csv")
 
 
 
+#10. SCORING SECTION (NO across())
+# -------------------------------
+
+# 10.1 Define mappings: higher = “better”
+score_maps <- list(
+  MMR_Level           = c("Low MMR"    = 3, "Medium MMR"   = 2, "High MMR"       = 1),
+  AFR_Level           = c("Low AFR"    = 3, "Medium AFR"   = 2, "High AFR"       = 1),
+  Growth_Level        = c("High growth"= 3, "Medium growth"= 2, "Low growth"     = 1),
+  Participation_Level = c("High participation"= 3, "Medium participation"= 2, "Low participation"= 1),
+  PC_Level            = c("High GDPpc" = 3, "Medium GDPpc" = 2, "Low GDPpc"      = 1),
+  Savings_Level       = c("High savings"= 3, "Medium savings"= 2, "Low savings"    = 1),
+  HIVW_Level          = c("Low share"  = 3, "Medium share"  = 2, "High share"      = 1),
+  HIV_Total_Level     = c("Low prevalence"= 3, "Medium prevalence"= 2, "High prevalence"= 1),
+  Edu_Level           = c("High education"= 3, "Medium education"= 2, "Low education"  = 1)
+)
+
+# 10.2 Start from all_clusters
+all_clusters_scored <- all_clusters
+
+# 10.3 For each “Level” column, create a <Level>_score column
+for (lvl in names(score_maps)) {
+  map   <- score_maps[[lvl]]
+  score_col <- paste0(lvl, "_score")
+  all_clusters_scored[[score_col]] <- dplyr::recode(
+    all_clusters_scored[[lvl]],
+    !!!map
+  )
+}
+
+# 10.4 Compute unweighted composite (row‑mean of all *_score columns)
+score_cols <- grep("_score$", names(all_clusters_scored), value = TRUE)
+
+all_clusters_scored$composite_score <- rowMeans(
+  all_clusters_scored[score_cols],
+  na.rm = TRUE
+)
+
+# 10.5 (Optional) Weighted composite
+weights <- c(
+  MMR_Level_score           = 0.20,
+  AFR_Level_score           = 0.10,
+  Growth_Level_score        = 0.15,
+  Participation_Level_score = 0.10,
+  PC_Level_score            = 0.15,
+  Savings_Level_score       = 0.10,
+  HIVW_Level_score          = 0.05,
+  HIV_Total_Level_score     = 0.05,
+  Edu_Level_score           = 0.10
+)
+
+all_clusters_scored$weighted_score <- rowSums(
+  sweep(
+    all_clusters_scored[score_cols],
+    2,
+    weights[score_cols],
+    "*"
+  ),
+  na.rm = TRUE
+)
+
+# 10.6 Inspect
+dplyr::glimpse(all_clusters_scored)
+View(all_clusters_scored)
+
+# -------------------------------
+# 11. GROUPING INTO LOW/MEDIUM/HIGH
+# -------------------------------
+
+# 11.1 Compute tertile cut‑points for composite_score
+tertiles <- quantile(
+  all_clusters_scored$composite_score,
+  probs = c(0, 1/3, 2/3, 1),
+  na.rm = TRUE
+)
+
+# 11.2 Create a factor “score_group” based on those cut‑points
+all_clusters_scored <- all_clusters_scored %>%
+  mutate(
+    score_group = cut(
+      composite_score,
+      breaks   = tertiles,
+      include.lowest = TRUE,
+      labels   = c("Low", "Medium", "High")
+    )
+  )
+
+# 11.3 (Optional) If you prefer to group on weighted_score instead, repeat:
+tertiles_w <- quantile(
+  all_clusters_scored$weighted_score,
+  probs = c(0, 1/3, 2/3, 1),
+  na.rm = TRUE
+)
+
+all_clusters_scored <- all_clusters_scored %>%
+  mutate(
+    weighted_group = cut(
+      weighted_score,
+      breaks   = tertiles_w,
+      include.lowest = TRUE,
+      labels   = c("Low", "Medium", "High")
+    )
+  )
+
+# 11.4 Inspect how many countries fall into each group
+table(all_clusters_scored$score_group)
+table(all_clusters_scored$weighted_group)
+
+# 11.5 View final data
+View(all_clusters_scored)
+
+# -------------------------------
+# 12. RELATIONSHIP ANALYSIS
+# -------------------------------
+
+library(dplyr)
+library(ggplot2)
+library(corrplot)
+
+# 12.1 Pull each country’s raw 2023 value for each indicator
+raw_2023 <- tibble(
+  Country.Code = mmr_data$Country.Code,
+  mmr_2023 = mmr_data[["2023"]],
+  afr_2023      = afr_data[["2023"]],
+  growth_2023   = gdp_data[["2023"]],
+  lfp_2023      = lfp_data[["2023"]],
+  gdp_pc_2023   = gdp_pc_data[["2023"]],
+  savings_2023  = gs_data[["2023"]],
+  hivw_2023     = hivw_data[["2023"]],
+  hivtot_2023   = hiv_total_data[["2023"]],
+  edu_2023      = edu_data[["2023"]]
+)
+
+# 12.2 Merge raw values with your scored & grouped data
+analysis_data <- all_clusters_scored %>%
+  left_join(raw_2023, by = "Country.Code")
+
+# 12.3 Correlation matrix of raw 2023 indicators
+corr_vars <- analysis_data %>% 
+  select(mmr_2023, afr_2023, growth_2023, lfp_2023,
+         gdp_pc_2023, savings_2023, hivw_2023, hivtot_2023, edu_2023) %>%
+  na.omit() %>% 
+  cor(use = "pairwise.complete.obs")
+
+corrplot(
+  corr_vars, 
+  method = "color", 
+  type   = "upper", 
+  tl.cex = 0.8, 
+  addCoef.col = "black",
+  title = "Correlations among 2023 Indicators",
+  mar = c(0,0,1,0)
+)
+
+#REPLICATE FOR EACH YEAR!
+
+for (yr in 2000:2022) {
+  
+  #  Build raw_year, then dedupe on Country.Code
+  raw_year <- tibble(
+    Country.Code = mmr_data$Country.Code,
+    mmr = mmr_data[[as.character(yr)]],
+    afr = afr_data[[as.character(yr)]],
+    growth = gdp_data[[as.character(yr)]],
+    lfp = lfp_data[[as.character(yr)]],
+    gdp_pc = gdp_pc_data[[as.character(yr)]],
+    savings = gs_data[[as.character(yr)]],
+    hivw = hivw_data[[as.character(yr)]],
+    hivtot = hiv_total_data[[as.character(yr)]],
+    edu = edu_data[[as.character(yr)]]
+  ) %>%
+    # rename columns to include year suffix
+    rename_with(~ paste0(.x, "_", yr), -Country.Code) %>%
+    distinct(Country.Code, .keep_all = TRUE)
+  
+  #  Join to your scored data, specifying many-to-many if needed
+  analysis_data <- all_clusters_scored %>%
+    left_join(raw_year, by = "Country.Code", relationship = "many-to-many")
+  
+  # Identify the newly created columns for this year
+  corr_cols <- grep(paste0("_", yr, "$"), names(analysis_data), value = TRUE)
+  if (length(corr_cols) < 2) {
+    warning("Year ", yr, ": fewer than 2 indicators available for correlation—skipping.")
+    next
+  }
+  
+  #  Compute correlation matrix
+  corr_mat <- analysis_data %>%
+    select(all_of(corr_cols)) %>%
+    na.omit() %>%
+    cor(use = "pairwise.complete.obs")
+  
+  # Plot
+  corrplot(
+    corr_mat,
+    method      = "color",
+    type        = "upper",
+    tl.cex      = 0.8,
+    addCoef.col = "black",
+    title       = paste("Correlations among", yr, "Indicators"),
+    mar         = c(0,0,1,0)
+  )
+}
+----
+  
+# -------------------------------
+# 13. GROUPED ANALYSIS  
+# -------------------------------
+
+library(dplyr)
+library(ggplot2)
+library(corrplot)
+
+# --- Merge 2023 raw values in as mmr_2023, afr_2023, etc. ---
+raw_2023 <- tibble(
+  Country.Code = mmr_data$Country.Code,
+  mmr_2023     = mmr_data[["2023"]],
+  afr_2023     = afr_data[["2023"]],
+  growth_2023  = gdp_data[["2023"]],
+  lfp_2023     = lfp_data[["2023"]],
+  gdp_pc_2023  = gdp_pc_data[["2023"]],
+  savings_2023 = gs_data[["2023"]],
+  hivw_2023    = hivw_data[["2023"]],
+  hivtot_2023  = hiv_total_data[["2023"]],
+  edu_2023     = edu_data[["2023"]]
+)
+
+analysis_data <- all_clusters_scored %>%
+  left_join(raw_2023, by = "Country.Code")
+
+# Make sure score_group is a factor with sensible order:
+analysis_data <- analysis_data %>%
+  mutate(score_group = factor(score_group, levels = c("Low", "Medium", "High")))
+
+vars_2023 <- c("mmr_2023", "afr_2023", "growth_2023", "lfp_2023",
+               "gdp_pc_2023", "savings_2023", "hivw_2023", "hivtot_2023", "edu_2023")
+
+# 13.1 Correlation matrix per group
+for (grp in levels(analysis_data$score_group)) {
+  df_grp <- filter(analysis_data, score_group == grp) %>%
+    select(all_of(vars_2023)) %>%
+    na.omit()
+  
+  mat <- cor(df_grp, use = "pairwise.complete.obs")
+  corrplot(
+    mat,
+    method      = "color",
+    type        = "upper",
+    tl.cex      = 0.8,
+    addCoef.col = "black",
+    title       = paste("Correlations (2023) —", grp, "Score"),
+    mar         = c(0,0,1,0)
+  )
+}
+
+# 13.2 Regression per group
+models <- analysis_data %>%
+  group_by(score_group) %>%
+  group_map(~ lm(
+    mmr_2023 ~ afr_2023 + growth_2023 + lfp_2023 +
+      gdp_pc_2023 + savings_2023 + edu_2023 +
+      hivw_2023 + hivtot_2023,
+    data = .x
+  ), .keep = TRUE)
+
+# Print summaries
+names(models) <- levels(analysis_data$score_group)
+for (grp in names(models)) {
+  cat("\n\n=== Regression summary for", grp, "score group ===\n")
+  print(summary(models[[grp]]))
+}
+
+# 13.3 Faceted scatterplots for key predictors
+key_preds <- c("gdp_pc_2023", "growth_2023", "lfp_2023")
+
+for (var in key_preds) {
+  p <- ggplot(analysis_data, aes_string(x = var, y = "mmr_2023")) +
+    geom_point(aes(color = score_group), alpha = 0.6) +
+    geom_smooth(method = "lm", se = FALSE) +
+    facet_wrap(~ score_group) +
+    labs(
+      title = paste("MMR (2023) vs.", gsub("_2023", "", var),
+                    "by Score Group"),
+      x = gsub("_2023", "", var),
+      y = "Maternal Mortality Ratio (2023)",
+      color = "Score Group"
+    ) +
+    theme_minimal()
+  print(p)
+}
+
+
+#REPLICATE FOR EACH YEAR (2000-2022)
+
+# Ensure score_group is ordered
+all_clusters_scored <- all_clusters_scored %>%
+  mutate(score_group = factor(score_group, levels = c("Low", "Medium", "High")))
+
+# Loop through each year
+for (yr in 2000:2022) {
+  
+  # 13.a Build and merge raw values for this year
+  raw_year <- tibble(
+    Country.Code = mmr_data$Country.Code,
+    mmr    = mmr_data[[as.character(yr)]],
+    afr    = afr_data[[as.character(yr)]],
+    growth = gdp_data[[as.character(yr)]],
+    lfp    = lfp_data[[as.character(yr)]],
+    gdp_pc = gdp_pc_data[[as.character(yr)]],
+    savings= gs_data[[as.character(yr)]],
+    hivw   = hivw_data[[as.character(yr)]],
+    hivtot = hiv_total_data[[as.character(yr)]],
+    edu    = edu_data[[as.character(yr)]]
+  ) %>%
+    rename_with(~ paste0(.x, "_", yr), -Country.Code) %>%
+    distinct(Country.Code, .keep_all = TRUE)
+  
+  analysis_data <- all_clusters_scored %>%
+    left_join(raw_year, by = "Country.Code", relationship = "many-to-many")
+  
+  # Prepare variable names
+  vars_y <- paste0(c("mmr","afr","growth","lfp","gdp_pc","savings","hivw","hivtot","edu"), "_", yr)
+  key_preds <- paste0(c("gdp_pc","growth","lfp"), "_", yr)
+  
+  # 13.1 Correlation matrix per score_group
+  for (grp in levels(analysis_data$score_group)) {
+    df_grp <- analysis_data %>%
+      filter(score_group == grp) %>%
+      select(all_of(vars_y)) %>%
+      na.omit()
+    if (ncol(df_grp) < 2) next
+    
+    mat <- cor(df_grp, use = "pairwise.complete.obs")
+    corrplot(
+      mat,
+      method      = "color",
+      type        = "upper",
+      tl.cex      = 0.8,
+      addCoef.col = "black",
+      title       = paste("Correlations (", yr, ") —", grp, "Score"),
+      mar         = c(0,0,1,0)
+    )
+  }
+  
+  # 13.2 Regression per score_group
+  models <- analysis_data %>%
+    group_by(score_group) %>%
+    group_map(~ {
+      rhs  <- paste(vars_y[-1], collapse = " + ")
+      fmla <- as.formula(paste0(vars_y[1], " ~ ", rhs))
+      lm(fmla, data = .x)
+    }, .keep = TRUE)
+  
+  names(models) <- levels(analysis_data$score_group)
+  for (grp in names(models)) {
+    cat("\n\n=== Regression summary for", grp, "score group (", yr, ") ===\n")
+    print(summary(models[[grp]]))
+  }
+  
+  # 13.3 Faceted scatterplots for key predictors
+  for (var in key_preds) {
+    p <- ggplot(analysis_data, aes_string(x = var, y = vars_y[1])) +
+      geom_point(aes(color = score_group), alpha = 0.6) +
+      geom_smooth(method = "lm", se = FALSE) +
+      facet_wrap(~ score_group) +
+      labs(
+        title = paste0("MMR (", yr, ") vs. ", gsub(paste0("_", yr), "", var),
+                       " by Score Group"),
+        x = gsub(paste0("_", yr), "", var),
+        y = paste0("Maternal Mortality Ratio (", yr, ")"),
+        color = "Score Group"
+      ) +
+      theme_minimal()
+    print(p)
+  }
+}
