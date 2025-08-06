@@ -1,13 +1,9 @@
-
 # Load required libraries
 library(tidyverse)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(factoextra)
-#install.packages("plm")
-#install.packages("tidyverse")
-#install.packages("factoextra")
 
 # Load the dataset
 data <- read.csv("wb_data_mice_pooled.csv")
@@ -90,9 +86,11 @@ ggplot(mmr_profiles, aes(x = Year, y = Avg_MMR, color = MMR_Level)) +
        x = "Year", y = "Maternal mortality ratio", color = "Cluster Level") +
   theme_minimal()
 
+# cluster_profiles$Year <- gsub("X|\\.\\.YR.*", "", cluster_profiles$Year)
 
 
-#VARIABLE 2 - AFR ####
+
+#VARIABLE 2 - AFR
 # Keep only Adolescent fertility rate rows
 afr_data <- data %>%
   filter(`Series.Name` == "Adolescent fertility rate (births per 1,000 women ages 15-19)") %>%
@@ -157,7 +155,7 @@ ggplot(afr_profiles, aes(x = Year, y = Avg_AFR, color = AFR_Level)) +
   theme_minimal()
 
 
-#VARIABLE 3- GDP GROWTH ANUAL ####
+#VARIABLE 3- GDP GROWTH ANUAL
 # Keep only GDP growth rows
 gdp_data <- data %>%
   filter(`Series.Name` == "GDP growth (annual %)") %>%
@@ -222,52 +220,24 @@ ggplot(gdp_profiles, aes(x = Year, y = Avg_Growth, color = Growth_Level)) +
   theme_minimal()
 
 
-#VARIABLE 4 - Labor Force ####
-
-# 1. Inspect available series names (run interactively)
-# unique(data$Series.Name)
-
-# 2. Filter more flexibly
-pattern <- "labor force participation"
+#VARIABLE 4 - Labor Force
+# Keep only female labor force participation rate rows
 lfp_data <- data %>%
-  filter(grepl(pattern, Series.Name, ignore.case = TRUE)) %>%
+  filter(`Series.Name` == "Labor force participation rate, female (% of female population ages 15+)") %>%
   select(Country.Name, Country.Code, starts_with("2"))
 
-# 3. Fail fast if nothing matched
-if (nrow(lfp_data) == 0) {
-  stop("No rows matched. Check your filter against unique(data$Series.Name).")
-}
+# Check the structure
+str(lfp_data)
 
-# 4. Continue as before
+# Prepare numeric year data for clustering
 lfp_matrix <- lfp_data %>% select(starts_with("2"))
+
+# Standardize
 lfp_scaled <- scale(lfp_matrix)
 
-# 5. Elbow/WSS plot
-library(factoextra)
+# Use Elbow Method to determine optimal number of clusters
 fviz_nbclust(lfp_scaled, kmeans, method = "wss") +
-  labs(title = "Elbow Method for Optimal Clusters")
-
-# …and so on with your hierarchical clustering and labeling.
-
-
-# unique(data$Series.Name)
-# # Keep only female labor force participation rate rows
-# lfp_data <- data %>%
-#   filter(`Series.Name` == "Labor force participation rate, female (% of female population ages 15+)") %>%
-#   select(Country.Name, Country.Code, starts_with("2"))
-# 
-# # Check the structure
-# str(lfp_data)
-# 
-# # Prepare numeric year data for clustering
-# lfp_matrix <- lfp_data %>% select(starts_with("2"))
-# 
-# # Standardize
-# lfp_scaled <- scale(lfp_matrix)
-# 
-# # Use Elbow Method to determine optimal number of clusters
-# fviz_nbclust(lfp_scaled, kmeans, method = "wss") +
-#   labs(title = "Elbow Method for Optimal Clusters (K-means – Female Labor Participation)")
+  labs(title = "Elbow Method for Optimal Clusters (K-means – Female Labor Participation)")
 
 # Compute distances and hierarchical clustering
 dist_lfp <- dist(lfp_scaled, method = "euclidean")
@@ -314,7 +284,7 @@ ggplot(lfp_profiles, aes(x = Year, y = Avg_LFP, color = Participation_Level)) +
        x = "Year", y = "Participation Rate (%)", color = "Cluster Level") +
   theme_minimal()
 
-#VARIABLE 5 - GDP PER CAPITA ####
+#VARIABLE 5 - GDP PER CAPITA
 # Keep only GDP per capita rows
 gdp_pc_data <- data %>%
   filter(`Series.Name` == "GDP per capita (constant 2015 US$)") %>%
@@ -378,7 +348,7 @@ ggplot(gdp_pc_profiles, aes(x = Year, y = Avg_GDPpc, color = PC_Level)) +
        x = "Year", y = "GDP per Capita (constant 2015 US$)", color = "Cluster Level") +
   theme_minimal()
 
-#VARIABLE 6- GROSS SAVINGS ####
+#VARIABLE 6- GROSS SAVINGS
 # Keep only Gross savings (% of GDP) rows
 gs_data <- data %>%
   filter(`Series.Name` == "Gross savings (% of GDP)") %>%
@@ -442,7 +412,7 @@ ggplot(gs_profiles, aes(x = Year, y = Avg_Savings, color = Savings_Level)) +
        x = "Year", y = "Gross Savings (% of GDP)", color = "Cluster Level") +
   theme_minimal()
 
-#VARIABLE 7 - WOMAN + HIV ####
+#VARIABLE 7 - WOMAN + HIV
 # Keep only Women’s share of population ages 15+ living with HIV (%) rows
 hivw_data <- data %>%
   filter(`Series.Name` == "Women's share of population ages 15+ living with HIV (%)") %>%
@@ -506,7 +476,7 @@ ggplot(hivw_profiles, aes(x = Year, y = Avg_HIVW, color = HIVW_Level)) +
        x = "Year", y = "Women’s HIV Share (%)", color = "Cluster Level") +
   theme_minimal()
 
-#VARIABLE 8 - PREVALANCE OF HIV ####
+#VARIABLE 8 - PREVALANCE OF HIV
 # Keep only Prevalence of HIV, total (% of population ages 15-49) rows
 hiv_total_data <- data %>%
   filter(`Series.Name` == "Prevalence of HIV, total (% of population ages 15-49)") %>%
@@ -570,7 +540,7 @@ ggplot(hiv_total_profiles, aes(x = Year, y = Avg_HIV_Total, color = HIV_Total_Le
        x = "Year", y = "HIV Prevalence Total (%)", color = "Cluster Level") +
   theme_minimal()
 
-#VARIABLE 9 - EDUCATIONAL ATTAINMENT ####
+#VARIABLE 9 - EDUCATIONAL ATTAINMENT
 # Keep only female upper secondary educational attainment rows
 edu_data <- data %>%
   filter(`Series.Name` == "Educational attainment, at least completed upper secondary, population 25+, female (%) (cumulative)") %>%
@@ -634,7 +604,7 @@ ggplot(edu_profiles, aes(x = Year, y = Avg_Edu, color = Edu_Level)) +
        x = "Year", y = "Completion Rate (%)", color = "Cluster Level") +
   theme_minimal()
 
-#SUMMARIZE TO ANALYZE!####
+#SUMMARIZE TO ANALYZE!
 library(purrr)
 
 #  Build one summary table for each variable
@@ -697,43 +667,42 @@ all_clusters <- reduce(
 glimpse(all_clusters)
 View(all_clusters) 
 
-# 10. SCORING SECTION ####
+
+
+# -------------------------------
+# 10. SCORING SECTION  
+# -------------------------------
 
 # 10.1 Define mappings: higher = “better”
 score_maps <- list(
-  MMR_Level           = c("Low MMR"    = 3, "Medium MMR"   = 2, "High MMR"       = 1),
-  AFR_Level           = c("Low AFR"    = 3, "Medium AFR"   = 2, "High AFR"       = 1),
-  Growth_Level        = c("High growth"= 3, "Medium growth"= 2, "Low growth"     = 1),
-  Participation_Level = c("High participation"= 3, "Medium participation"= 2, "Low participation"= 1),
-  PC_Level            = c("High GDPpc" = 3, "Medium GDPpc" = 2, "Low GDPpc"      = 1),
-  Savings_Level       = c("High savings"= 3, "Medium savings"= 2, "Low savings"    = 1),
-  HIVW_Level          = c("Low share"  = 3, "Medium share"  = 2, "High share"      = 1),
-  HIV_Total_Level     = c("Low prevalence"= 3, "Medium prevalence"= 2, "High prevalence"= 1),
-  Edu_Level           = c("High education"= 3, "Medium education"= 2, "Low education"  = 1)
+  MMR_Level          = c("Low MMR" = 3,    "Medium MMR" = 2,    "High MMR" = 1),
+  AFR_Level          = c("Low AFR" = 3,    "Medium AFR" = 2,    "High AFR" = 1),
+  Growth_Level       = c("High growth" = 3,"Medium growth" = 2,"Low growth" = 1),
+  Participation_Level= c("High participation" = 3, "Medium participation" = 2, "Low participation" = 1),
+  PC_Level           = c("High GDPpc" = 3, "Medium GDPpc" = 2,  "Low GDPpc" = 1),
+  Savings_Level      = c("High savings" = 3,"Medium savings" = 2,"Low savings" = 1),
+  HIVW_Level         = c("Low share" = 3,  "Medium share" = 2,  "High share" = 1),
+  HIV_Total_Level    = c("Low prevalence" = 3, "Medium prevalence" = 2, "High prevalence" = 1),
+  Edu_Level          = c("High education" = 3, "Medium education" = 2, "Low education" = 1)
 )
 
-# 10.2 Start from all_clusters
-all_clusters_scored <- all_clusters
+# 10.2 Apply mappings to turn each “Level” into a numeric score
+all_clusters_scored <- all_clusters %>%
+  mutate(across(
+    names(score_maps),
+    ~ recode(.x, !!!score_maps[[cur_column()]]),
+    .names = "{.col}_score"
+  ))
 
-# 10.3 For each “Level” column, create a <Level>_score column
-for (lvl in names(score_maps)) {
-  map   <- score_maps[[lvl]]
-  score_col <- paste0(lvl, "_score")
-  all_clusters_scored[[score_col]] <- dplyr::recode(
-    all_clusters_scored[[lvl]],
-    !!!map
-  )
-}
+# 10.3 Compute unweighted composite (mean of all 9 scores)
+all_clusters_scored <- all_clusters_scored %>%
+  rowwise() %>%
+  mutate(
+    composite_score = mean(c_across(ends_with("_score")), na.rm = TRUE)
+  ) %>%
+  ungroup()
 
-# 10.4 Compute unweighted composite (row‑mean of all *_score columns)
-score_cols <- grep("_score$", names(all_clusters_scored), value = TRUE)
-
-all_clusters_scored$composite_score <- rowMeans(
-  all_clusters_scored[score_cols],
-  na.rm = TRUE
-)
-
-# 10.5 (Optional) Weighted composite
+# 10.4 (Optional) Define weights and compute weighted composite
 weights <- c(
   MMR_Level_score           = 0.20,
   AFR_Level_score           = 0.10,
@@ -746,377 +715,19 @@ weights <- c(
   Edu_Level_score           = 0.10
 )
 
-all_clusters_scored$weighted_score <- rowSums(
-  sweep(
-    all_clusters_scored[score_cols],
-    2,
-    weights[score_cols],
-    "*"
-  ),
-  na.rm = TRUE
-)
+all_clusters_scored <- all_clusters_scored %>%
+  rowwise() %>%
+  mutate(
+    weighted_score = sum(
+      c_across(names(weights)) * weights[names(weights)],
+      na.rm = TRUE
+    )
+  ) %>%
+  ungroup()
 
-# 10.6 Inspect
-dplyr::glimpse(all_clusters_scored)
+# 10.5 Inspect the results
+glimpse(all_clusters_scored)
 View(all_clusters_scored)
 
 
-# 11. GROUPING INTO LOW/MEDIUM/HIGH ####
 
-# 11.1 Compute tertile cut‑points for composite_score
-tertiles <- quantile(
-  all_clusters_scored$composite_score,
-  probs = c(0, 1/3, 2/3, 1),
-  na.rm = TRUE
-)
-
-# 11.2 Create a factor “score_group” based on those cut‑points
-all_clusters_scored <- all_clusters_scored %>%
-  mutate(
-    score_group = cut(
-      composite_score,
-      breaks   = tertiles,
-      include.lowest = TRUE,
-      labels   = c("Low", "Medium", "High")
-    )
-  )
-
-# 11.3 (Optional) If you prefer to group on weighted_score instead, repeat:
-tertiles_w <- quantile(
-  all_clusters_scored$weighted_score,
-  probs = c(0, 1/3, 2/3, 1),
-  na.rm = TRUE
-)
-
-all_clusters_scored <- all_clusters_scored %>%
-  mutate(
-    weighted_group = cut(
-      weighted_score,
-      breaks   = tertiles_w,
-      include.lowest = TRUE,
-      labels   = c("Low", "Medium", "High")
-    )
-  )
-
-# 11.4 Inspect how many countries fall into each group
-table(all_clusters_scored$score_group)
-table(all_clusters_scored$weighted_group)
-
-# 11.5 View final data
-View(all_clusters_scored)
-
-# 12. RELATIONSHIP ANALYSIS ####
-
-library(dplyr)
-library(ggplot2)
-library(corrplot)
-
-# 12.1 Pull each country’s raw 2023 value for each indicator
-raw_2023 <- tibble(
-  Country.Code = mmr_data$Country.Code,
-  mmr_2023 = mmr_data[["2023"]],
-  afr_2023      = afr_data[["2023"]],
-  growth_2023   = gdp_data[["2023"]],
-  lfp_2023      = lfp_data[["2023"]],
-  gdp_pc_2023   = gdp_pc_data[["2023"]],
-  savings_2023  = gs_data[["2023"]],
-  hivw_2023     = hivw_data[["2023"]],
-  hivtot_2023   = hiv_total_data[["2023"]],
-  edu_2023      = edu_data[["2023"]]
-)
-
-# 12.2 Merge raw values with your scored & grouped data
-analysis_data <- all_clusters_scored %>%
-  left_join(raw_2023, by = "Country.Code")
-
-# 12.3 Correlation matrix of raw 2023 indicators
-corr_vars <- analysis_data %>% 
-  select(mmr_2023, afr_2023, growth_2023, lfp_2023,
-         gdp_pc_2023, savings_2023, hivw_2023, hivtot_2023, edu_2023) %>%
-  na.omit() %>% 
-  cor(use = "pairwise.complete.obs")
-
-corrplot(
-  corr_vars, 
-  method = "color", 
-  type   = "upper", 
-  tl.cex = 0.8, 
-  addCoef.col = "black",
-  title = "Correlations among 2023 Indicators",
-  mar = c(0,0,1,0)
-)
-
-
-# 12.1 Pull each country’s raw 2000 value for each indicator
-raw_2000 <- tibble(
-  Country.Code = mmr_data$Country.Code,
-  mmr_2000 = mmr_data[["2000"]],
-  afr_2000     = afr_data[["2000"]],
-  growth_2000   = gdp_data[["2000"]],
-  lfp_2000      = lfp_data[["2000"]],
-  gdp_pc_2000   = gdp_pc_data[["2000"]],
-  savings_2000  = gs_data[["2000"]],
-  hivw_2000     = hivw_data[["2000"]],
-  hivtot_2000   = hiv_total_data[["2000"]],
-  edu_2000      = edu_data[["2000"]]
-)
-
-# 12.2 Merge raw values with your scored & grouped data
-analysis_data <- analysis_data %>%
-  left_join(raw_2000, by = "Country.Code")
-
-# 12.3 Correlation matrix of raw 2000 indicators
-corr_vars <- analysis_data %>% 
-  select(mmr_2000, afr_2000, growth_2000, lfp_2000,
-         gdp_pc_2000, savings_2000, hivw_2000, hivtot_2000, edu_2000) %>%
-  na.omit() %>% 
-  cor(use = "pairwise.complete.obs")
-
-corrplot(
-  corr_vars, 
-  method = "color", 
-  type   = "upper", 
-  tl.cex = 0.8, 
-  addCoef.col = "black",
-  title = "Correlations among 2000 Indicators",
-  mar = c(0,0,1,0)
-)
-
-# 13. GROUPED ANALYSIS ####
-
-library(dplyr)
-library(ggplot2)
-library(corrplot)
-
-# Make sure score_group is a factor with sensible order:
-analysis_data <- analysis_data %>%
-  mutate(score_group = factor(score_group, levels = c("Low", "Medium", "High")))
-
-vars_2023 <- c("mmr_2023", "afr_2023", "growth_2023", "lfp_2023",
-               "gdp_pc_2023", "savings_2023", "hivw_2023", "hivtot_2023", "edu_2023")
-vars_2023
-
-# 13.1 Correlation matrix per group
-for (grp in levels(analysis_data$score_group)) {
-  df_grp <- filter(analysis_data, score_group == grp) %>%
-    select(all_of(vars_2023)) %>%
-    na.omit()
-  
-  mat <- cor(df_grp, use = "pairwise.complete.obs")
-  corrplot(
-    mat,
-    method      = "color",
-    type        = "upper",
-    tl.cex      = 0.8,
-    addCoef.col = "black",
-    title       = paste("Correlations (2023) —", grp, "Score"),
-    mar         = c(0,0,1,0)
-  )
-}
-
-# 13.2 Regression per group
-models <- analysis_data %>%
-  group_by(score_group) %>%
-  group_map(~ lm(
-    mmr_2023 ~ afr_2023 + growth_2023 + lfp_2023 +
-      gdp_pc_2023 + savings_2023 + edu_2023 +
-      hivw_2023 + hivtot_2023,
-    data = .x
-  ), .keep = TRUE)
-
-# Print summaries
-names(models) <- levels(analysis_data$score_group)
-for (grp in names(models)) {
-  cat("\n\n=== Regression summary for", grp, "score group ===\n")
-  print(summary(models[[grp]]))
-}
-
-# 13.3 Faceted scatterplots for key predictors
-key_preds <- c("gdp_pc_2023", "growth_2023", "lfp_2023")
-
-for (var in key_preds) {
-  p <- ggplot(analysis_data, aes_string(x = var, y = "mmr_2023")) +
-    geom_point(aes(color = score_group), alpha = 0.6) +
-    geom_smooth(method = "lm", se = FALSE) +
-    facet_wrap(~ score_group) +
-    labs(
-      title = paste("MMR (2023) vs.", gsub("_2023", "", var),
-                    "by Score Group"),
-      x = gsub("_2023", "", var),
-      y = "Maternal Mortality Ratio (2023)",
-      color = "Score Group"
-    ) +
-    theme_minimal()
-  print(p)
-}
-
-# 14. General Indicators ####
-# 1. Build a long‐form table of average MMR by cluster and year
-cluster_mmr_ts <- mmr_data %>%
-  pivot_longer(
-    cols      = starts_with("2"),    # all year columns
-    names_to  = "Year",              # pivot column names into “Year”
-    values_to = "mmr"                # pivot values into “mmr”
-  ) %>%
-  mutate(
-    Year = as.integer(Year),         # convert Year to integer
-    mmr  = as.numeric(mmr)           # ensure mmr is numeric
-  ) %>%
-  group_by(MMR_Level, Year) %>%      # group by cluster level and year
-  summarise(
-    avg_mmr = mean(mmr, na.rm = TRUE),  # compute average MMR
-    .groups  = "drop"
-  )
-
-# 2. For each cluster, fit an ARIMA model and produce a 5-year forecast
-library(purrr)
-library(forecast)
-library(ggplot2)
-
-forecast_dfs <- cluster_mmr_ts %>%
-  split(.$MMR_Level) %>%             # split by cluster level
-  imap_dfr(function(df, level) {
-    # convert the average MMR series into a ts object
-    ts_data <- ts(df$avg_mmr,
-                  start     = min(df$Year),
-                  frequency = 1)
-    # fit an automatic ARIMA
-    fit <- auto.arima(ts_data)
-    # forecast 5 years ahead at 95% confidence
-    fc  <- forecast(fit, h = 5, level = 0.95)
-    
-    # bind historical data
-    hist_df <- tibble(
-      MMR_Level = level,
-      Year      = df$Year,
-      Value     = df$avg_mmr,
-      Type      = "Historical",
-      Lo95      = NA_real_,
-      Hi95      = NA_real_
-    )
-    # bind forecast data
-    fc_df <- tibble(
-      MMR_Level = level,
-      Year      = (max(df$Year) + 1):(max(df$Year) + 5),
-      Value     = as.numeric(fc$mean),
-      Type      = "Forecast",
-      Lo95      = as.numeric(fc$lower[,1]),
-      Hi95      = as.numeric(fc$upper[,1])
-    )
-    
-    bind_rows(hist_df, fc_df)
-  })
-
-# 3. Plot all three clusters on one chart with ribbons for the forecast intervals
-ggplot(forecast_dfs, aes(x = Year, y = Value, color = MMR_Level, linetype = Type)) +
-  # shaded ribbon only for forecast period
-  geom_ribbon(
-    data = filter(forecast_dfs, Type == "Forecast"),
-    aes(ymin = Lo95, ymax = Hi95, fill = MMR_Level),
-    alpha = 0.2, color = NA
-  ) +
-  # lines for both historical (solid) and forecast (dashed)
-  geom_line(size = 1) +
-  scale_linetype_manual(values = c(Historical = "solid", Forecast = "dashed")) +
-  labs(
-    title    = "Average MMR Trends and 5-Year ARIMA Forecast by Cluster",
-    x        = "Year",
-    y        = "Average MMR",
-    color    = "Cluster Level",
-    linetype = ""
-  ) +
-  theme_minimal()
-
-# 14.1 Map ####
-# 1. Load necessary libraries
-# install.packages(c("sf", "rnaturalearth", "rnaturalearthdata", "ggplot2", "dplyr"))
-library(sf)             
-library(rnaturalearth)  
-library(rnaturalearthdata)
-library(dplyr)         
-library(ggplot2)        
-
-# 2. Fetch a global ‘sf’ object at medium resolution
-world <- ne_countries(scale = "medium", returnclass = "sf")
-
-# 3. Prepare cluster label table
-mmr_labels <- mmr_data %>%
-  distinct(Country.Code, MMR_Level)
-
-# 4. Join the cluster labels onto the spatial data
-world_labeled <- world %>%
-  left_join(mmr_labels, by = c("iso_a3" = "Country.Code"))
-
-# 5. Plot: fill countries by their MMR cluster, gray out missing
-ggplot(world_labeled) +
-  geom_sf(aes(fill = MMR_Level), color = "white", size = 0.2) +
-  scale_fill_manual(
-    name    = "MMR Cluster",
-    values  = c(
-      "High MMR"   = "#e41a1c",
-      "Medium MMR" = "#377eb8",
-      "Low MMR"    = "#4daf4a"
-    ),
-    na.value = "grey90"
-  ) +
-  labs(
-    title    = "Global Map of Maternal Mortality Clusters",
-    subtitle = "Countries colored by MMR cluster level",
-    caption  = "Data source: WB pooled dataset"
-  ) +
-  theme_minimal() +
-  theme(
-    panel.background = element_rect(fill = "aliceblue"),
-    panel.grid.major = element_line(color = "white"),
-    legend.position  = "bottom"
-  )
-
-# 14.2 Interactive Map ####
-library(leaflet)
-library(rnaturalearth)
-library(sf)
-library(dplyr)
-
-# 1. Load world map as an sf object
-world <- ne_countries(scale = "medium", returnclass = "sf")
-
-# 2. Join MMR cluster labels by ISO3 country code
-world_labeled <- world %>%
-  left_join(
-    mmr_data %>%
-      distinct(Country.Code, MMR_Level) %>%
-      # ensure the factor levels are in the desired order
-      mutate(MMR_Level = factor(
-        MMR_Level,
-        levels = c("Low MMR", "Medium MMR", "High MMR")
-      )),
-    by = c("iso_a3" = "Country.Code")
-  )
-
-# 3. Print and inspect factor levels in case of mismatches
-print(levels(world_labeled$MMR_Level))
-print(table(world_labeled$MMR_Level, useNA = "ifany"))
-
-# 4. Build a color palette
-cluster_pal <- colorFactor(
-  palette = c("#4daf4a", "#377eb8", "#e41a1c"),  # green, blue, red
-  domain  = world_labeled$MMR_Level,             # factor values
-  na.color = "grey90"                            # color for missing data
-)
-
-# 5. Render interactive leaflet map
-leaflet(world_labeled) %>%
-  addProviderTiles(providers$CartoDB.Positron) %>%      # base map tiles
-  addPolygons(
-    fillColor   = ~cluster_pal(MMR_Level),             # fill by cluster
-    weight      = 0.3,                                 # polygon border width
-    color       = "white",                             # border color
-    fillOpacity = 0.7                                  # transparency
-  ) %>%
-  addLegend(
-    pal      = cluster_pal,                            # same palette
-    values   = world_labeled$MMR_Level,                # legend categories
-    title    = "MMR Cluster",                          # legend title
-    position = "bottomright"                           # legend position
-  )
-write.csv(all_clusters_scored, "all_clusters_scored.csv")
