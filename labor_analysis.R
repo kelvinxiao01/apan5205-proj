@@ -127,3 +127,125 @@ ggplot(map_data) +
     legend.position    = "bottom"
   )
 
+
+library(dplyr)
+library(ggplot2)
+
+# 1. Prepare a combined data frame for 2023
+corr_2023 <- lfp_data %>%
+  select(Country.Code, LFP_2023 = `2023`, Participation_Level) %>%
+  inner_join(
+    mmr_data %>% select(Country.Code, MMR_2023 = `2023`),
+    by = "Country.Code"
+  )
+
+# 2. Compute and print the Pearson correlation coefficient
+cor_coef <- cor(corr_2023$LFP_2023, corr_2023$MMR_2023, use = "complete.obs")
+message("Pearson r (2023): ", round(cor_coef, 3))
+
+# 3. Scatter-plot with smoothing line
+ggplot(corr_2023, aes(x = LFP_2023, y = MMR_2023, color = Participation_Level)) +
+  geom_point(alpha = 0.7, size = 2) +
+  geom_smooth(method = "lm", se = TRUE) +
+  labs(
+    title = sprintf("MMR vs Female LFP, 2023 (r = %.2f)", cor_coef),
+    x = "Female Labor Force Participation, 2023 (%)",
+    y = "Maternal Mortality Rate, 2023 (deaths per 100,000 live births)",
+    color = "LFP Cluster"
+  ) +
+  theme_minimal()
+
+
+library(tidyr)
+library(purrr)
+
+# 1. Pivot both data sets to long form
+lfp_long <- lfp_data %>%
+  select(Country.Code, starts_with("2")) %>%
+  pivot_longer(cols = starts_with("2"), names_to = "Year", values_to = "LFP") %>%
+  mutate(Year = as.integer(Year))
+
+mmr_long <- mmr_data %>%
+  select(Country.Code, starts_with("2")) %>%
+  pivot_longer(cols = starts_with("2"), names_to = "Year", values_to = "MMR") %>%
+  mutate(Year = as.integer(Year))
+
+# 2. Join and compute correlation per year
+corr_time <- lfp_long %>%
+  inner_join(mmr_long, by = c("Country.Code", "Year")) %>%
+  group_by(Year) %>%
+  summarize(
+    r = cor(LFP, MMR, use = "complete.obs"),
+    .groups = "drop"
+  )
+
+# 3. Plot the year‐by‐year correlation
+ggplot(corr_time, aes(x = Year, y = r)) +
+  geom_line(size = 1) +
+  geom_point() +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  labs(
+    title = "Yearly Pearson Correlation between Female LFP and MMR",
+    subtitle = "Negative values indicate higher participation ↔ lower mortality",
+    x = "Year",
+    y = "Pearson’s r"
+  ) +
+  theme_minimal()
+
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+
+# 1. Specify the snapshot years you want
+years <- c(2000, 2005, 2010, 2015, 2020)
+
+# 2. Prepare a combined long‐format data frame for only those years
+corr_multi <- lfp_data %>%
+  select(Country.Code, Participation_Level, all_of(as.character(years))) %>%
+  pivot_longer(
+    cols      = as.character(years),
+    names_to  = "Year",
+    values_to = "LFP"
+  ) %>%
+  mutate(Year = as.integer(Year)) %>%
+  inner_join(
+    mmr_data %>%
+      select(Country.Code, all_of(as.character(years))) %>%
+      pivot_longer(
+        cols      = as.character(years),
+        names_to  = "Year",
+        values_to = "MMR"
+      ) %>%
+      mutate(Year = as.integer(Year)),
+    by = c("Country.Code", "Year")
+  )
+
+# 3. Compute per‐year Pearson’s r for annotation (optional)
+r_per_year <- corr_multi %>%
+  group_by(Year) %>%
+  summarize(r = cor(LFP, MMR, use = "complete.obs"), .groups = "drop")
+
+# 4. Plot with facet_wrap
+ggplot(corr_multi, aes(x = LFP, y = MMR, color = Participation_Level)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", se = TRUE) +
+  # add per‐facet corr coeff as text
+  geom_text(
+    data = r_per_year,
+    aes(x = Inf, y = Inf, label = sprintf("r = %.2f", r)),
+    hjust = 1.1, vjust = 1.5, inherit.aes = FALSE
+  ) +
+  facet_wrap(~ Year, ncol = 3) +
+  labs(
+    title = "MMR vs Female LFP Across Selected Years",
+    x     = "Female Labor Force Participation (%)",
+    y     = "Maternal Mortality Rate (per 100,000 live births)",
+    color = "LFP Cluster"
+  ) +
+  theme_minimal() +
+  theme(
+    strip.text = element_text(face = "bold"),
+    legend.position = "bottom"
+  )
+
+
