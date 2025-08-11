@@ -8,6 +8,89 @@ library(factoextra)
 #install.packages("tidyverse")
 #install.packages("factoextra")
 
+#Preliminary data loading (taken from other files)
+
+# Load the dataset
+data <- read.csv("wb_data_mice_pooled.csv")
+
+# Check structure and summary
+str(data)
+summary(data)
+
+# Check if there are missing values
+sum(is.na(data))
+
+colnames(data) 
+
+#Rename the year columns
+colnames(data) <- gsub("X([0-9]{4})\\..*", "\\1", colnames(data))
+
+# Remove the 2024 column right away
+data <- data %>% select(-`2024`)
+
+# Keep only MMR rows
+mmr_data <- data %>%
+  filter(`Series.Name` == "Maternal mortality ratio (modeled estimate, per 100,000 live births)") %>%
+  select(Country.Name, Country.Code, starts_with("2"))
+
+# Check the structure
+str(mmr_data)
+
+# Prepare numeric year data for clustering
+mmr_matrix <- mmr_data %>% select(starts_with("2"))
+
+# Standardize
+mmr_scaled <- scale(mmr_matrix)
+
+# Use Elbow Method to determine optimal number of clusters
+fviz_nbclust(mmr_scaled, kmeans, method = "wss") +
+  labs(title = "Elbow Method for Optimal Clusters (K-means – MMR)")
+
+# Compute distances and hierarchical clustering
+dist_mmr <- dist(mmr_scaled, method = "euclidean")
+hc_mmr  <- hclust(dist_mmr, method = "ward.D2")
+
+# Plot dendrogram and add rectangles in one run
+plot(hc_mmr, main = "Hierarchical Clustering of Countries by MMR",
+     xlab = "", sub = "", cex = 0.5)
+rect.hclust(hc_mmr, k = 3, border = "red")  # adjust k based on elbow
+
+# Cut into 3 clusters
+clusters_mmr <- cutree(hc_mmr, k = 3)
+
+# Add raw cluster labels back to mmr_data
+mmr_data <- mmr_data %>%
+  mutate(cluster = clusters_mmr)
+
+# Programmatically rank clusters by their 2023 mean MMR and assign Low/Medium/High
+cluster_ranks <- mmr_data %>%
+  group_by(cluster) %>%
+  summarise(mean_mmr_2023 = mean(`2023`, na.rm = TRUE), .groups = "drop") %>%
+  arrange(mean_mmr_2023) %>%
+  mutate(MMR_Level = c("Low MMR", "Medium MMR", "High MMR"))
+
+# Join the level labels back into mmr_data
+mmr_data <- mmr_data %>%
+  left_join(cluster_ranks %>% select(cluster, MMR_Level), by = "cluster")
+
+# Check number of countries in each cluster level
+table(mmr_data$MMR_Level)
+
+# Visualize the average MMR trend for each cluster level
+mmr_profiles <- mmr_data %>%
+  group_by(MMR_Level) %>%
+  summarise(across(starts_with("2"), mean, na.rm = TRUE), .groups = "drop") %>%
+  pivot_longer(cols = starts_with("2"),
+               names_to = "Year",
+               values_to = "Avg_MMR") %>%
+  mutate(Year = as.integer(Year))
+
+ggplot(mmr_profiles, aes(x = Year, y = Avg_MMR, color = MMR_Level)) +
+  geom_line(size = 1.2) +
+  labs(title = "Average Maternal Mortality Trends by Cluster Level",
+       x = "Year", y = "Maternal mortality ratio", color = "Cluster Level") +
+  theme_minimal()
+
 # LABOR FORCE ANALYSIS
 
 #VARIABLE 4 - Labor Force ####
@@ -29,6 +112,9 @@ if (nrow(lfp_data) == 0) {
 # 4. Continue as before
 lfp_matrix <- lfp_data %>% select(starts_with("2"))
 lfp_scaled <- scale(lfp_matrix)
+
+print(lfp_matrix)
+print(lfp_scaled)
 
 # 5. Elbow/WSS plot
 fviz_nbclust(lfp_scaled, kmeans, method = "wss") +
