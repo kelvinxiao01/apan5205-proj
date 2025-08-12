@@ -1,4 +1,4 @@
-setwd()
+
 # Load required libraries
 library(tidyverse)
 library(dplyr)
@@ -1298,42 +1298,486 @@ library(lmerTest)  # for p-values and detailed summary
 model_mixed <- lmer(MMR ~ HIV_Total + Adol_Fertility + (1 | Country.Name), data = merged_all)
 summary(model_mixed)
 
-#--- 33 - Define function safe_cor to avoid errors when standard deviation is zero
+#--- 33 - Removed duplicate safe_cor function (kept enhanced version below)
+
+# Define merged_with_clusters
+library(dplyr)
+library(tidyr)
+library(stringr)
+
+#=== COMPREHENSIVE DATA VALIDATION ===
+cat("\n" , paste(rep("=", 60), collapse=""), "\n")
+cat("STARTING COMPREHENSIVE DATA VALIDATION FOR CORRELATION ANALYSIS\n")
+cat(paste(rep("=", 60), collapse=""), "\n")
+
+# 1. Check if all_clusters_scored exists and is valid
+if (!exists("all_clusters_scored")) {
+  stop("ERROR: all_clusters_scored object does not exist! You must run the earlier clustering sections first.")
+} else {
+  cat("✓ all_clusters_scored exists\n")
+  cat("  - Dimensions:", dim(all_clusters_scored), "\n")
+  cat("  - Columns:", paste(names(all_clusters_scored), collapse=", "), "\n")
+  
+  # Check required columns
+  required_cols <- c("Country.Code", "MMR_Level", "AFR_Level")
+  missing_cols <- required_cols[!required_cols %in% names(all_clusters_scored)]
+  if (length(missing_cols) > 0) {
+    stop("ERROR: Missing required columns in all_clusters_scored: ", paste(missing_cols, collapse=", "))
+  } else {
+    cat("  - ✓ All required columns present\n")
+  }
+}
+
+# 2. Check if data_long exists
+if (!exists("data_long")) {
+  stop("ERROR: data_long object does not exist! You must run the data transformation sections first.")
+} else {
+  cat("✓ data_long exists\n")
+  cat("  - Dimensions:", dim(data_long), "\n")
+}
+
+# 3. Check individual data components that will be merged
+required_objects <- c("mmr", "hiv_total", "hiv_female", "adolescent_fertility")
+for (obj_name in required_objects) {
+  if (!exists(obj_name)) {
+    stop("ERROR: Required object '", obj_name, "' does not exist!")
+  } else {
+    obj <- get(obj_name)
+    cat("✓", obj_name, "exists - Dimensions:", dim(obj), "\n")
+  }
+}
+
+# 1) Build HIV_Women from data_long
+cat("\n--- Building HIV_Women data ---\n")
+hiv_women <- data_long %>%
+  filter(Series.Name == "Women's share of population ages 15+ living with HIV (%)") %>%
+  rename(HIV_Women = Value) %>%
+  select(Country.Name, Country.Code, Year, HIV_Women)
+
+cat("✓ HIV_Women created - Dimensions:", dim(hiv_women), "\n")
+cat("  - Years range:", range(hiv_women$Year, na.rm=TRUE), "\n")
+cat("  - Countries:", length(unique(hiv_women$Country.Code)), "\n")
+cat("  - Missing values:", sum(is.na(hiv_women$HIV_Women)), "\n")
+
+# 2) Choose a single country-level cluster label to attach
+cat("\n--- Creating cluster labels ---\n")
+cluster_labels <- all_clusters_scored %>%
+  group_by(Country.Code) %>%
+  slice(1) %>%                      # one row per country
+  ungroup() %>%
+  select(Country.Code, Cluster = MMR_Level, AFR_Level)
+
+cat("✓ cluster_labels created - Dimensions:", dim(cluster_labels), "\n")
+cat("  - Unique MMR clusters:", paste(unique(cluster_labels$Cluster), collapse=", "), "\n")
+cat("  - Unique AFR levels:", paste(unique(cluster_labels$AFR_Level), collapse=", "), "\n")
+
+# Validate merged_all exists
+if (!exists("merged_all")) {
+  stop("ERROR: merged_all object does not exist!")
+}
+cat("✓ merged_all exists - Dimensions:", dim(merged_all), "\n")
+
+# 3) Create merged_with_clusters by joining everything we need
+cat("\n--- Creating merged_with_clusters ---\n")
+merged_with_clusters <- merged_all %>%
+  left_join(hiv_women, by = c("Country.Name", "Country.Code", "Year")) %>%
+  left_join(cluster_labels, by = "Country.Code") %>%
+  mutate(
+    # standardize names expected later
+    year = Year,
+    country_name = Country.Name
+  )
+
+cat("✓ merged_with_clusters created - Dimensions:", dim(merged_with_clusters), "\n")
+cat("  - Years range:", range(merged_with_clusters$year, na.rm=TRUE), "\n")
+cat("  - Countries:", length(unique(merged_with_clusters$Country.Code)), "\n")
+cat("  - Unique clusters:", paste(unique(merged_with_clusters$Cluster), collapse=", "), "\n")
+
+# Check for missing data in key variables
+cat("\n--- Missing data check ---\n")
+cat("MMR missing:", sum(is.na(merged_with_clusters$MMR)), "\n")
+cat("HIV_Total missing:", sum(is.na(merged_with_clusters$HIV_Total)), "\n") 
+cat("HIV_Women missing:", sum(is.na(merged_with_clusters$HIV_Women)), "\n")
+cat("Adol_Fertility missing:", sum(is.na(merged_with_clusters$Adol_Fertility)), "\n")
+
+# 4A) Map AFR_Level to numeric values for correlation analysis
+cat("\n--- Creating AFR_Level_num mapping ---\n")
+cat("Available columns in merged_with_clusters:", paste(names(merged_with_clusters), collapse=", "), "\n")
+
+if ("AFR_Level" %in% names(merged_with_clusters)) {
+  cat("✓ AFR_Level column found\n")
+  cat("Unique AFR_Level values before mapping:", paste(unique(merged_with_clusters$AFR_Level), collapse=", "), "\n")
+  
+  merged_with_clusters <- merged_with_clusters %>%
+    mutate(
+      AFR_Level_num = case_when(
+        AFR_Level == "Low AFR" ~ 1,
+        AFR_Level == "Medium AFR" ~ 2,
+        AFR_Level == "High AFR" ~ 3,
+        TRUE ~ NA_real_
+      )
+    )
+  
+  cat("✓ AFR_Level_num created successfully\n")
+  cat("Unique AFR_Level_num values:", paste(unique(merged_with_clusters$AFR_Level_num), collapse=", "), "\n")
+  cat("AFR_Level_num missing values:", sum(is.na(merged_with_clusters$AFR_Level_num)), "\n")
+  
+  # Show mapping verification
+  mapping_check <- merged_with_clusters %>%
+    distinct(AFR_Level, AFR_Level_num) %>%
+    arrange(AFR_Level_num)
+  cat("Mapping verification:\n")
+  print(mapping_check)
+  
+} else {
+  cat("⚠️ WARNING: AFR_Level not found in merged_with_clusters\n")
+  cat("Available columns:", paste(names(merged_with_clusters), collapse = ", "), "\n")
+  
+  # Fallback: use raw AFR values for correlation
+  merged_with_clusters <- merged_with_clusters %>%
+    mutate(AFR_Level_num = Adol_Fertility)
+  cat("✓ Using raw AFR values (Adol_Fertility) as AFR_Level_num\n")
+  cat("AFR_Level_num range:", range(merged_with_clusters$AFR_Level_num, na.rm=TRUE), "\n")
+}
+
+# 4B) If instead you intended to correlate against the raw AFR value,
+#     use Adol_Fertility directly (comment out 4A above and use this line).
+# merged_with_clusters <- merged_with_clusters %>%
+#   mutate(AFR_Level_num = Adol_Fertility)
+
 safe_cor <- function(x, y) {
-  if (length(x) < 2 || length(y) < 2) return(NA_real_)
-  if (sd(x, na.rm = TRUE) == 0 || sd(y, na.rm = TRUE) == 0) return(NA_real_)
-  return(cor(x, y, use = "complete.obs"))
+  x <- as.numeric(x); y <- as.numeric(y)
+  # keep only complete pairs
+  idx <- is.finite(x) & is.finite(y)
+  n_valid <- sum(idx)
+  
+  # Need at least 3 points for meaningful correlation
+  if (n_valid < 3) {
+    cat("Warning: Only", n_valid, "valid data points for correlation\n")
+    return(NA_real_)
+  }
+  
+  sx <- sd(x[idx], na.rm = TRUE)
+  sy <- sd(y[idx], na.rm = TRUE)
+  
+  if (is.na(sx) || is.na(sy)) {
+    cat("Warning: Standard deviation is NA\n")
+    return(NA_real_)
+  }
+  
+  if (sx == 0 || sy == 0) {
+    cat("Warning: Zero standard deviation detected\n")
+    return(NA_real_)
+  }
+  
+  result <- cor(x[idx], y[idx])
+  return(result)
 }
 
 #--- 34 - Calculate dynamic correlations per Cluster and Year
-corr_cluster <- merged_with_clusters %>%
+cat("\n", paste(rep("=", 60), collapse=""), "\n")
+cat("STARTING CORRELATION CALCULATIONS\n")
+cat(paste(rep("=", 60), collapse=""), "\n")
+
+# Comprehensive validation of merged_with_clusters
+cat("✓ Final merged_with_clusters validation:\n")
+cat("  - Dimensions:", dim(merged_with_clusters), "\n")
+cat("  - Columns:", paste(names(merged_with_clusters), collapse = ", "), "\n")
+cat("  - Unique clusters:", paste(unique(merged_with_clusters$Cluster), collapse = ", "), "\n")
+cat("  - Year range:", range(merged_with_clusters$year, na.rm = TRUE), "\n")
+
+# Check for completely missing clusters
+cluster_na_count <- sum(is.na(merged_with_clusters$Cluster))
+if (cluster_na_count > 0) {
+  cat("⚠️ WARNING:", cluster_na_count, "rows with missing Cluster values\n")
+}
+
+# Detailed missing value analysis
+cat("\n--- Missing value analysis ---\n")
+missing_summary <- data.frame(
+  Variable = c("MMR", "HIV_Women", "HIV_Total", "AFR_Level_num"),
+  Missing_Count = c(
+    sum(is.na(merged_with_clusters$MMR)),
+    sum(is.na(merged_with_clusters$HIV_Women)),
+    sum(is.na(merged_with_clusters$HIV_Total)),
+    sum(is.na(merged_with_clusters$AFR_Level_num))
+  ),
+  Total_Rows = nrow(merged_with_clusters)
+)
+missing_summary$Missing_Percent <- round(missing_summary$Missing_Count / missing_summary$Total_Rows * 100, 1)
+print(missing_summary)
+
+# Check data availability per cluster and year
+cat("\n--- Data availability by cluster and year ---\n")
+data_summary <- merged_with_clusters %>%
+  filter(!is.na(Cluster)) %>%  # Remove rows with missing cluster
   group_by(Cluster, year) %>%
   summarise(
+    n_countries = n(),
+    n_mmr = sum(!is.na(MMR)),
+    n_hiv_women = sum(!is.na(HIV_Women)),
+    n_hiv_total = sum(!is.na(HIV_Total)),
+    n_afr = sum(!is.na(AFR_Level_num)),
+    # Check if we have enough data for correlations
+    enough_data_HIV_Women = n_mmr >= 3 & n_hiv_women >= 3,
+    enough_data_HIV_Total = n_mmr >= 3 & n_hiv_total >= 3,
+    enough_data_AFR = n_mmr >= 3 & n_afr >= 3,
+    .groups = "drop"
+  )
+
+cat("Sample of data availability (first 15 rows):\n")
+print(head(data_summary, 15))
+
+# Show summary statistics
+cat("\nSummary of data availability:\n")
+cat("- Cluster-year combinations with enough data for HIV_Women correlation:", 
+    sum(data_summary$enough_data_HIV_Women), "out of", nrow(data_summary), "\n")
+cat("- Cluster-year combinations with enough data for HIV_Total correlation:", 
+    sum(data_summary$enough_data_HIV_Total), "out of", nrow(data_summary), "\n")
+cat("- Cluster-year combinations with enough data for AFR correlation:", 
+    sum(data_summary$enough_data_AFR), "out of", nrow(data_summary), "\n")
+
+# Calculate correlations with enhanced error handling
+cat("\n--- Calculating correlations ---\n")
+corr_cluster <- merged_with_clusters %>%
+  filter(!is.na(Cluster)) %>%  # Remove missing clusters
+  group_by(Cluster, year) %>%
+  summarise(
+    n_obs = n(),
     corr_MMR_HIV_Women = safe_cor(MMR, HIV_Women),
     corr_MMR_HIV_Total = safe_cor(MMR, HIV_Total),
     corr_MMR_AFR = safe_cor(MMR, AFR_Level_num),
     .groups = "drop"
   )
 
-# Plot dynamic correlations
-ggplot(corr_cluster, aes(x = year)) +
-  geom_line(aes(y = corr_MMR_HIV_Women, color = "MMR vs HIV Women")) +
-  geom_line(aes(y = corr_MMR_HIV_Total, color = "MMR vs HIV Total")) +
-  geom_line(aes(y = corr_MMR_AFR, color = "MMR vs AFR")) +
-  facet_wrap(~ Cluster) +
-  geom_hline(yintercept = 0, linetype = "dashed") +
-  labs(
-    y = "Correlation",
-    color = "Correlation Type",
-    title = "Dynamic Correlations of MMR with HIV and AFR by Cluster"
-  ) +
-  theme_minimal()
+# Comprehensive validation of correlation results
+cat("\n=== CORRELATION RESULTS VALIDATION ===\n")
+cat("✓ corr_cluster created - Dimensions:", dim(corr_cluster), "\n")
+
+if (nrow(corr_cluster) == 0) {
+  stop("ERROR: corr_cluster has no rows! Check your data pipeline.")
+}
+
+# Count valid correlations
+valid_counts <- list(
+  HIV_Women = sum(!is.na(corr_cluster$corr_MMR_HIV_Women)),
+  HIV_Total = sum(!is.na(corr_cluster$corr_MMR_HIV_Total)),
+  AFR = sum(!is.na(corr_cluster$corr_MMR_AFR))
+)
+
+cat("Valid correlations out of", nrow(corr_cluster), "cluster-year combinations:\n")
+cat("- MMR vs HIV_Women:", valid_counts$HIV_Women, "\n")
+cat("- MMR vs HIV_Total:", valid_counts$HIV_Total, "\n")
+cat("- MMR vs AFR:", valid_counts$AFR, "\n")
+
+# Show correlation ranges (only if we have valid data)
+if (valid_counts$HIV_Women > 0) {
+  cat("Range of MMR vs HIV_Women correlations:", 
+      paste(round(range(corr_cluster$corr_MMR_HIV_Women, na.rm = TRUE), 3), collapse=" to "), "\n")
+}
+if (valid_counts$HIV_Total > 0) {
+  cat("Range of MMR vs HIV_Total correlations:", 
+      paste(round(range(corr_cluster$corr_MMR_HIV_Total, na.rm = TRUE), 3), collapse=" to "), "\n")
+}
+if (valid_counts$AFR > 0) {
+  cat("Range of MMR vs AFR correlations:", 
+      paste(round(range(corr_cluster$corr_MMR_AFR, na.rm = TRUE), 3), collapse=" to "), "\n")
+}
+
+# Display sample correlation results
+cat("\nSample correlation results (first 10 rows):\n")
+print(head(corr_cluster, 10))
+
+# Plot dynamic correlations with comprehensive error handling
+cat("\n", paste(rep("=", 50), collapse=""), "\n")
+cat("CREATING CORRELATION LINE GRAPHS\n")
+cat(paste(rep("=", 50), collapse=""), "\n")
+
+# Step 1: Verify we have correlation data
+if (nrow(corr_cluster) == 0) {
+  stop("FATAL ERROR: corr_cluster is empty! Cannot create plots.")
+}
+
+# Step 2: Check if we have ANY valid correlation data for plotting
+valid_data_check <- corr_cluster %>%
+  filter(!is.na(corr_MMR_HIV_Women) | !is.na(corr_MMR_HIV_Total) | !is.na(corr_MMR_AFR))
+
+cat("Data check for plotting:\n")
+cat("- Total cluster-year combinations:", nrow(corr_cluster), "\n")
+cat("- Combinations with ANY valid correlation:", nrow(valid_data_check), "\n")
+
+if (nrow(valid_data_check) == 0) {
+  cat("\n❌ CRITICAL ERROR: No valid correlation data available for plotting!\n")
+  cat("Debugging information:\n")
+  cat("- corr_cluster structure:\n")
+  print(str(corr_cluster))
+  cat("- Sample of corr_cluster data:\n")
+  print(head(corr_cluster))
+  cat("- All correlations are NA - check your data pipeline!\n")
+  
+} else {
+  cat("✓ Found", nrow(valid_data_check), "cluster-year combinations with valid correlation data\n")
+  
+  # Step 3: Check specific correlation types
+  hiv_women_valid <- sum(!is.na(corr_cluster$corr_MMR_HIV_Women))
+  hiv_total_valid <- sum(!is.na(corr_cluster$corr_MMR_HIV_Total))
+  afr_valid <- sum(!is.na(corr_cluster$corr_MMR_AFR))
+  
+  cat("Valid data points by correlation type:\n")
+  cat("- MMR vs HIV Women:", hiv_women_valid, "\n")
+  cat("- MMR vs HIV Total:", hiv_total_valid, "\n")
+  cat("- MMR vs AFR:", afr_valid, "\n")
+  
+  # Step 4: Create the plot with error handling
+  cat("\n--- Creating ggplot ---\n")
+  
+  tryCatch({
+    # Load required library
+    if (!require(ggplot2, quietly = TRUE)) {
+      stop("ggplot2 library not available!")
+    }
+    
+    # Create the plot
+    correlation_plot <- ggplot(corr_cluster, aes(x = year)) +
+      geom_line(aes(y = corr_MMR_HIV_Women, color = "MMR vs HIV Women"), 
+                na.rm = TRUE, size = 1.2) +
+      geom_line(aes(y = corr_MMR_HIV_Total, color = "MMR vs HIV Total"), 
+                na.rm = TRUE, size = 1.2) +
+      geom_line(aes(y = corr_MMR_AFR, color = "MMR vs AFR"), 
+                na.rm = TRUE, size = 1.2) +
+      facet_wrap(~ Cluster, scales = "free_y") +
+      geom_hline(yintercept = 0, linetype = "dashed", alpha = 0.7) +
+      labs(
+        x = "Year",
+        y = "Correlation Coefficient",
+        color = "Correlation Type",
+        title = "Dynamic Correlations of MMR with HIV and AFR by Cluster",
+        subtitle = paste("Based on", nrow(valid_data_check), "valid data points")
+      ) +
+      theme_minimal() +
+      theme(
+        legend.position = "bottom",
+        panel.grid.minor = element_blank(),
+        strip.text = element_text(size = 12, face = "bold")
+      ) +
+      scale_color_manual(values = c(
+        "MMR vs HIV Women" = "#1F78B4",
+        "MMR vs HIV Total" = "#33A02C", 
+        "MMR vs AFR" = "#E31A1C"
+      ))
+      # scale_color_manual(values = c(
+      #   "MMR vs HIV Women" = "#E31A1C",
+      #   "MMR vs HIV Total" = "#1F78B4", 
+      #   "MMR vs AFR" = "#33A02C"
+      # ))
+     
+    
+    cat("✓ ggplot object created successfully\n")
+    
+    # Step 5: Display the plot with explicit print
+    cat("--- Displaying plot ---\n")
+    
+    # Try multiple approaches to ensure plot displays
+    if (dev.cur() == 1) {
+      # No graphics device open, create one
+      if (Sys.getenv("RSTUDIO") == "1") {
+        # In RStudio
+        cat("Opening RStudio graphics device...\n")
+      } else {
+        # Command line R
+        cat("Opening default graphics device...\n")
+        try(dev.new())
+      }
+    }
+    
+    # Explicitly print the plot
+    print(correlation_plot)
+    cat("✅ SUCCESS: Correlation line graph created and displayed!\n")
+    
+    # Additional confirmation
+    cat("If you don't see the plot, try running: print(correlation_plot)\n")
+    
+  }, error = function(e) {
+    cat("❌ ERROR creating plot:", as.character(e), "\n")
+    cat("Attempting basic fallback plot...\n")
+    
+    # Fallback: simple plot
+    try({
+      plot(corr_cluster$year, corr_cluster$corr_MMR_HIV_Women, 
+           type = "l", main = "Fallback: MMR vs HIV Women Correlation",
+           xlab = "Year", ylab = "Correlation")
+      cat("Fallback plot created\n")
+    })
+  })
+}
+
+#=== STANDALONE PLOTTING TEST SECTION ===
+cat("\n", paste(rep("=", 60), collapse=""), "\n")
+cat("STANDALONE PLOTTING TEST - MINIMAL WORKING EXAMPLE\n")
+cat(paste(rep("=", 60), collapse=""), "\n")
+
+# Create a minimal test dataset to verify plotting works
+test_data <- data.frame(
+  year = rep(2000:2005, 3),
+  Cluster = rep(c("Low MMR", "Medium MMR", "High MMR"), each = 6),
+  corr_test = c(
+    c(0.2, 0.3, 0.1, -0.1, 0.0, 0.2),  # Low MMR
+    c(0.5, 0.4, 0.6, 0.3, 0.4, 0.5),   # Medium MMR  
+    c(-0.2, -0.1, -0.3, -0.2, -0.1, 0.0) # High MMR
+  )
+)
+
+cat("Test data created:\n")
+print(head(test_data, 10))
+
+# Test basic plotting capability
+cat("\n--- Testing basic R plotting ---\n")
+tryCatch({
+  plot(test_data$year[test_data$Cluster == "Low MMR"], 
+       test_data$corr_test[test_data$Cluster == "Low MMR"],
+       type = "l", main = "Basic R Plot Test", xlab = "Year", ylab = "Test Correlation")
+  cat("✅ Basic R plotting works!\n")
+}, error = function(e) {
+  cat("❌ Basic R plotting failed:", as.character(e), "\n")
+})
+
+# Test ggplot2 capability
+cat("\n--- Testing ggplot2 capability ---\n")
+tryCatch({
+  if (!require(ggplot2, quietly = TRUE)) {
+    stop("ggplot2 not available")
+  }
+  
+  test_plot <- ggplot(test_data, aes(x = year, y = corr_test, color = Cluster)) +
+    geom_line(size = 1) +
+    labs(title = "ggplot2 Test Plot", x = "Year", y = "Test Correlation") +
+    theme_minimal()
+  
+  print(test_plot)
+  cat("✅ ggplot2 plotting works!\n")
+  
+  # Save the test plot object for manual inspection
+  assign("test_correlation_plot", test_plot, envir = .GlobalEnv)
+  cat("Test plot saved as 'test_correlation_plot' - you can view it with: print(test_correlation_plot)\n")
+  
+}, error = function(e) {
+  cat("❌ ggplot2 plotting failed:", as.character(e), "\n")
+})
+
+# If plotting works but main correlation plot doesn't, the issue is with data
+cat("\n--- Plotting capability test complete ---\n")
+cat("If test plots appear but correlation plots don't, the issue is with your correlation data.\n")
+cat("Check the debugging output above for data validation issues.\n")
+
+#=== END STANDALONE TEST SECTION ===
 
 #--- 35 - Define period variable (Before 2010 / 2010 and after)
+cat("\n--- Continuing with period analysis ---\n")
 merged_with_clusters <- merged_with_clusters %>%
   mutate(period = ifelse(year < 2010, "Before 2010", "2010 and after"))
 
 #--- 36 - Correlation per cluster and period
+cat("\n=== Calculating correlations by period ===\n")
 corr_period <- merged_with_clusters %>%
   group_by(Cluster, period) %>%
   summarise(
@@ -1342,26 +1786,39 @@ corr_period <- merged_with_clusters %>%
     corr_MMR_AFR = safe_cor(MMR, AFR_Level_num),
     .groups = "drop"
   )
+
+cat("Period correlation results:\n")
 print(corr_period)
 
-# Plot correlation by period
+# Plot correlation by period with error handling
 corr_long <- corr_period %>%
   pivot_longer(
     cols = starts_with("corr_"),
     names_to = "Correlation_Type",
     values_to = "Correlation"
-  )
+  ) %>%
+  filter(!is.na(Correlation))  # Remove NA correlations
 
-ggplot(corr_long, aes(x = period, y = Correlation, fill = Correlation_Type)) +
-  geom_bar(stat = "identity", position = position_dodge()) +
-  facet_wrap(~ Cluster) +
-  labs(
-    title = "Correlation between MMR and HIV/AFR by Cluster and Period",
-    x = "Period",
-    y = "Correlation coefficient",
-    fill = "Correlation"
-  ) +
-  theme_minimal()
+if (nrow(corr_long) == 0) {
+  cat("ERROR: No valid correlation data for period plot!\n")
+} else {
+  cat("Creating period correlation bar chart with", nrow(corr_long), "data points\n")
+  
+  period_plot <- ggplot(corr_long, aes(x = period, y = Correlation, fill = Correlation_Type)) +
+    geom_bar(stat = "identity", position = position_dodge()) +
+    facet_wrap(~ Cluster) +
+    labs(
+      title = "Correlation between MMR and HIV/AFR by Cluster and Period",
+      x = "Period",
+      y = "Correlation coefficient",
+      fill = "Correlation"
+    ) +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  
+  print(period_plot)
+  cat("Period correlation plot created successfully!\n")
+}
 
 #--- 37 - Filter only High MMR cluster
 high_mmr_data <- merged_with_clusters %>%
