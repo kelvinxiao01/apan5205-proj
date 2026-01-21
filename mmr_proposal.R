@@ -8,6 +8,7 @@ library(scales)
 library(RColorBrewer)
 library(plotly)
 library(lubridate)
+library(skimr)  # Add skimr package for comprehensive variable descriptions
 
 # Set theme for consistent graph styling
 theme_set(theme_minimal() + 
@@ -34,6 +35,9 @@ cat("Loading datasets...\n")
 gender_stats <- read_csv("wb-gender-statistics.csv", show_col_types = FALSE)
 world_dev <- read_csv("wb-world-development.csv", show_col_types = FALSE)
 
+# Print skim summaries for both datasets
+
+
 cat("Gender statistics dataset:", nrow(gender_stats), "rows,", ncol(gender_stats), "columns\n")
 cat("World development dataset:", nrow(world_dev), "rows,", ncol(world_dev), "columns\n")
 
@@ -45,35 +49,133 @@ cat("Combined dataset:", nrow(wb_data), "rows,", ncol(wb_data), "columns\n")
 write_csv(wb_data, "wb_data_combined.csv")
 cat("Saved: wb_data_combined.csv\n")
 
-# Clean the data - remove metadata rows and filter for actual data
+# Clean and standardize data
 wb_data_clean <- wb_data %>%
-  filter(!is.na(`Series Name`),
-         !grepl("Data from database|Last Updated|Code|License", `Series Name`),
-         !is.na(`Country Name`),
-         !grepl("^[A-Z]{2,3}\\.[A-Z]{3,4}\\.", `Series Name`)) %>%
-  # Remove rows where Series Name looks like a code
-  filter(!grepl("^[A-Z]{2}\\.[A-Z]{3}\\.", `Series Name`))
+  # Remove metadata rows and keep only actual data
+  filter(!is.na(`Series Name`), !is.na(`Country Name`)) %>%
+  filter(!str_detect(`Series Name`, "^Metadata")) %>%
+  # Standardize Country Names - remove extra spaces and standardize common variations
+  mutate(
+    `Country Name` = str_trim(`Country Name`),
+    `Country Name` = str_replace_all(`Country Name`, "\\s+", " "),  # Replace multiple spaces with single space
+    # Standardize common country name variations
+    `Country Name` = case_when(
+      str_detect(`Country Name`, "^United States") ~ "United States",
+      str_detect(`Country Name`, "^United Kingdom") ~ "United Kingdom", 
+      str_detect(`Country Name`, "^Russian Federation") ~ "Russian Federation",
+      str_detect(`Country Name`, "^Korea, Rep") ~ "Korea, Rep.",
+      str_detect(`Country Name`, "^Korea, Dem") ~ "Korea, Dem. People's Rep.",
+      str_detect(`Country Name`, "^Iran, Islamic Rep") ~ "Iran, Islamic Rep.",
+      str_detect(`Country Name`, "^Venezuela, RB") ~ "Venezuela, RB",
+      str_detect(`Country Name`, "^Egypt, Arab Rep") ~ "Egypt, Arab Rep.",
+      TRUE ~ `Country Name`
+    )
+  ) %>%
+  # Standardize Series Names - clean and normalize
+  mutate(
+    `Series Name` = str_trim(`Series Name`),
+    `Series Name` = str_replace_all(`Series Name`, "\\s+", " "),  # Replace multiple spaces with single space
+    # Standardize common series name variations
+    `Series Name` = case_when(
+      str_detect(`Series Name`, "Maternal mortality ratio") ~ "Maternal mortality ratio (modeled estimate, per 100,000 live births)",
+      str_detect(`Series Name`, "GDP per capita.*constant") ~ "GDP per capita (constant 2015 US$)",
+      str_detect(`Series Name`, "Life expectancy at birth.*total") ~ "Life expectancy at birth, total (years)",
+      str_detect(`Series Name`, "Fertility rate.*total") ~ "Fertility rate, total (births per woman)",
+      str_detect(`Series Name`, "Labor force participation rate.*female") ~ "Labor force participation rate, female (% of female population ages 15+)",
+      TRUE ~ `Series Name`
+    )
+  ) %>%
+  # Standardize Country Codes - ensure consistent format
+  mutate(
+    `Country Code` = str_trim(`Country Code`),
+    `Country Code` = str_to_upper(`Country Code`)  # Ensure uppercase
+  ) %>%
+  # Standardize Series Codes - ensure consistent format  
+  mutate(
+    `Series Code` = str_trim(`Series Code`),
+    `Series Code` = str_to_upper(`Series Code`)  # Ensure uppercase
+  )
 
-cat("After cleaning - Dataset:", nrow(wb_data_clean), "rows,", ncol(wb_data_clean), "columns\n")
-
-# Save cleaned dataset
+cat("Cleaned dataset:", nrow(wb_data_clean), "rows,", ncol(wb_data_clean), "columns\n")
 write_csv(wb_data_clean, "wb_data_row_filtered.csv")
-cat("Filtered dataset saved as: wb_data_row_filtered.csv\n")
 
-# Create mean imputed version for comparison
-cat("Creating mean imputed dataset...\n")
-year_cols <- grep("\\[YR\\d{4}\\]", names(wb_data_clean), value = TRUE)
-cat("Found", length(year_cols), "year columns\n")
+# Identify year columns and standardize year data
+year_cols <- names(wb_data_clean)[str_detect(names(wb_data_clean), "\\d{4}")]
+cat("Year columns found:", length(year_cols), "\n")
 
-wb_data_mean_imputed <- wb_data_clean %>%
+# Create mean imputed version with standardized missing value handling
+wb_data_imputed <- wb_data_clean %>%
+  # Standardize missing value representation - convert ".." to NA
+  mutate(across(all_of(year_cols), ~ ifelse(.x == "..", NA, .x))) %>%
+  # Convert year columns to numeric and standardize format
   mutate(across(all_of(year_cols), ~ as.numeric(as.character(.x)))) %>%
-  group_by(`Series Name`) %>%
+  # Group by series and apply mean imputation
+  group_by(`Series Name`, `Series Code`) %>%
   mutate(across(all_of(year_cols), ~ ifelse(is.na(.x), mean(.x, na.rm = TRUE), .x))) %>%
-  ungroup()
+  ungroup() %>%
+  # Remove rows that are still all NA after imputation (series with no data)
+  filter(rowSums(!is.na(select(., all_of(year_cols)))) > 0)
 
-# Save mean imputed dataset
-write_csv(wb_data_mean_imputed, "wb_data_mean_imputed.csv")
-cat("Mean imputed dataset saved as: wb_data_mean_imputed.csv\n")
+cat("Mean imputed dataset:", nrow(wb_data_imputed), "rows,", ncol(wb_data_imputed), "columns\n")
+write_csv(wb_data_imputed, "wb_data_mean_imputed.csv")
+
+# Create standardized summary of data quality
+cat("\n=== Data Quality Summary After Standardization ===\n")
+cat("Original combined data:", nrow(wb_data), "rows\n")
+cat("After cleaning and standardization:", nrow(wb_data_clean), "rows\n") 
+cat("After mean imputation:", nrow(wb_data_imputed), "rows\n")
+cat("Unique countries:", length(unique(wb_data_clean$`Country Name`)), "\n")
+cat("Unique series:", length(unique(wb_data_clean$`Series Name`)), "\n")
+cat("Year range:", min(year_cols), "to", max(year_cols), "\n")
+
+# Comprehensive variable description using skim()
+cat("\n=== COMPREHENSIVE VARIABLE DESCRIPTIONS ===\n")
+cat("=== Original Combined Dataset ===\n")
+print(skim(wb_data))
+
+cat("\n=== Cleaned and Standardized Dataset ===\n")
+print(skim(wb_data_clean))
+
+cat("\n=== Mean Imputed Dataset ===\n")
+print(skim(wb_data_imputed))
+
+# Focus on key variables for analysis
+cat("\n=== Key Variables Analysis ===\n")
+# Extract maternal mortality data for detailed analysis
+mmr_detailed <- wb_data_imputed %>%
+  filter(str_detect(`Series Name`, "(?i)maternal.*mortality"))
+
+if(nrow(mmr_detailed) > 0) {
+  cat("=== Maternal Mortality Ratio Variable ===\n")
+  print(skim(mmr_detailed))
+}
+
+# Extract GDP data for detailed analysis
+gdp_detailed <- wb_data_imputed %>%
+  filter(str_detect(`Series Name`, "(?i)gdp.*per.*capita.*constant"))
+
+if(nrow(gdp_detailed) > 0) {
+  cat("\n=== GDP per Capita Variable ===\n")
+  print(skim(gdp_detailed))
+}
+
+# Extract life expectancy data for detailed analysis
+life_exp_detailed <- wb_data_imputed %>%
+  filter(str_detect(`Series Name`, "(?i)life.*expectancy.*birth.*total"))
+
+if(nrow(life_exp_detailed) > 0) {
+  cat("\n=== Life Expectancy Variable ===\n")
+  print(skim(life_exp_detailed))
+}
+
+# Extract fertility rate data for detailed analysis
+fertility_detailed <- wb_data_imputed %>%
+  filter(str_detect(`Series Name`, "(?i)fertility.*rate.*total"))
+
+if(nrow(fertility_detailed) > 0) {
+  cat("\n=== Fertility Rate Variable ===\n")
+  print(skim(fertility_detailed))
+}
 
 cat("\n=== STEP 2: MICE IMPUTATION ===\n")
 
@@ -95,12 +197,48 @@ mice_long <- mice_data %>%
   select(-year_label) %>%
   # Convert values to numeric BEFORE pivot_wider
   mutate(value = as.numeric(value)) %>%
+  # Handle duplicates by taking the mean before pivot_wider
+  group_by(`Country Name`, `Country Code`, year, `Series Name`) %>%
+  summarise(value = mean(value, na.rm = TRUE), .groups = "drop") %>%
   # Pivot wider to get series as columns
   pivot_wider(names_from = `Series Name`, 
               values_from = value,
               id_cols = c(`Country Name`, `Country Code`, year))
 
 cat("Reshaped data for MICE:", nrow(mice_long), "rows,", ncol(mice_long), "columns\n")
+
+# Comprehensive description of MICE reshaped data
+cat("\n=== MICE Reshaped Data Description ===\n")
+print(skim(mice_long))
+
+# Get numeric columns (excluding identifiers)
+numeric_cols <- mice_long %>%
+  select(-`Country Name`, -`Country Code`, -year) %>%
+  select_if(is.numeric) %>%
+  names()
+
+cat("Numeric columns found:", length(numeric_cols), "\n")
+
+# Debug: Show first few numeric columns
+if(length(numeric_cols) > 0) {
+  cat("First few numeric columns:\n")
+  for(i in 1:min(5, length(numeric_cols))) {
+    cat(paste0(i, ". ", numeric_cols[i], "\n"))
+  }
+  
+  # Check specifically for maternal mortality
+  maternal_in_numeric <- numeric_cols[str_detect(numeric_cols, "(?i)maternal")]
+  if(length(maternal_in_numeric) > 0) {
+    cat("Maternal mortality variables found:\n")
+    for(i in 1:length(maternal_in_numeric)) {
+      cat(paste0("  ", maternal_in_numeric[i], "\n"))
+    }
+  }
+} else {
+  cat("WARNING: No numeric columns found after reshape!\n")
+  cat("This might be due to all values being NA after conversion.\n")
+  cat("Proceeding with mean imputation fallback...\n")
+}
 
 if(length(numeric_cols) > 0) {
   # Prepare MICE input with only numeric columns
@@ -282,7 +420,7 @@ if(length(numeric_cols) > 0) {
     cat("Proceeding with mean imputation instead...\n")
     
     # Use mean imputation as fallback
-    pooled_wide <- wb_data_mean_imputed
+    pooled_wide <- wb_data_imputed
     write_csv(pooled_wide, "wb_data_mice_pooled.csv")
     cat("Mean imputed dataset saved as fallback: wb_data_mice_pooled.csv\n")
     
@@ -293,16 +431,28 @@ if(length(numeric_cols) > 0) {
   # Create a simple pooled dataset from the cleaned data
   pooled_wide <- wb_data_clean
   write_csv(pooled_wide, "wb_data_mice_pooled.csv")
+  cat("Using cleaned dataset as fallback: wb_data_mice_pooled.csv\n")
+  mice_success <- FALSE
 }
 
 cat("MICE imputation completed successfully!\n")
-cat("Total variables imputed:", ncol(mice_input_selected) - 3, "\n")
+
+# Only report variable count if MICE was successful
+if(exists("mice_input_selected")) {
+  cat("Total variables imputed:", ncol(mice_input_selected) - 3, "\n")
+} else {
+  cat("No MICE imputation performed - proceeding with cleaned data\n")
+}
 
 cat("\n=== STEP 3: COMPREHENSIVE ANALYSIS ===\n")
 
 # Load MICE pooled data
 wb_mice_pooled <- read_csv("wb_data_mice_pooled.csv", show_col_types = FALSE)
 cat("Loaded MICE pooled dataset:", nrow(wb_mice_pooled), "rows,", ncol(wb_mice_pooled), "columns\n")
+
+# Comprehensive description of MICE pooled dataset
+cat("\n=== MICE Pooled Dataset Description ===\n")
+print(skim(wb_mice_pooled))
 
 # Verify data validity
 if(all(is.na(wb_mice_pooled))) {
@@ -320,19 +470,18 @@ for(i in 1:length(available_series)) {
 }
 
 # Look for MMR data in the original mean imputed dataset if not found in MICE data
-mmr_from_original <- wb_data_mean_imputed %>%
+mmr_from_original <- wb_data_imputed %>%
   filter(str_detect(`Series Name`, "(?i)maternal.*mortality"))
 
-gdp_from_original <- wb_data_mean_imputed %>%
+gdp_from_original <- wb_data_imputed %>%
   filter(str_detect(`Series Name`, "(?i)gdp.*per.*capita.*constant"))
 
 cat("\nFound in original data:\n")
 cat("MMR series:", nrow(mmr_from_original), "rows\n")
 cat("GDP series:", nrow(gdp_from_original), "rows\n")
 
-# Combine MICE data with original MMR data if needed
+# Prepare MMR data for analysis
 if(nrow(mmr_from_original) > 0) {
-  # Use MMR from original data and GDP from MICE data
   mmr_data <- mmr_from_original %>%
     select(`Country Name`, `Country Code`, contains("[YR")) %>%
     pivot_longer(cols = contains("[YR"), names_to = "year", values_to = "MMR") %>%
@@ -345,20 +494,28 @@ if(nrow(mmr_from_original) > 0) {
   mmr_data <- data.frame()
 }
 
-# Extract GDP data from original dataset (MICE data is corrupted)
-gdp_data <- wb_data_mean_imputed %>%
-  filter(str_detect(`Series Name`, "(?i)gdp.*per.*capita.*constant")) %>%
-  select(`Country Name`, `Country Code`, contains("[YR")) %>%
-  pivot_longer(cols = contains("[YR"), names_to = "year", values_to = "GDP") %>%
-  mutate(year = as.numeric(str_extract(year, "\\d{4}"))) %>%
-  filter(!is.na(GDP), GDP > 0)
-
-cat("GDP data prepared:", nrow(gdp_data), "observations\n")
+# Prepare GDP data for analysis
+if(nrow(gdp_from_original) > 0) {
+  gdp_data <- gdp_from_original %>%
+    select(`Country Name`, `Country Code`, contains("[YR")) %>%
+    pivot_longer(cols = contains("[YR"), names_to = "year", values_to = "GDP") %>%
+    mutate(year = as.numeric(str_extract(year, "\\d{4}"))) %>%
+    filter(!is.na(GDP), GDP > 0)
+  
+  cat("GDP data prepared:", nrow(gdp_data), "observations\n")
+} else {
+  cat("No GDP data found in original dataset\n")
+  gdp_data <- data.frame()
+}
 
 # Combine MMR and GDP data if both are available
 if(nrow(mmr_data) > 0 && nrow(gdp_data) > 0) {
   combined_data <- inner_join(mmr_data, gdp_data, by = c("Country Name", "Country Code", "year"))
   cat("Combined MMR-GDP data:", nrow(combined_data), "observations\n")
+  
+  # Comprehensive description of combined analysis dataset
+  cat("\n=== Combined MMR-GDP Analysis Dataset Description ===\n")
+  print(skim(combined_data))
   
   # Save combined data
   write_csv(combined_data, "gdp_mmr_combined_data.csv")

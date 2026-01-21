@@ -1,0 +1,47 @@
+dataset,Series Name,observations,non_missing,missing,completion_rate,unique_countries,unique_years,min_year,max_year,min_value,max_value
+Gender Statistics,"Fertility rate, total (births per woman)",6625,6360,265,96,265,25,2000,2024,0.586,7.829
+Gender Statistics,GDP growth (annual %),6625,6097,528,92.03,265,25,2000,2024,-54.3361546022371,86.8267484395784
+Gender Statistics,GDP per capita (constant 2015 US$),6625,6080,545,91.77,265,25,2000,2024,233.032406774336,224582.449752101
+Gender Statistics,"Labor force participation rate, female (% of female population ages 15-64) (modeled ILO estimate)",6625,5866,759,88.54,265,25,2000,2024,5.098,88.523
+Gender Statistics,"Labor force, female (% of total labor force)",6625,5866,759,88.54,265,25,2000,2024,6.80438606806718,54.7673490468589
+Gender Statistics,"Maternal mortality ratio (modeled estimate, per 100,000 live births)",6625,5808,817,87.67,265,25,2000,2024,1,1662
+Gender Statistics,"Educational attainment, at least completed upper secondary, population 25+, female (%) (cumulative)",6625,1979,4646,29.87,265,25,2000,2024,0,98.1804275512695
+Gender Statistics,Code,25,0,25,0,1,25,2000,2024,Inf,-Inf
+Gender Statistics,Data from database: Gender Statistics,25,0,25,0,1,25,2000,2024,Inf,-Inf
+Gender Statistics,Last Updated: 04/17/2025,25,0,25,0,1,25,2000,2024,Inf,-Inf
+Gender Statistics,NY.GDP.MKTP.KD.ZG,25,0,25,0,1,25,2000,2024,Inf,-Inf
+Gender Statistics,NY.GDP.PCAP.KD,25,0,25,0,1,25,2000,2024,Inf,-Inf
+Gender Statistics,SE.SEC.CUAT.UP.FE.ZS,25,0,25,0,1,25,2000,2024,Inf,-Inf
+Gender Statistics,SH.STA.MMRT,25,0,25,0,1,25,2000,2024,Inf,-Inf
+Gender Statistics,SL.TLF.ACTI.FE.ZS,25,0,25,0,1,25,2000,2024,Inf,-Inf
+Gender Statistics,SL.TLF.TOTL.FE.ZS,25,0,25,0,1,25,2000,2024,Inf,-Inf
+Gender Statistics,SP.DYN.TFRT.IN,25,0,25,0,1,25,2000,2024,Inf,-Inf
+World Development,"Population, female",6650,6625,25,99.62,266,25,2000,2024,4710,4048307044
+World Development,"Population, female (% of total population)",6650,6625,25,99.62,266,25,2000,2024,23.8179934937608,54.9518679190803
+World Development,"Population, male",6650,6625,25,99.62,266,25,2000,2024,4686,4093749402
+World Development,"Population, male (% of total population)",6650,6625,25,99.62,266,25,2000,2024,45.0481320809197,76.1820065062392
+World Development,"Adolescent fertility rate (births per 1,000 women ages 15-19)",6650,6360,290,95.64,266,25,2000,2024,0.465,206.357
+World Development,"Life expectancy at birth, female (years)",6650,6360,290,95.64,266,25,2000,2024,20.006,88.504
+World Development,"Life expectancy at birth, male (years)",6650,6360,290,95.64,266,25,2000,2024,12.383,84.448
+World Development,"Life expectancy at birth, total (years)",6650,6360,290,95.64,266,25,2000,2024,14.665,86.372
+World Development,Prevalence of anemia among pregnant women (%),6650,5760,890,86.62,266,25,2000,2024,10,68
+World Development,Prevalence of anemia among women of reproductive age (% of women ages 15-49),6650,5760,890,86.62,266,25,2000,2024,6.9,63.8
+World Development,"Inflation, consumer prices (annual %)",6650,5683,967,85.46,266,25,2000,2024,-16.8596910540644,557.201817362051
+World Development,Adjusted net national income (current US$),6650,4890,1760,73.53,266,25,2000,2024,-79303323.3526219,76892463673445.2
+World Development,Gross savings (% of GDP),6650,4685,1965,70.45,266,25,2000,2024,-36.7041263728207,372.975166654996
+World Development,Women's share of population ages 15+ living with HIV (%),6650,4489,2161,67.5,266,25,2000,2024,0,71.9374121925016
+World Development,"Prevalence of HIV, total (% of population ages 15-49)",6650,4108,2542,61.77,266,25,2000,2024,0.1,29.9
+World Development,"Prevalence of HIV, female (% ages 15-24)",6650,3750,2900,56.39,266,25,2000,2024,0.1,24.9
+World Development,"Prevalence of HIV, male (% ages 15-24)",6650,3750,2900,56.39,266,25,2000,2024,0.1,8.1
+World Development,"Labor force participation rate, female (% of female population ages 15+) (national estimate)",6650,3200,3450,48.12,266,25,2000,2024,6.037,100
+World Development,Ratio of female to male labor force participation rate (%) (national estimate),6650,3199,3451,48.11,266,25,2000,2024,9.22975782778865,124.007209250521
+World Development,"Unemployment, youth female (% of female labor force ages 15-24) (national estimate)",6650,2834,3816,42.62,266,25,2000,2024,0.164,74.595
+World Development,"Nurses and midwives (per 1,000 people)",6650,2727,3923,41.01,266,25,2000,2024,0.09,27.06
+World Development,"Contraceptive prevalence, any method (% of married women ages 15-49)",6650,842,5808,12.66,266,25,2000,2024,3.5,87.7
+World Development,Coverage of social safety net programs (% of population),6650,565,6085,8.5,266,25,2000,2024,0.514473589852514,99.8305273090216
+World Development,Diabetes prevalence (% of population ages 20 to 79),6650,525,6125,7.89,266,25,2000,2024,0,31.4
+World Development,Coverage of social insurance programs (% of population),6650,521,6129,7.83,266,25,2000,2024,0.539036879650045,60.2331271677953
+World Development,Demand for family planning satisfied by modern methods (% of married women with demand for family planning),6650,220,6430,3.31,266,25,2000,2024,6,86.4
+World Development,Wanted fertility rate (births per woman),6650,216,6434,3.25,266,25,2000,2024,1.1,7.4
+World Development,"Women making their own informed decisions regarding sexual relations, contraceptive use and reproductive health care (% of women age 15-49)",6650,114,6536,1.71,266,25,2000,2024,4.9,96.2
+World Development,NA,50,0,50,0,2,25,2000,2024,Inf,-Inf
